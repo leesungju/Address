@@ -35,6 +35,11 @@
     [super viewDidLayoutSubviews];
     [self setViewLayout];
     [self initViews];
+    
+    UITapGestureRecognizer * tapper = [[UITapGestureRecognizer alloc]
+                                       initWithTarget:self action:@selector(handleSingleTap:)];
+    tapper.cancelsTouchesInView = NO;
+    [self.view addGestureRecognizer:tapper];
 }
 
 - (void)initViews
@@ -53,7 +58,9 @@
     [_retTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     
     _oriDataArray = [[ContactManager sharedInstance] getContact];
-    [self settingTableView:_oriDataArray];
+    if(_searchStr.length <= 0){
+        [self settingTableView:_oriDataArray];
+    }
 }
 
 - (void)settingTableView:(NSArray*)data
@@ -199,6 +206,11 @@
 - (void)backAction:(id)gesture
 {
     [[GUIManager sharedInstance] backControllerWithAnimation:YES];
+}
+
+- (void)handleSingleTap:(UITapGestureRecognizer *) sender
+{
+    [_searchTextField resignFirstResponder];
 }
 
 #pragma mark - search medhods
