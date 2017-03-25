@@ -19,10 +19,13 @@
 
     #import <Contacts/Contacts.h>
     #import <ContactsUI/ContactsUI.h>
+    #import "Firebase.h"
 
     #import "GUIManager.h"
     #import "PreferenceManager.h"
     #import "ContactManager.h"
+    #import "FCMManager.h"
+    #import "StorageManager.h"
 
     #import "AddressObj.h"
 

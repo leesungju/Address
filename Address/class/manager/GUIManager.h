@@ -17,6 +17,9 @@ typedef void(^PopupViewCompletionBlock)(NSDictionary* dict);
 + (GUIManager *)sharedInstance;
 
 - (void)moveToHome;
+- (void)moveToAddress;
+- (void)moveToPreach;
+- (void)moveToNotice;
 - (void)showWelcomeVC;
 - (void)dissmisWelcomeVC;
 - (void)showLoginVC;

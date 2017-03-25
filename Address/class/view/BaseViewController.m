@@ -25,6 +25,10 @@
     return self;
 }
 
+-(UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
+}
+
 - (void)initView {
     _bottomTabView = [UIView new];
     [_bottomTabView setBackgroundColor:[UIColor greenColor]];
@@ -62,9 +66,13 @@
 - (void)tabAction:(UIButton*)sender
 {
     if(sender.tag == 0){
-        [[GUIManager sharedInstance] moveToController:[ContactsViewController new] animation:YES];
+        [[GUIManager sharedInstance] moveToAddress];
+    }else if(sender.tag == 1){
+        [[GUIManager sharedInstance] moveToPreach];
+    }else if(sender.tag == 2){
+        [[GUIManager sharedInstance] moveToNotice];
+
     }
 }
-
 
 @end

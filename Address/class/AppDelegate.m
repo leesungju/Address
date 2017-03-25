@@ -15,10 +15,16 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    [FIRApp configure];
+    [[FCMManager sharedInstance] initialize];
+
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.window makeKeyAndVisible];
     self.window.backgroundColor = [UIColor clearColor];
     [self.window setRootViewController:[[GUIManager sharedInstance] mainNavigationController]];
+    
+
     return YES;
 }
 
@@ -49,5 +55,16 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+// [START receive_message]
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    [[FCMManager sharedInstance] didReceiveRemoteNotification:userInfo];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    [[FCMManager sharedInstance] didReceiveRemoteNotification:userInfo];
+    completionHandler(UIBackgroundFetchResultNewData);
+}
+// [END receive_message]
 
 @end

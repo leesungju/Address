@@ -8,9 +8,15 @@
 
 #import "GUIManager.h"
 #import "MainViewController.h"
+#import "ContactsViewController.h"
+#import "NoticeViewController.h"
+#import "PreachViewController.h"
 
 @interface GUIManager ()
 
+@property (strong, nonatomic) ContactsViewController * contactsViewController;
+@property (strong, nonatomic) PreachViewController * preachViewController;
+@property (strong, nonatomic) NoticeViewController * noticeViewController;
 @property (assign, nonatomic) BOOL isLogin;
 @property (nonatomic, copy) void (^popupCompletion)(NSDictionary* dict);
 
@@ -39,10 +45,76 @@
 
 - (void)moveToHome
 {
-    [_mainNavigationController popToRootViewControllerAnimated:NO];
+    [_mainNavigationController popToRootViewControllerAnimated:YES];
+    if(_contactsViewController != nil){
+        [_contactsViewController.view removeFromSuperview];
+        _contactsViewController.view = nil;
+        [_contactsViewController removeFromParentViewController];
+        _contactsViewController = nil;
+    }
+    if(_preachViewController !=nil){
+        [_preachViewController.view removeFromSuperview];
+        _preachViewController.view = nil;
+        [_preachViewController removeFromParentViewController];
+        _preachViewController = nil;
+    }
+    if(_noticeViewController !=nil){
+        [_noticeViewController.view removeFromSuperview];
+        _noticeViewController.view = nil;
+        [_noticeViewController removeFromParentViewController];
+        _noticeViewController = nil;
+    }
 }
 
+- (void)moveToAddress
+{
+    [self removeView];
+    if(_contactsViewController == nil){
+        _contactsViewController = [ContactsViewController new];
+        [self moveToController:_contactsViewController animation:YES];
+    }
+}
 
+- (void)moveToPreach
+{
+    [self removeView];
+    if(_preachViewController == nil){
+        _preachViewController = [PreachViewController new];
+        [self moveToController:_preachViewController animation:YES];
+    }
+}
+
+- (void)moveToNotice
+{
+    [self removeView];
+    if(_noticeViewController == nil){
+        _noticeViewController = [NoticeViewController new];
+        [self moveToController:_noticeViewController animation:YES];
+    }
+}
+
+- (void)removeView
+{
+    [self backControllerWithAnimation:NO];
+    if(_contactsViewController != nil){
+        [_contactsViewController.view removeFromSuperview];
+        _contactsViewController.view = nil;
+        [_contactsViewController removeFromParentViewController];
+        _contactsViewController = nil;
+    }
+    if(_preachViewController !=nil){
+        [_preachViewController.view removeFromSuperview];
+        _preachViewController.view = nil;
+        [_preachViewController removeFromParentViewController];
+        _preachViewController = nil;
+    }
+    if(_noticeViewController !=nil){
+        [_noticeViewController.view removeFromSuperview];
+        _noticeViewController.view = nil;
+        [_noticeViewController removeFromParentViewController];
+        _noticeViewController = nil;
+    }
+}
 
 - (void)moveToController:(UIViewController*)controller animation:(BOOL)isAnimation
 {
