@@ -29,6 +29,8 @@
 		14089A081E854A3100E329F8 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 140899F91E854A3100E329F8 /* MainViewController.xib */; };
 		14089A131E854AB700E329F8 /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14089A111E854AB700E329F8 /* Contacts.framework */; };
 		14089A141E854AB700E329F8 /* ContactsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14089A121E854AB700E329F8 /* ContactsUI.framework */; };
+		143EBBB31E862CC000E3AA69 /* AddressObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 143EBBB21E862CC000E3AA69 /* AddressObj.m */; };
+		143EBBBA1E863FAB00E3AA69 /* AutoCompleteMng.m in Sources */ = {isa = PBXBuildFile; fileRef = 143EBBB81E863FAB00E3AA69 /* AutoCompleteMng.m */; };
 		14FD590A1E86114700233DDF /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD59091E86114700233DDF /* BaseViewController.m */; };
 		14FD590D1E8614E200233DDF /* NSStrUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD590C1E8614E200233DDF /* NSStrUtils.m */; };
 /* End PBXBuildFile section */
@@ -92,6 +94,10 @@
 		14089A091E854A3800E329F8 /* Address-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Address-Prefix.pch"; sourceTree = "<group>"; };
 		14089A111E854AB700E329F8 /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
 		14089A121E854AB700E329F8 /* ContactsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ContactsUI.framework; path = System/Library/Frameworks/ContactsUI.framework; sourceTree = SDKROOT; };
+		143EBBB11E862CC000E3AA69 /* AddressObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressObj.h; sourceTree = "<group>"; };
+		143EBBB21E862CC000E3AA69 /* AddressObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressObj.m; sourceTree = "<group>"; };
+		143EBBB71E863FAB00E3AA69 /* AutoCompleteMng.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoCompleteMng.h; sourceTree = "<group>"; };
+		143EBBB81E863FAB00E3AA69 /* AutoCompleteMng.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoCompleteMng.m; sourceTree = "<group>"; };
 		14FD59081E86114700233DDF /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		14FD59091E86114700233DDF /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		14FD590B1E8614E200233DDF /* NSStrUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStrUtils.h; sourceTree = "<group>"; };
@@ -188,6 +194,7 @@
 		140899DA1E854A3100E329F8 /* class */ = {
 			isa = PBXGroup;
 			children = (
+				143EBBB01E862CA700E3AA69 /* model */,
 				140899DB1E854A3100E329F8 /* AppDelegate.h */,
 				140899DC1E854A3100E329F8 /* AppDelegate.m */,
 				140899DD1E854A3100E329F8 /* common */,
@@ -225,6 +232,7 @@
 		140899E71E854A3100E329F8 /* manager */ = {
 			isa = PBXGroup;
 			children = (
+				143EBBB41E863FAB00E3AA69 /* autoSearch */,
 				140899E81E854A3100E329F8 /* ContactManager.h */,
 				140899E91E854A3100E329F8 /* ContactManager.m */,
 				140899EA1E854A3100E329F8 /* DropBoxManager.h */,
@@ -262,6 +270,24 @@
 				14089A121E854AB700E329F8 /* ContactsUI.framework */,
 			);
 			path = frameworks;
+			sourceTree = "<group>";
+		};
+		143EBBB01E862CA700E3AA69 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				143EBBB11E862CC000E3AA69 /* AddressObj.h */,
+				143EBBB21E862CC000E3AA69 /* AddressObj.m */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		143EBBB41E863FAB00E3AA69 /* autoSearch */ = {
+			isa = PBXGroup;
+			children = (
+				143EBBB71E863FAB00E3AA69 /* AutoCompleteMng.h */,
+				143EBBB81E863FAB00E3AA69 /* AutoCompleteMng.m */,
+			);
+			path = autoSearch;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -331,6 +357,7 @@
 				TargetAttributes = {
 					140899A31E8549EF00E329F8 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 9LGNSY89WE;
 						ProvisioningStyle = Automatic;
 					};
 					140899BC1E8549EF00E329F8 = {
@@ -402,11 +429,13 @@
 				14089A021E854A3100E329F8 /* PreferenceManager.m in Sources */,
 				14089A051E854A3100E329F8 /* ContactsViewController.m in Sources */,
 				14089A031E854A3100E329F8 /* ContactsTableViewCell.m in Sources */,
+				143EBBBA1E863FAB00E3AA69 /* AutoCompleteMng.m in Sources */,
 				140899FC1E854A3100E329F8 /* UIImage+Common.m in Sources */,
 				14089A071E854A3100E329F8 /* MainViewController.m in Sources */,
 				14FD590A1E86114700233DDF /* BaseViewController.m in Sources */,
 				140899FE1E854A3100E329F8 /* UIView+Common.m in Sources */,
 				140899FF1E854A3100E329F8 /* ContactManager.m in Sources */,
+				143EBBB31E862CC000E3AA69 /* AddressObj.m in Sources */,
 				140899FA1E854A3100E329F8 /* AppDelegate.m in Sources */,
 				14089A001E854A3100E329F8 /* DropBoxManager.m in Sources */,
 				14FD590D1E8614E200233DDF /* NSStrUtils.m in Sources */,
@@ -554,6 +583,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 9LGNSY89WE;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Address/frameworks/dropbox-ios-sync-sdk-3.1.2",
@@ -571,6 +601,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 9LGNSY89WE;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Address/frameworks/dropbox-ios-sync-sdk-3.1.2",

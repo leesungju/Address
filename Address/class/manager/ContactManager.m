@@ -46,17 +46,41 @@
              if( contact.phoneNumbers)
                  phoneNumber = [[[contact.phoneNumbers firstObject] value] stringValue];
              
-             NSLog(@"phoneNumber = %@", phoneNumber);
-             NSLog(@"givenName = %@", contact.givenName);
-             NSLog(@"familyName = %@", contact.familyName);
-             NSLog(@"email = %@", contact.emailAddresses);
+             NSString * name =@"";
+             if(contact.familyName.length > 0){
+                 name = [NSString stringWithFormat:@"%@%@",contact.familyName,contact.givenName] ;
+             }else if(contact.givenName.length > 0){
+                 name = contact.givenName;
+             }else{
+                 return;
+             }
+             NSString * address =@"";
+             if([contact.postalAddresses firstObject] != nil){
+                 address = [[contact.postalAddresses firstObject] value].city;
+             }
              
+             NSDateFormatter *dateformate=[[NSDateFormatter alloc]init];
+             [dateformate setDateFormat:@"yyyy-MM-dd"]; // Date formater
+             NSString *birthDay = [dateformate stringFromDate:contact.birthday.date];
+             NSString * phone = ([[[contact.phoneNumbers firstObject] value] stringValue] > 0)?[[[contact.phoneNumbers firstObject] value] stringValue] : @"";
              
-             [contactList addObject:contact];
+             NSLog(@"givenName = %@", [NSStrUtils getJasoLetter:name]);
+
+             AddressObj * obj = [AddressObj new];
+             [obj setName:name];
+             [obj setSection:[[NSStrUtils getJasoLetter:name] substringToIndex:1].uppercaseString];
+             [obj setGroup:contact.organizationName];
+             [obj setEmail:[[contact.emailAddresses firstObject] value]];
+             [obj setAddress:address];
+             [obj setBirthDay:birthDay];
+             [obj setImageData:contact.imageData];
+             [obj setPhoneNumber:[NSStrUtils replacePhoneNumber:phone]];
+
+             [contactList addObject:obj];
          }];
     }
     return contactList;
-
+    
 }
 
 -(void)saveContact:(NSString*)familyName givenName:(NSString*)givenName phoneNumber:(NSString*)phoneNumber

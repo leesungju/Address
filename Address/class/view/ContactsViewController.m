@@ -8,6 +8,7 @@
 
 #import "ContactsViewController.h"
 #import "ContactsTableViewCell.h"
+#import "AutoCompleteMng.h"
 
 @interface ContactsViewController () <UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UIButton *backBtn;
@@ -16,7 +17,7 @@
 @property (strong, nonatomic) IBOutlet UITableView *retTableView;
 @property (strong, nonatomic) NSMutableDictionary * sections;
 @property (strong, nonatomic) NSMutableDictionary * oriSections;
-@property (strong, nonatomic) NSArray * sectionArray;
+@property (strong, nonatomic) NSMutableArray * sectionArray;
 @property (strong, nonatomic) NSArray * oriDataArray;
 @property (strong, nonatomic) NSString * searchStr;
 
@@ -61,9 +62,9 @@
     
     BOOL found;
     NSArray * arrayYourData = data;
-    for (CNContact *temp in arrayYourData)
+    for (AddressObj *temp in arrayYourData)
     {
-        NSString *c = [temp.familyName substringToIndex:1].uppercaseString;
+        NSString *c = temp.section;
         found = NO;
         NSMutableArray * tempArray;
         for (NSString * headerText in [_sections allKeys])
@@ -83,19 +84,19 @@
         }
         [_sections setObject:tempArray forKey:c];
     }
+    _sectionArray = [NSMutableArray new];
     _sectionArray = [self sortDictionary:_sections];
     _oriSections = [NSMutableDictionary new];
     _oriSections = [_sections mutableCopy];
     [_retTableView reloadData];
 }
 
-- (NSArray*)sortDictionary:(NSDictionary*)dict
+- (NSMutableArray*)sortDictionary:(NSDictionary*)dict
 {
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"self"
                                                   ascending:YES];
     NSArray *descriptors = [NSArray arrayWithObject:sortDescriptor];
-    NSArray *sortedKeys = [dict.allKeys sortedArrayUsingDescriptors:descriptors];
-    return sortedKeys;
+    return [[NSMutableArray alloc] initWithArray:[dict.allKeys sortedArrayUsingDescriptors:descriptors] copyItems:YES];
     
 }
 
@@ -150,7 +151,7 @@
     [header addSubview:lbl];
     [lbl setTextColor:[UIColor whiteColor]];
     [lbl setBackgroundColor:[UIColor clearColor]];
-    [lbl setText:[[_sectionArray objectAtIndex:section] uppercaseString]];
+    [lbl setText:[_sectionArray objectAtIndex:section]];
     [lbl setFont:[UIFont systemFontOfSize:20]];
     return header;
     
@@ -167,12 +168,12 @@
     }
     [cell setBackgroundColor:[UIColor clearColor]];
     NSArray* tempArray = [_sections objectForKey:[_sectionArray objectAtIndex:indexPath.section]];
-    CNContact *temp = [tempArray objectAtIndex:indexPath.row];
-    NSString * name = [NSString stringWithFormat:@"%@ %@ %@",temp.familyName, temp.middleName, temp.givenName];
-    cell.mainLabel.text = name;
-    cell.subLabel.text = [[[temp.phoneNumbers firstObject] value] stringValue];
-//    [cell.mainLabel setAttributeTextColor:[UIColor whiteColor] changeText:cell.mainLabel.text];
-//    [cell.mainLabel setAttributeTextColor:[UIColor redColor] changeText:_searchStr];
+    AddressObj *temp = [tempArray objectAtIndex:indexPath.row];
+
+    cell.mainLabel.text = temp.name;
+    cell.subLabel.text = temp.phoneNumber;
+ //   [cell.mainLabel setAttributeTextColor:[UIColor whiteColor] changeText:cell.mainLabel.text];
+ //   [cell.mainLabel setAttributeTextColor:[UIColor redColor] changeText:_searchStr];
    
     CALayer *separator = [CALayer layer];
     separator.frame = CGRectMake(cell.mainLabel.originX - 20, 54, cell.width, 1);
@@ -188,8 +189,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    NSArray* tempArray = [_sections objectForKey:[_sectionArray objectAtIndex:indexPath.section]];
-//    [[GUIManager sharedInstance] hidePopup:self animation:YES completeData:[[NSDictionary alloc] initWithObjectsAndKeys:[tempArray objectAtIndex:indexPath.row],@"result", nil]];
+
     NSArray* tempArray = [_sections objectForKey:[_sectionArray objectAtIndex:indexPath.section]];
 //    [[ContactManager sharedInstance] loadContactView:[tempArray objectAtIndex:indexPath.row]];
     
@@ -205,10 +205,15 @@
 
 - (void)searchText
 {
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"familyName CONTAINS[c] %@", _searchStr];
+    
+    [_sectionArray removeAllObjects];
     for (NSString * key in [_sections allKeys]){
-        NSArray* filteredData = [[_oriSections objectForKey:key] filteredArrayUsingPredicate:predicate];
-        [_sections setObject:filteredData forKey:key];
+       AutoCompleteMng * automng = [[AutoCompleteMng alloc] initWithData:[_sections objectForKey:key]];
+        NSArray* filteredData = [automng search:_searchStr];
+        if([filteredData count] > 0){
+            [_sections setObject:filteredData forKey:key];
+            [_sectionArray addObject:key];
+        }
     }
     
     [_retTableView reloadData];

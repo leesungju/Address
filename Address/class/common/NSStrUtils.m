@@ -9,7 +9,7 @@
 #import "NSStrUtils.h"
 
 @implementation NSStrUtils
- 
+
 static unichar CHO_SUNG[] = { 0x3131, 0x3132 , 0x3134, 0x3137, 0x3138, 0x3139 , 0x3141, 0x3142 , 0x3143, 0x3145 , 0x3146, 0x3147, 0x3148, 0x3149 , 0x314a, 0x314b , 0x314c, 0x314d , 0x314e };
 
 static  unichar JUNG_SUNG[] = { 0x314f, 0x3150 , 0x3151, 0x3152, 0x3153, 0x3154 , 0x3155, 0x3156 , 0x3157, 0x3158 , 0x3159, 0x315a, 0x315b, 0x315c ,
@@ -21,7 +21,7 @@ static  unichar JONG_SUNG[] = { 0x0000, 0x3131 , 0x3132, 0x3133, 0x3134, 0x3135 
 +(NSString*)getJasoLetter:(NSString*)target
 {
     
-    int count = target.length;     
+    int count = (int)target.length;
     NSMutableString *jasoLetter = [[NSMutableString alloc]init];
     for(int i=0; i<count; i++)
     {
@@ -49,7 +49,7 @@ static  unichar JONG_SUNG[] = { 0x0000, 0x3131 , 0x3132, 0x3133, 0x3134, 0x3135 
             }
         }
         else
-        { 
+        {
             [jasoLetter appendString:[NSString stringWithFormat: @"%C", uniTarget]];
         }
     }
@@ -65,7 +65,147 @@ static  unichar JONG_SUNG[] = { 0x0000, 0x3131 , 0x3132, 0x3133, 0x3134, 0x3135 
     }
     return isKoranLanguage;
 }
-  
+
+
++ (NSString*)replacePhoneNumber:(NSString*)str
+{
+    NSString * ret = @"";
+    NSArray *components = [str componentsSeparatedByCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]];
+    NSString *decimalString = [components componentsJoinedByString:@""];
+    
+    NSUInteger length = decimalString.length;
+    BOOL hasLeadingOne = length > 0 && [decimalString characterAtIndex:0] == '8';
+    
+    NSUInteger index = 0;
+    NSMutableString *formattedString = [NSMutableString string];
+    
+    if(hasLeadingOne){
+        if(length == 12){
+            NSString *areaCode = [decimalString substringWithRange:NSMakeRange(index, 2)];
+            [formattedString appendFormat:@"(%@)",areaCode];
+            index += 2;
+            
+            areaCode = [decimalString substringWithRange:NSMakeRange(index, 2)];
+            [formattedString appendFormat:@"0%@-",areaCode];
+            index += 2;
+            
+            areaCode = [decimalString substringWithRange:NSMakeRange(index, 4)];
+            [formattedString appendFormat:@"%@-",areaCode];
+            index += 4;
+            
+            NSString *remainder = [decimalString substringFromIndex:index];
+            [formattedString appendString:remainder];
+        }else if(length == 11){
+            NSString *areaCode = [decimalString substringWithRange:NSMakeRange(index, 2)];
+            [formattedString appendFormat:@"(%@)",areaCode];
+            index += 2;
+            
+            areaCode = [decimalString substringWithRange:NSMakeRange(index, 2)];
+            [formattedString appendFormat:@"0%@-",areaCode];
+            index += 2;
+            
+            areaCode = [decimalString substringWithRange:NSMakeRange(index, 3)];
+            [formattedString appendFormat:@"%@-",areaCode];
+            index += 3;
+            
+            NSString *remainder = [decimalString substringFromIndex:index];
+            [formattedString appendString:remainder];
+        }
+    }else{
+        if(length == 11){
+            NSString *areaCode = [decimalString substringWithRange:NSMakeRange(index, 3)];
+            [formattedString appendFormat:@"%@-",areaCode];
+            index += 3;
+            
+            areaCode = [decimalString substringWithRange:NSMakeRange(index, 4)];
+            [formattedString appendFormat:@"%@-",areaCode];
+            index += 4;
+            
+            NSString *remainder = [decimalString substringFromIndex:index];
+            [formattedString appendString:remainder];
+        }else if(length == 10){
+            
+            NSString *areaCode = [decimalString substringWithRange:NSMakeRange(index, 3)];
+            if([areaCode isEqualToString:@"010"]){
+                [formattedString appendFormat:@"%@-",areaCode];
+                index += 3;
+                
+                areaCode = [decimalString substringWithRange:NSMakeRange(index, 3)];
+                [formattedString appendFormat:@"%@-",areaCode];
+                index += 3;
+                
+                NSString *remainder = [decimalString substringFromIndex:index];
+                [formattedString appendString:remainder];
+                
+            }else{
+                areaCode = [decimalString substringWithRange:NSMakeRange(index, 2)];
+                if([areaCode isEqualToString:@"02"]){
+                    [formattedString appendFormat:@"%@-",areaCode];
+                    index += 2;
+                    
+                    areaCode = [decimalString substringWithRange:NSMakeRange(index, 4)];
+                    [formattedString appendFormat:@"%@-",areaCode];
+                    index += 4;
+                    
+                    NSString *remainder = [decimalString substringFromIndex:index];
+                    [formattedString appendString:remainder];
+                }else{
+                    areaCode = [decimalString substringWithRange:NSMakeRange(index, 3)];
+                    [formattedString appendFormat:@"%@-",areaCode];
+                    index += 3;
+                    
+                    areaCode = [decimalString substringWithRange:NSMakeRange(index, 3)];
+                    [formattedString appendFormat:@"%@-",areaCode];
+                    index += 3;
+                    
+                    NSString *remainder = [decimalString substringFromIndex:index];
+                    [formattedString appendString:remainder];
+                }
+            }
+        }else if(length == 9){
+            NSString *areaCode = [decimalString substringWithRange:NSMakeRange(index, 2)];
+            if([areaCode isEqualToString:@"02"]){
+                [formattedString appendFormat:@"%@-",areaCode];
+                index += 2;
+                
+                areaCode = [decimalString substringWithRange:NSMakeRange(index, 3)];
+                [formattedString appendFormat:@"%@-",areaCode];
+                index += 3;
+                
+                NSString *remainder = [decimalString substringFromIndex:index];
+                [formattedString appendString:remainder];
+            }else{
+                areaCode = [decimalString substringWithRange:NSMakeRange(index, 3)];
+                [formattedString appendFormat:@"%@-",areaCode];
+                index += 3;
+                
+                areaCode = [decimalString substringWithRange:NSMakeRange(index, 3)];
+                [formattedString appendFormat:@"%@-",areaCode];
+                index += 3;
+                
+                NSString *remainder = [decimalString substringFromIndex:index];
+                [formattedString appendString:remainder];
+            }
+        }else if(length == 8){
+            NSString *areaCode = [decimalString substringWithRange:NSMakeRange(index, 4)];
+            [formattedString appendFormat:@"%@-",areaCode];
+            index += 4;
+            
+            NSString *remainder = [decimalString substringFromIndex:index];
+            [formattedString appendString:remainder];
+        }else if(length == 7){
+            NSString *areaCode = [decimalString substringWithRange:NSMakeRange(index, 3)];
+            [formattedString appendFormat:@"%@-",areaCode];
+            index += 3;
+            
+            NSString *remainder = [decimalString substringFromIndex:index];
+            [formattedString appendString:remainder];
+        }
+    }
+    ret= formattedString;
+    
+    return ret;
+}
 
 
 @end

@@ -15,6 +15,7 @@
     #import "UIImage+Common.h"
     #import "UILabel+Common.h"
     #import "Util.h"
+    #import "NSStrUtils.h"
 
     #import <Contacts/Contacts.h>
     #import <ContactsUI/ContactsUI.h>
@@ -22,6 +23,8 @@
     #import "GUIManager.h"
     #import "PreferenceManager.h"
     #import "ContactManager.h"
+
+    #import "AddressObj.h"
 
     #import "BaseViewController.h"
 
