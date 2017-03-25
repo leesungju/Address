@@ -1,0 +1,37 @@
+//
+//  Address-Prefix.pch
+//  Aireleven
+//
+//  Created by SungJu on 2017. 3. 18..
+//  Copyright © 2017년 Address. All rights reserved.
+//
+
+#import <Availability.h>
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+    #import "UIView+Common.h"
+    #import "UIImage+Common.h"
+    #import "UILabel+Common.h"
+    #import "Util.h"
+
+    #import <Contacts/Contacts.h>
+    #import <ContactsUI/ContactsUI.h>
+
+    #import "GUIManager.h"
+    #import "PreferenceManager.h"
+    #import "ContactManager.h"
+
+    #import "BaseViewController.h"
+
+#endif
+
+#define RGB(r,g,b)[[UIColor alloc] initWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1.0f]
+
+#ifndef __OPTIMIZE__
+#define NSLog(...) NSLog(__VA_ARGS__)
+#else
+#define NSLog(...) {}
+#endif
+
