@@ -20,10 +20,6 @@ typedef void(^PopupViewCompletionBlock)(NSDictionary* dict);
 - (void)moveToAddress;
 - (void)moveToPreach;
 - (void)moveToNotice;
-- (void)showWelcomeVC;
-- (void)dissmisWelcomeVC;
-- (void)showLoginVC;
-- (void)dissmisLoginVC;
 
 - (void)moveToController:(UIViewController*)controller animation:(BOOL)isAnimation;
 - (void)backControllerWithAnimation:(BOOL)isAnimation;

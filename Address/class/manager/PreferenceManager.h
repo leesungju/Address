@@ -12,4 +12,8 @@
 
 + (PreferenceManager *)sharedInstance;
 
+- (void)setPreference:(NSString*)value forKey:(NSString*)key;
+- (NSString*)getPreference:(NSString*)key defualtValue:(NSString*)value;
+- (void)removePreference:(NSString*)key;
+
 @end

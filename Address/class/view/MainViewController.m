@@ -7,6 +7,7 @@
 //
 
 #import "MainViewController.h"
+#import "LoginViewController.h"
 
 @interface MainViewController ()
 
@@ -18,11 +19,18 @@
     
     [super viewDidLoad];
     [self.view setBackgroundColor:[UIColor grayColor]];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
     
-    [[StorageManager sharedInstance] save];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [[StorageManager sharedInstance] load];
-    });
+    NSString * login = [[PreferenceManager sharedInstance] getPreference:@"login" defualtValue:@""];
+    if(login.length <= 0){
+        [[GUIManager sharedInstance] showPopup:[LoginViewController new] animation:NO complete:^(NSDictionary *dict) {
+            
+        }];
+    }
 }
 
 - (void)viewDidLayoutSubviews

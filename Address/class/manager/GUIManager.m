@@ -17,7 +17,6 @@
 @property (strong, nonatomic) ContactsViewController * contactsViewController;
 @property (strong, nonatomic) PreachViewController * preachViewController;
 @property (strong, nonatomic) NoticeViewController * noticeViewController;
-@property (assign, nonatomic) BOOL isLogin;
 @property (nonatomic, copy) void (^popupCompletion)(NSDictionary* dict);
 
 @end
@@ -38,7 +37,6 @@
     if(self){
         _mainNavigationController = [[UINavigationController alloc] initWithRootViewController:[MainViewController new]];
         [_mainNavigationController setNavigationBarHidden:YES];
-        _isLogin = NO;
     }
     return self;
 }
@@ -118,10 +116,15 @@
 
 - (void)moveToController:(UIViewController*)controller animation:(BOOL)isAnimation
 {
-    if(_isLogin){
-        [controller.view setTag:1];
+    
+    if(isAnimation){
+        CATransition *transition = [CATransition animation];
+        transition.duration = 0.3;
+        transition.type = kCATransitionFade;
+        
+        [_mainNavigationController.view.layer addAnimation:transition forKey:kCATransition];
     }
-    [_mainNavigationController pushViewController:controller animated:isAnimation];
+    [_mainNavigationController pushViewController:controller animated:NO];
 }
 
 - (void)backControllerWithAnimation:(BOOL)isAnimation

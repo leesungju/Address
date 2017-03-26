@@ -30,22 +30,21 @@
     return self;
 }
 
-- (void)save
+- (void)saveUser:(NSString*)josnString forKey:(NSString*)key
 {
-    [[[_ref child:@"users"] child:@"address-123"] setValue:@{@"username": @"qwe"}];
+    [[[_ref child:@"users"] child:key] setValue:josnString];
 }
 
-- (void)load
+- (void)loadUserKey:(NSString*)key WithBlock:(void (^)(FIRDataSnapshot *snapshot))block withCancelBlock:(nullable void (^)(NSError* error))cancelBlock
 {
-    
-    [[[_ref child:@"users"] child:@"address-123"] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-        // Get user value
-        NSLog(@"%@",snapshot.value[@"username"]);
-        
-        // ...
-    } withCancelBlock:^(NSError * _Nonnull error) {
-        NSLog(@"%@", error.localizedDescription);
-    }];
+    [[[_ref child:@"users"] child:key] observeSingleEventOfType:FIRDataEventTypeValue withBlock:block withCancelBlock:cancelBlock];
 }
+
+- (void)loadPermissionforKey:(NSString*)key WithBlock:(void (^)(FIRDataSnapshot *snapshot))block withCancelBlock:(nullable void (^)(NSError* error))cancelBlock
+{
+    [[[_ref child:@"permission"] child:key] observeSingleEventOfType:FIRDataEventTypeValue withBlock:block withCancelBlock:cancelBlock];
+}
+
+
 
 @end

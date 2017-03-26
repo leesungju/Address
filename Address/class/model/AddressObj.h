@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface AddressObj : NSObject
+@interface AddressObj : JsonObject
 
 @property(strong, nonatomic) NSString * section;
 @property(strong, nonatomic) NSString * name;

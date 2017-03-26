@@ -142,7 +142,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     
-    return 30;
+    return 20;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -152,14 +152,13 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UIView *header=[[UIView alloc]initWithFrame:CGRectMake(20, 0, _retTableView.width - 40, 30)];
+    UIView *header=[[UIView alloc]initWithFrame:CGRectMake(20, 0, _retTableView.width - 40, 20)];
     [header setBackgroundColor:RGB(0, 159, 255)];
-    UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake(15, 0, 320, 30)];
+    UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake(15, 0, 320, 20)];
     [header addSubview:lbl];
     [lbl setTextColor:[UIColor whiteColor]];
     [lbl setBackgroundColor:[UIColor clearColor]];
     [lbl setText:[_sectionArray objectAtIndex:section]];
-    [lbl setFont:[UIFont systemFontOfSize:20]];
     return header;
     
 }
@@ -185,7 +184,7 @@
     CALayer *separator = [CALayer layer];
     separator.frame = CGRectMake(cell.mainLabel.originX - 20, 54, cell.width, 1);
     if([tempArray count] - 1 != indexPath.row && [tempArray count] > 1){
-        separator.contents = (id)[UIImage imageWithColor:[UIColor whiteColor]].CGImage;
+        separator.contents = (id)[UIImage imageWithColor:RGBA(255, 255, 255, 0.5)].CGImage;
     }else{
         separator.contents = (id)[UIImage imageWithColor:RGB(48, 179, 254)].CGImage;
     }
@@ -198,7 +197,7 @@
 {
 
     NSArray* tempArray = [_sections objectForKey:[_sectionArray objectAtIndex:indexPath.section]];
-//    [[ContactManager sharedInstance] loadContactView:[tempArray objectAtIndex:indexPath.row]];
+    AddressObj * obj = [tempArray objectAtIndex:indexPath.row];
     
 }
 

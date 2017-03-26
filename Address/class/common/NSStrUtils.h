@@ -16,4 +16,7 @@
 +(NSString*)replacePhoneNumber:(NSString*)str;
 +(NSString*)formatNumber:(NSString*)mobileNumber;
 +(NSInteger)getLength:(NSString*)mobileNumber;
+
++(NSString*)urlEncoding:(NSString*)str;
++(NSString*)urlDecoding:(NSString*)str;
 @end

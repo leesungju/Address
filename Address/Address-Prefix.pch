@@ -16,6 +16,7 @@
     #import "UILabel+Common.h"
     #import "Util.h"
     #import "NSStrUtils.h"
+    #import "Constants.h"
 
     #import <Contacts/Contacts.h>
     #import <ContactsUI/ContactsUI.h>
@@ -27,6 +28,7 @@
     #import "FCMManager.h"
     #import "StorageManager.h"
 
+    #import "JsonObject.h"
     #import "AddressObj.h"
 
     #import "BaseViewController.h"
@@ -34,6 +36,7 @@
 #endif
 
 #define RGB(r,g,b)[[UIColor alloc] initWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1.0f]
+#define RGBA(r,g,b,a)[[UIColor alloc] initWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
 
 #ifndef __OPTIMIZE__
 #define NSLog(...) NSLog(__VA_ARGS__)

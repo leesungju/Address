@@ -64,8 +64,6 @@
              NSString *birthDay = [dateformate stringFromDate:contact.birthday.date];
              NSString * phone = ([[[contact.phoneNumbers firstObject] value] stringValue] > 0)?[[[contact.phoneNumbers firstObject] value] stringValue] : @"";
              
-             NSLog(@"givenName = %@", [NSStrUtils getJasoLetter:name]);
-
              AddressObj * obj = [AddressObj new];
              [obj setName:name];
              [obj setSection:[[NSStrUtils getJasoLetter:name] substringToIndex:1].uppercaseString];

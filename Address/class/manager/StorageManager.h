@@ -11,6 +11,11 @@
 @interface StorageManager : NSObject
 
 + (StorageManager *)sharedInstance;
-- (void)save;
-- (void)load;
+
+- (void)saveUser:(NSString*)josnString forKey:(NSString*)key;
+- (void)loadUserKey:(NSString*)key WithBlock:(void (^)(FIRDataSnapshot *snapshot))block withCancelBlock:(nullable void (^)(NSError* error))cancelBlock;
+
+- (void)savePermissionforKey:(NSString*)key;
+- (void)loadPermissionforKey:(NSString*)key WithBlock:(void (^)(FIRDataSnapshot *snapshot))block withCancelBlock:(nullable void (^)(NSError* error))cancelBlock;
+
 @end

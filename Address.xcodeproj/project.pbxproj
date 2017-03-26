@@ -24,6 +24,9 @@
 		14089A081E854A3100E329F8 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 140899F91E854A3100E329F8 /* MainViewController.xib */; };
 		14089A131E854AB700E329F8 /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14089A111E854AB700E329F8 /* Contacts.framework */; };
 		14089A141E854AB700E329F8 /* ContactsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14089A121E854AB700E329F8 /* ContactsUI.framework */; };
+		1409FB601E87625300CC957D /* JsonObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1409FB5F1E87625300CC957D /* JsonObject.m */; };
+		1409FB641E877DC400CC957D /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1409FB621E877DC400CC957D /* LoginViewController.m */; };
+		1409FB651E877DC400CC957D /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1409FB631E877DC400CC957D /* LoginViewController.xib */; };
 		141EF83D1E86992E003B78B1 /* ContactsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 141EF8371E86992E003B78B1 /* ContactsTableViewCell.m */; };
 		141EF83E1E86992E003B78B1 /* ContactsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 141EF8381E86992E003B78B1 /* ContactsTableViewCell.xib */; };
 		141EF83F1E86992E003B78B1 /* ContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 141EF83A1E86992E003B78B1 /* ContactsViewController.m */; };
@@ -127,6 +130,12 @@
 		14089A091E854A3800E329F8 /* Address-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Address-Prefix.pch"; sourceTree = "<group>"; };
 		14089A111E854AB700E329F8 /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
 		14089A121E854AB700E329F8 /* ContactsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ContactsUI.framework; path = System/Library/Frameworks/ContactsUI.framework; sourceTree = SDKROOT; };
+		1409FB5D1E87625300CC957D /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		1409FB5E1E87625300CC957D /* JsonObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonObject.h; sourceTree = "<group>"; };
+		1409FB5F1E87625300CC957D /* JsonObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JsonObject.m; sourceTree = "<group>"; };
+		1409FB611E877DC400CC957D /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		1409FB621E877DC400CC957D /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		1409FB631E877DC400CC957D /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		141EF8361E86992E003B78B1 /* ContactsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsTableViewCell.h; sourceTree = "<group>"; };
 		141EF8371E86992E003B78B1 /* ContactsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsTableViewCell.m; sourceTree = "<group>"; };
 		141EF8381E86992E003B78B1 /* ContactsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactsTableViewCell.xib; sourceTree = "<group>"; };
@@ -319,6 +328,9 @@
 		140899DD1E854A3100E329F8 /* common */ = {
 			isa = PBXGroup;
 			children = (
+				1409FB5D1E87625300CC957D /* Constants.h */,
+				1409FB5E1E87625300CC957D /* JsonObject.h */,
+				1409FB5F1E87625300CC957D /* JsonObject.m */,
 				14FD590B1E8614E200233DDF /* NSStrUtils.h */,
 				14FD590C1E8614E200233DDF /* NSStrUtils.m */,
 				140899DE1E854A3100E329F8 /* Util.h */,
@@ -344,9 +356,9 @@
 		140899E71E854A3100E329F8 /* manager */ = {
 			isa = PBXGroup;
 			children = (
+				143EBBB41E863FAB00E3AA69 /* autoSearch */,
 				141EF8FF1E869FDE003B78B1 /* FCMManager.h */,
 				141EF9001E869FDE003B78B1 /* FCMManager.m */,
-				143EBBB41E863FAB00E3AA69 /* autoSearch */,
 				140899E81E854A3100E329F8 /* ContactManager.h */,
 				140899E91E854A3100E329F8 /* ContactManager.m */,
 				140899EC1E854A3100E329F8 /* GUIManager.h */,
@@ -370,6 +382,9 @@
 				140899F91E854A3100E329F8 /* MainViewController.xib */,
 				14FD59081E86114700233DDF /* BaseViewController.h */,
 				14FD59091E86114700233DDF /* BaseViewController.m */,
+				1409FB611E877DC400CC957D /* LoginViewController.h */,
+				1409FB621E877DC400CC957D /* LoginViewController.m */,
+				1409FB631E877DC400CC957D /* LoginViewController.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -685,6 +700,7 @@
 				141EF8F11E869E8F003B78B1 /* GoogleSignIn.bundle in Resources */,
 				141EF8E01E869E8F003B78B1 /* batch-upload in Resources */,
 				141EF8EF1E869E8F003B78B1 /* GINInviteResources.bundle in Resources */,
+				1409FB651E877DC400CC957D /* LoginViewController.xib in Resources */,
 				141EF84B1E869B4C003B78B1 /* PreachViewController.xib in Resources */,
 				141EF8E41E869E8F003B78B1 /* upload-sym-util.bash in Resources */,
 				141EF8E31E869E8F003B78B1 /* upload-sym in Resources */,
@@ -725,6 +741,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				14089A021E854A3100E329F8 /* PreferenceManager.m in Sources */,
+				1409FB641E877DC400CC957D /* LoginViewController.m in Sources */,
 				141EF84A1E869B4C003B78B1 /* PreachViewController.m in Sources */,
 				141EF8F41E869E8F003B78B1 /* README.md in Sources */,
 				143EBBBA1E863FAB00E3AA69 /* AutoCompleteMng.m in Sources */,
@@ -740,6 +757,7 @@
 				140899FA1E854A3100E329F8 /* AppDelegate.m in Sources */,
 				141EF8441E869947003B78B1 /* NoticeViewController.m in Sources */,
 				14FD590D1E8614E200233DDF /* NSStrUtils.m in Sources */,
+				1409FB601E87625300CC957D /* JsonObject.m in Sources */,
 				140899A91E8549EF00E329F8 /* main.m in Sources */,
 				141EF83F1E86992E003B78B1 /* ContactsViewController.m in Sources */,
 				140899FD1E854A3100E329F8 /* UILabel+Common.m in Sources */,
