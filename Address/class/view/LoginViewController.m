@@ -31,15 +31,15 @@
     }else if( _phoneTextField.text.length <= 0){
         
     }else{
-        
         NSString * name = [NSStrUtils urlEncoding:[_nameTextField text]];
         NSString * phone = [[_phoneTextField text] stringByReplacingOccurrencesOfString:@"-" withString:@""];
         if([self checkPhone:phone]){
+            NSString * key = [phone  substringFromIndex:3];
             [_data setObject:name forKey:@"name"];
             [_data setObject:phone forKey:@"phone"];
             NSString * string = [NSString stringWithFormat:@"%@",_data];
             [[PreferenceManager sharedInstance] setPreference:string forKey:@"login"];
-            [[StorageManager sharedInstance] saveUser:string forKey:phone];
+            [[StorageManager sharedInstance] saveUser:string forKey:key];
             ret = YES;
         }
     }
