@@ -56,8 +56,6 @@
 
 - (void)insertButton:(UIView*)view atPosition:(CGPoint)position
 {
-   
-    
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissMenu)];
     
     for (UIButton *button in _buttonList)

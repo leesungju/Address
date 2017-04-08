@@ -21,6 +21,7 @@
 @property (strong, nonatomic) NSMutableArray * sectionArray;
 @property (strong, nonatomic) NSMutableArray * oriDataArray;
 @property (strong, nonatomic) NSString * searchStr;
+@property (assign, nonatomic) BOOL isLoad;
 
 @end
 
@@ -31,12 +32,31 @@
     self = [super init];
     if (self) {
         _oriDataArray = [NSMutableArray new];
+        _isLoad = NO;
     }
     return self;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if(_isLoad){
+        NSString * contacts = [[PreferenceManager sharedInstance] getPreference:@"contacts" defualtValue:@""];
+        NSArray * array = [Util stringConvertArray:contacts];
+        
+        [_oriDataArray addObjectsFromArray:array];
+        
+        NSOrderedSet *orderedSet = [NSOrderedSet orderedSetWithArray:_oriDataArray];
+        [_oriDataArray removeAllObjects];
+        [_oriDataArray addObjectsFromArray:[orderedSet array]];
+        
+        [self settingTableView:_oriDataArray];
+    }
+    
 }
 
 - (void)viewDidLayoutSubviews
@@ -53,6 +73,7 @@
 
 - (void)initViews
 {
+    _isLoad = YES;
     [_backBtn setImage:[UIImage imageWithColor:[UIColor yellowColor]] forState:UIControlStateNormal];
     [_backBtn addTarget:self action:@selector(backAction:) forControlEvents:UIControlEventTouchUpInside];
     [_backBtn setImageEdgeInsets:UIEdgeInsetsMake(4, 6, 4, 6)];
@@ -242,9 +263,12 @@
 {
 
     NSArray* tempArray = [_sections objectForKey:[_sectionArray objectAtIndex:indexPath.section]];
-    AddressObj *temp = [tempArray objectAtIndex:indexPath.row];
     
-    [[GUIManager sharedInstance] moveToController:[ContactsDetailViewController new] animation:YES];
+    ContactsDetailViewController * contact = [ContactsDetailViewController new];
+    [contact.totalDataArray addObjectsFromArray:tempArray];
+    [contact setIndex:(int)indexPath.row];
+    
+    [[GUIManager sharedInstance] moveToController:contact animation:YES];
 }
 
 #pragma mark - action medhods

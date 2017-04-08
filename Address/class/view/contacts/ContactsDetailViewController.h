@@ -9,5 +9,7 @@
 #import "BaseViewController.h"
 
 @interface ContactsDetailViewController : BaseViewController
+@property (strong, nonatomic) NSMutableArray * totalDataArray;
+@property (assign, nonatomic) int index;
 
 @end
