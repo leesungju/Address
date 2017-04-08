@@ -68,7 +68,8 @@
         _settingViewController = [[GUIManager sharedInstance] settingViewController];
         [_settingViewController setDelegate:self];
         [_settingViewController setMenuButton:titleList images:imageList];
-        [_settingViewController insertButton:[UIApplication sharedApplication].delegate.window atPosition:CGPointMake(_bottomTabView.rightX - 60, _bottomTabView.originY - 60)];
+        [_settingViewController insertButton:[[GUIManager sharedInstance] mainNavigationController].view
+                                  atPosition:CGPointMake([[GUIManager sharedInstance] mainNavigationController].view.width - 60, [[GUIManager sharedInstance] mainNavigationController].view.height - 100)];
     }
     
 }

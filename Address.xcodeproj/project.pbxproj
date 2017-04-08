@@ -76,6 +76,8 @@
 		143EBBB31E862CC000E3AA69 /* AddressObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 143EBBB21E862CC000E3AA69 /* AddressObj.m */; };
 		143EBBBA1E863FAB00E3AA69 /* AutoCompleteMng.m in Sources */ = {isa = PBXBuildFile; fileRef = 143EBBB81E863FAB00E3AA69 /* AutoCompleteMng.m */; };
 		14D887371E97CAE60046636E /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D887361E97CAE60046636E /* SettingViewController.m */; };
+		14D94CFE1E98AF4100C9E298 /* ContactsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D94CFC1E98AF4100C9E298 /* ContactsDetailViewController.m */; };
+		14D94CFF1E98AF4100C9E298 /* ContactsDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14D94CFD1E98AF4100C9E298 /* ContactsDetailViewController.xib */; };
 		14FD590A1E86114700233DDF /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD59091E86114700233DDF /* BaseViewController.m */; };
 		14FD590D1E8614E200233DDF /* NSStrUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD590C1E8614E200233DDF /* NSStrUtils.m */; };
 /* End PBXBuildFile section */
@@ -197,6 +199,9 @@
 		143EBBB81E863FAB00E3AA69 /* AutoCompleteMng.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoCompleteMng.m; sourceTree = "<group>"; };
 		14D887351E97CAE60046636E /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
 		14D887361E97CAE60046636E /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
+		14D94CFB1E98AF4100C9E298 /* ContactsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsDetailViewController.h; sourceTree = "<group>"; };
+		14D94CFC1E98AF4100C9E298 /* ContactsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsDetailViewController.m; sourceTree = "<group>"; };
+		14D94CFD1E98AF4100C9E298 /* ContactsDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactsDetailViewController.xib; sourceTree = "<group>"; };
 		14FD59081E86114700233DDF /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		14FD59091E86114700233DDF /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		14FD590B1E8614E200233DDF /* NSStrUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStrUtils.h; sourceTree = "<group>"; };
@@ -403,6 +408,9 @@
 				141EF8391E86992E003B78B1 /* ContactsViewController.h */,
 				141EF83A1E86992E003B78B1 /* ContactsViewController.m */,
 				141EF83B1E86992E003B78B1 /* ContactsViewController.xib */,
+				14D94CFB1E98AF4100C9E298 /* ContactsDetailViewController.h */,
+				14D94CFC1E98AF4100C9E298 /* ContactsDetailViewController.m */,
+				14D94CFD1E98AF4100C9E298 /* ContactsDetailViewController.xib */,
 			);
 			path = contacts;
 			sourceTree = "<group>";
@@ -702,6 +710,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14D94CFF1E98AF4100C9E298 /* ContactsDetailViewController.xib in Resources */,
 				141EF8F11E869E8F003B78B1 /* GoogleSignIn.bundle in Resources */,
 				141EF8E01E869E8F003B78B1 /* batch-upload in Resources */,
 				141EF8EF1E869E8F003B78B1 /* GINInviteResources.bundle in Resources */,
@@ -745,6 +754,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14D94CFE1E98AF4100C9E298 /* ContactsDetailViewController.m in Sources */,
 				14089A021E854A3100E329F8 /* PreferenceManager.m in Sources */,
 				1409FB641E877DC400CC957D /* LoginViewController.m in Sources */,
 				141EF84A1E869B4C003B78B1 /* PreachViewController.m in Sources */,

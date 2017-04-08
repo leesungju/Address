@@ -9,6 +9,7 @@
 #import "ContactsViewController.h"
 #import "ContactsTableViewCell.h"
 #import "AutoCompleteMng.h"
+#import "ContactsDetailViewController.h"
 
 @interface ContactsViewController () <UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UIButton *backBtn;
@@ -186,7 +187,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 55;
+    return 120;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -215,13 +216,18 @@
     NSArray* tempArray = [_sections objectForKey:[_sectionArray objectAtIndex:indexPath.section]];
     AddressObj *temp = [tempArray objectAtIndex:indexPath.row];
 
-    cell.mainLabel.text = temp.name;
-    cell.subLabel.text = temp.phoneNumber;
+    
+    [cell.profileImageView setImage:[UIImage imageWithColor:[UIColor whiteColor]]];
+    [cell.nameLabel setText:temp.name];
+    [cell.phoneLabel setText:temp.phoneNumber];
+    [cell.groupLabel setText:temp.group];
+    [cell.addressLabel setText:temp.address];
+    
 //    [cell.mainLabel setAttributeTextColor:[UIColor whiteColor] changeText:cell.mainLabel.text];
 //    [cell.mainLabel setAttributeTextColor:[UIColor redColor] changeText:_searchStr];
    
     CALayer *separator = [CALayer layer];
-    separator.frame = CGRectMake(cell.mainLabel.originX - 20, 54, cell.width, 1);
+    separator.frame = CGRectMake(0, 119, cell.width, 1);
     if([tempArray count] - 1 != indexPath.row && [tempArray count] > 1){
         separator.contents = (id)[UIImage imageWithColor:RGBA(255, 255, 255, 0.5)].CGImage;
     }else{
@@ -237,6 +243,8 @@
 
     NSArray* tempArray = [_sections objectForKey:[_sectionArray objectAtIndex:indexPath.section]];
     AddressObj *temp = [tempArray objectAtIndex:indexPath.row];
+    
+    [[GUIManager sharedInstance] moveToController:[ContactsDetailViewController new] animation:YES];
 }
 
 #pragma mark - action medhods

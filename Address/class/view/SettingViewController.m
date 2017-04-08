@@ -139,7 +139,7 @@
 
 - (void)performDismissAnimation
 {
-    [UIView animateWithDuration:0.4 animations:^{
+    [UIView animateWithDuration:0.3 animations:^{
         _menuButton.alpha = 1.0f;
         _menuButton.transform = CGAffineTransformTranslate(CGAffineTransformIdentity, 0, 0);
         _backgroundMenuView.transform = CGAffineTransformTranslate(CGAffineTransformIdentity, 0, 0);
@@ -150,7 +150,7 @@
 - (void)performOpenAnimation
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [UIView animateWithDuration:0.4 animations:^{
+        [UIView animateWithDuration:0.3 animations:^{
             _menuButton.alpha = 0.0f;
             _menuButton.transform = CGAffineTransformTranslate(CGAffineTransformIdentity, -90, 0);
             _backgroundMenuView.transform = CGAffineTransformTranslate(CGAffineTransformIdentity, -90, 0);
@@ -162,9 +162,9 @@
         [NSThread sleepForTimeInterval:0.02f];
         dispatch_async(dispatch_get_main_queue(), ^{
             button.transform = CGAffineTransformTranslate(CGAffineTransformIdentity, 20, 0);
-            [UIView animateWithDuration:0.3f
-                                  delay:0.3f
-                 usingSpringWithDamping:.3f
+            [UIView animateWithDuration:0.2f
+                                  delay:0.2f
+                 usingSpringWithDamping:.2f
                   initialSpringVelocity:10.f
                                 options:0 animations:^{
                                     button.transform = CGAffineTransformTranslate(CGAffineTransformIdentity, 0, 0);

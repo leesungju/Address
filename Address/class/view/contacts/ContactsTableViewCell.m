@@ -18,5 +18,14 @@
     [super awakeFromNib];
     // Initialization code
 }
+- (IBAction)smsBtnAction:(id)sender {
+    NSString * sms = [NSString stringWithFormat:@"sms:%@", _phoneLabel.text];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:sms] options:@{} completionHandler:nil];
 
+}
+
+- (IBAction)tellBtnAction:(id)sender {
+    NSString * tel = [NSString stringWithFormat:@"tel:%@", _phoneLabel.text];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:tel] options:@{} completionHandler:nil];
+}
 @end
