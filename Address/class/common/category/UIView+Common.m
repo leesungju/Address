@@ -132,5 +132,10 @@
     [self addGestureRecognizer:tap];
 }
 
+- (void)bringToFront
+{
+    [[self superview] bringSubviewToFront:self];
+}
+
 @end
 

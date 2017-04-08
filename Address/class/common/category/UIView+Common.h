@@ -22,4 +22,5 @@
 - (void)setCircle:(UIColor *)borderColor width:(float)borderWidth;
 - (void)setRadius:(float)borderWidth;
 - (void)addTapGestureTarget:(id)target action:(SEL)action;
+- (void)bringToFront;
 @end

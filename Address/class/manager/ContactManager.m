@@ -72,7 +72,7 @@
              NSString * group = ([contact.organizationName length] > 0 )? contact.organizationName : @"";
              NSString *imgStr = @"";
              if(contact.imageData != nil){
-              imgStr = [NSString stringWithUTF8String:[contact.imageData bytes]];
+                 imgStr = [Util saveImage:[UIImage imageWithData:contact.imageData]];
              }
              
              NSMutableDictionary * dict = [NSMutableDictionary new];
@@ -82,7 +82,7 @@
              [dict setObject:email forKey:@"email"];
              [dict setObject:address forKey:@"address"];
              [dict setObject:birthDay forKey:@"birthDay"];
-             [dict setObject:imgStr forKey:@"imageData"];
+             [dict setObject:imgStr forKey:@"imagePath"];
              [dict setObject:[NSStrUtils replacePhoneNumber:phone] forKey:@"phoneNumber"];
 
              [contactList addObject:dict];

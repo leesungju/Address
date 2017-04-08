@@ -15,4 +15,5 @@
 + (BOOL)isMyDeviceUUID:(NSString*)uuid;
 + (NSString*)arrayConvertJsonString:(NSArray*)array;
 + (NSArray*)stringConvertArray:(NSString*)str;
++ (NSString*)saveImage:(UIImage*)image;
 @end

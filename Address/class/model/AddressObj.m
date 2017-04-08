@@ -11,13 +11,22 @@
 @implementation AddressObj
 
 
--(void)setdata
+- (void)setdata
 {
     _wordIndex = [NSStrUtils getJasoLetter:_name];
 }
--(NSString*)getWordIndex
+
+- (NSString*)getWordIndex
 {
     return _wordIndex;
+}
+
+- (UIImage*)image
+{
+    if(_imagePath.length > 0){
+        _image = [[UIImage alloc] initWithContentsOfFile:_imagePath];
+    }
+    return _image;
 }
 
 

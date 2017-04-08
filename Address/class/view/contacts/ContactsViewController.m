@@ -102,8 +102,14 @@
 - (void)menuClicked:(int)index
 {
     switch (index) {
-        case 0:
+        case 0:{
+            ContactsDetailViewController * contact = [ContactsDetailViewController new];
+            [contact.totalDataArray addObjectsFromArray:_oriDataArray];
+            [contact setIndex:(int)[_oriDataArray count]];
+            [contact viewMode:kViewMode_add];
+            [[GUIManager sharedInstance] moveToController:contact animation:YES];
             break;
+        }
         case 1: {
             [_oriDataArray addObjectsFromArray:[[ContactManager sharedInstance] getContact]];
             NSOrderedSet *orderedSet = [NSOrderedSet orderedSetWithArray:_oriDataArray];
@@ -238,7 +244,7 @@
     AddressObj *temp = [tempArray objectAtIndex:indexPath.row];
 
     
-    [cell.profileImageView setImage:[UIImage imageWithColor:[UIColor whiteColor]]];
+    [cell.profileImageView setImage:temp.image];
     [cell.nameLabel setText:temp.name];
     [cell.phoneLabel setText:temp.phoneNumber];
     [cell.groupLabel setText:temp.group];

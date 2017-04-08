@@ -54,7 +54,18 @@
 {
     NSData* data = [str dataUsingEncoding:NSUTF8StringEncoding];
     return [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+}
 
++ (NSString*)saveImage:(UIImage*)image
+{
+    //obtaining saving path
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString * name = [NSString stringWithFormat:@"%d.png",(int)[[NSDate date] timeIntervalSince1970]];
+    NSString *imagePath = [documentsDirectory stringByAppendingPathComponent:name];
+    NSData *webData = UIImagePNGRepresentation(image);
+    [webData writeToFile:imagePath atomically:YES];
+    return imagePath;
 }
 
 @end

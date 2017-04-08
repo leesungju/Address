@@ -17,7 +17,8 @@
 @property(strong, nonatomic) NSString * birthDay;
 @property(strong, nonatomic) NSString * email;
 @property(strong, nonatomic) NSString * address;
-@property(strong, nonatomic) NSString * imageData;
+@property(strong, nonatomic) NSString * imagePath;
+@property(strong, nonatomic) UIImage * image;
 @property(strong, nonatomic) NSString * family;
 @property(strong, nonatomic) NSArray * memoArray;
 @property(strong, nonatomic) NSString *wordIndex;
