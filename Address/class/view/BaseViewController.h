@@ -16,6 +16,7 @@
 @property (strong, nonatomic) UIButton * tab3Btn;
 
 
-- (void)setViewLayout;
-
+- (void)setViewLayout:(NSArray*)array;
+- (void)hideMenu;
+- (void)menuClicked:(int)index;
 @end

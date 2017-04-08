@@ -44,4 +44,17 @@
     return [[self deviceUUID] isEqualToString:uuid];
 }
 
++ (NSString*)arrayConvertJsonString:(NSArray*)array
+{
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:array options:NSJSONWritingPrettyPrinted error:nil];
+    return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+}
+
++ (NSArray*)stringConvertArray:(NSString*)str
+{
+    NSData* data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    return [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+
+}
+
 @end

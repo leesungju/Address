@@ -18,13 +18,21 @@
 @property (strong, nonatomic) NSMutableDictionary * sections;
 @property (strong, nonatomic) NSMutableDictionary * oriSections;
 @property (strong, nonatomic) NSMutableArray * sectionArray;
-@property (strong, nonatomic) NSArray * oriDataArray;
+@property (strong, nonatomic) NSMutableArray * oriDataArray;
 @property (strong, nonatomic) NSString * searchStr;
 
 @end
 
 @implementation ContactsViewController
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _oriDataArray = [NSMutableArray new];
+    }
+    return self;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -33,7 +41,7 @@
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-    [self setViewLayout];
+    [self setViewLayout:[NSArray arrayWithObjects:@"등록", @"동기화", @"백업", nil]];
     [self initViews];
     
     UITapGestureRecognizer * tapper = [[UITapGestureRecognizer alloc]
@@ -57,10 +65,39 @@
     [_retTableView setDataSource:self];
     [_retTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     
-    _oriDataArray = [[ContactManager sharedInstance] getContact];
-    if(_searchStr.length <= 0){
-        [self settingTableView:_oriDataArray];
+    NSString * contacts = [[PreferenceManager sharedInstance] getPreference:@"contacts" defualtValue:@""];
+    NSArray * array = [Util stringConvertArray:contacts];
+    
+    [_oriDataArray addObjectsFromArray:array];
+    
+    NSOrderedSet *orderedSet = [NSOrderedSet orderedSetWithArray:_oriDataArray];
+    [_oriDataArray removeAllObjects];
+    [_oriDataArray addObjectsFromArray:[orderedSet array]];
+    
+    [self settingTableView:_oriDataArray];
+}
+
+- (void)menuClicked:(int)index
+{
+    switch (index) {
+        case 0:
+            break;
+        case 1: {
+            [_oriDataArray addObjectsFromArray:[[ContactManager sharedInstance] getContact]];
+            NSOrderedSet *orderedSet = [NSOrderedSet orderedSetWithArray:_oriDataArray];
+            [_oriDataArray removeAllObjects];
+            [_oriDataArray addObjectsFromArray:[orderedSet array]];
+            NSString * resultString = [Util arrayConvertJsonString:_oriDataArray];
+            [[PreferenceManager sharedInstance] setPreference:resultString forKey:@"contacts"];
+            break;
+        }
+        case 2:
+            
+            break;
+        default:
+            break;
     }
+    [self settingTableView:_oriDataArray];
 }
 
 - (void)settingTableView:(NSArray*)data
@@ -69,8 +106,10 @@
     
     BOOL found;
     NSArray * arrayYourData = data;
-    for (AddressObj *temp in arrayYourData)
+    for (NSDictionary * dict in arrayYourData)
     {
+        AddressObj * temp = [AddressObj new];
+        [temp setDict:dict];
         NSString *c = temp.section;
         found = NO;
         NSMutableArray * tempArray;
@@ -197,8 +236,7 @@
 {
 
     NSArray* tempArray = [_sections objectForKey:[_sectionArray objectAtIndex:indexPath.section]];
-    AddressObj * obj = [tempArray objectAtIndex:indexPath.row];
-    
+    AddressObj *temp = [tempArray objectAtIndex:indexPath.row];
 }
 
 #pragma mark - action medhods
@@ -229,5 +267,6 @@
     
     [_retTableView reloadData];
 }
+
 
 @end

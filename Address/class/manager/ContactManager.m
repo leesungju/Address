@@ -61,20 +61,31 @@
              
              NSDateFormatter *dateformate=[[NSDateFormatter alloc]init];
              [dateformate setDateFormat:@"yyyy-MM-dd"]; // Date formater
-             NSString *birthDay = [dateformate stringFromDate:contact.birthday.date];
-             NSString * phone = ([[[contact.phoneNumbers firstObject] value] stringValue] > 0)?[[[contact.phoneNumbers firstObject] value] stringValue] : @"";
+             NSString *birthDay = @"";
+             if(contact.birthday.date != nil){
+                 birthDay = [dateformate stringFromDate:contact.birthday.date];
+             }
+             NSString * phone = ([[[[contact.phoneNumbers firstObject] value] stringValue] length] > 0)?[[[contact.phoneNumbers firstObject] value] stringValue] : @"";
              
-             AddressObj * obj = [AddressObj new];
-             [obj setName:name];
-             [obj setSection:[[NSStrUtils getJasoLetter:name] substringToIndex:1].uppercaseString];
-             [obj setGroup:contact.organizationName];
-             [obj setEmail:[[contact.emailAddresses firstObject] value]];
-             [obj setAddress:address];
-             [obj setBirthDay:birthDay];
-             [obj setImageData:contact.imageData];
-             [obj setPhoneNumber:[NSStrUtils replacePhoneNumber:phone]];
+             NSString * email = ([[[contact.emailAddresses firstObject] value] length] > 0)? [[contact.emailAddresses firstObject] value] : @"";
+             
+             NSString * group = ([contact.organizationName length] > 0 )? contact.organizationName : @"";
+             NSString *imgStr = @"";
+             if(contact.imageData != nil){
+              imgStr = [NSString stringWithUTF8String:[contact.imageData bytes]];
+             }
+             
+             NSMutableDictionary * dict = [NSMutableDictionary new];
+             [dict setObject:name forKey:@"name"];
+             [dict setObject:[[NSStrUtils getJasoLetter:name] substringToIndex:1].uppercaseString forKey:@"section"];
+             [dict setObject:group forKey:@"group"];
+             [dict setObject:email forKey:@"email"];
+             [dict setObject:address forKey:@"address"];
+             [dict setObject:birthDay forKey:@"birthDay"];
+             [dict setObject:imgStr forKey:@"imageData"];
+             [dict setObject:[NSStrUtils replacePhoneNumber:phone] forKey:@"phoneNumber"];
 
-             [contactList addObject:obj];
+             [contactList addObject:dict];
          }];
     }
     return contactList;

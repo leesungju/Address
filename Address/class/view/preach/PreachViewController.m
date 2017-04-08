@@ -17,13 +17,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view setBackgroundColor:[UIColor blueColor]];
-    // Do any additional setup after loading the view from its nib.
 }
 
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-    [self setViewLayout];
+    [self setViewLayout:[NSArray arrayWithObjects:@"설정", nil]];
     
     UITapGestureRecognizer * tapper = [[UITapGestureRecognizer alloc]
                                        initWithTarget:self action:@selector(handleSingleTap:)];

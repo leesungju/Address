@@ -17,6 +17,7 @@
 @property (strong, nonatomic) ContactsViewController * contactsViewController;
 @property (strong, nonatomic) PreachViewController * preachViewController;
 @property (strong, nonatomic) NoticeViewController * noticeViewController;
+@property (strong, nonatomic) SettingViewController * settingViewController;
 @property (nonatomic, copy) void (^popupCompletion)(NSDictionary* dict);
 
 @end
@@ -41,6 +42,13 @@
     return self;
 }
 
+- (SettingViewController*)settingViewController
+{
+    if(_settingViewController == nil){
+        _settingViewController = [SettingViewController new];
+    }
+    return _settingViewController;
+}
 - (void)moveToHome
 {
     [_mainNavigationController popToRootViewControllerAnimated:YES];

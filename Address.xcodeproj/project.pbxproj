@@ -75,6 +75,7 @@
 		141EF9081E86A44E003B78B1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 141EF9071E86A44E003B78B1 /* GoogleService-Info.plist */; };
 		143EBBB31E862CC000E3AA69 /* AddressObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 143EBBB21E862CC000E3AA69 /* AddressObj.m */; };
 		143EBBBA1E863FAB00E3AA69 /* AutoCompleteMng.m in Sources */ = {isa = PBXBuildFile; fileRef = 143EBBB81E863FAB00E3AA69 /* AutoCompleteMng.m */; };
+		14D887371E97CAE60046636E /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D887361E97CAE60046636E /* SettingViewController.m */; };
 		14FD590A1E86114700233DDF /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD59091E86114700233DDF /* BaseViewController.m */; };
 		14FD590D1E8614E200233DDF /* NSStrUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD590C1E8614E200233DDF /* NSStrUtils.m */; };
 /* End PBXBuildFile section */
@@ -194,6 +195,8 @@
 		143EBBB21E862CC000E3AA69 /* AddressObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressObj.m; sourceTree = "<group>"; };
 		143EBBB71E863FAB00E3AA69 /* AutoCompleteMng.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoCompleteMng.h; sourceTree = "<group>"; };
 		143EBBB81E863FAB00E3AA69 /* AutoCompleteMng.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoCompleteMng.m; sourceTree = "<group>"; };
+		14D887351E97CAE60046636E /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		14D887361E97CAE60046636E /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		14FD59081E86114700233DDF /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		14FD59091E86114700233DDF /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		14FD590B1E8614E200233DDF /* NSStrUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStrUtils.h; sourceTree = "<group>"; };
@@ -385,6 +388,8 @@
 				1409FB611E877DC400CC957D /* LoginViewController.h */,
 				1409FB621E877DC400CC957D /* LoginViewController.m */,
 				1409FB631E877DC400CC957D /* LoginViewController.xib */,
+				14D887351E97CAE60046636E /* SettingViewController.h */,
+				14D887361E97CAE60046636E /* SettingViewController.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -763,6 +768,7 @@
 				140899FD1E854A3100E329F8 /* UILabel+Common.m in Sources */,
 				140899FB1E854A3100E329F8 /* Util.m in Sources */,
 				14089A011E854A3100E329F8 /* GUIManager.m in Sources */,
+				14D887371E97CAE60046636E /* SettingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

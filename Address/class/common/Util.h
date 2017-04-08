@@ -13,5 +13,6 @@
 + (NSString *)deviceUUIDWithSeparator:(BOOL)isSeparator;
 + (NSString *)deviceUUID;
 + (BOOL)isMyDeviceUUID:(NSString*)uuid;
-
++ (NSString*)arrayConvertJsonString:(NSArray*)array;
++ (NSArray*)stringConvertArray:(NSString*)str;
 @end

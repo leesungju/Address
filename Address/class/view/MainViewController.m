@@ -36,7 +36,8 @@
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-    [self setViewLayout];
+    [self setViewLayout:[NSArray new]];
+    [self hideMenu];
 }
 
 

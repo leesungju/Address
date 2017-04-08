@@ -7,15 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SettingViewController.h"
 
 @interface GUIManager : NSObject
 
 typedef void(^PopupViewCompletionBlock)(NSDictionary* dict);
 
-@property (nonatomic, strong) UINavigationController * mainNavigationController;
+@property (strong, nonatomic) UINavigationController * mainNavigationController;
 
 + (GUIManager *)sharedInstance;
-
+- (SettingViewController*)settingViewController;
 - (void)moveToHome;
 - (void)moveToAddress;
 - (void)moveToPreach;

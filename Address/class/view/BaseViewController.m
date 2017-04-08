@@ -8,9 +8,10 @@
 
 #import "BaseViewController.h"
 #import "ContactsViewController.h"
+#import "SettingViewController.h"
 
-@interface BaseViewController ()
-
+@interface BaseViewController () <SettingViewControllerDelegate>
+@property (strong, nonatomic) SettingViewController * settingViewController;
 @end
 
 @implementation BaseViewController
@@ -20,7 +21,7 @@
     self = [super init];
     if (self) {
         [self initView];
-
+        
     }
     return self;
 }
@@ -53,26 +54,48 @@
     [_bottomTabView addSubview:_tab3Btn];
 }
 
-- (void)setViewLayout
+- (void)setViewLayout:(NSArray*)array
 {
     [_bottomTabView setFrame:CGRectMake(0, self.view.bottomY - 44, self.view.width, 44)];
     [_tab1Btn setFrame:CGRectMake(0, 0, _bottomTabView.width/3, _bottomTabView.height)];
     [_tab2Btn setFrame:CGRectMake(_tab1Btn.rightX, 0, _bottomTabView.width/3, _bottomTabView.height)];
     [_tab3Btn setFrame:CGRectMake(_tab2Btn.rightX, 0, _bottomTabView.width/3, _bottomTabView.height)];
+    [_settingViewController showMenuBtn];
+    NSArray *titleList = array;
+    NSArray *imageList = @[[UIImage imageWithColor:[UIColor redColor]], [UIImage imageWithColor:[UIColor yellowColor]], [UIImage imageWithColor:[UIColor blueColor]]];
+    
+    if([array count] > 0){
+        _settingViewController = [[GUIManager sharedInstance] settingViewController];
+        [_settingViewController setDelegate:self];
+        [_settingViewController setMenuButton:titleList images:imageList];
+        [_settingViewController insertButton:[UIApplication sharedApplication].delegate.window atPosition:CGPointMake(_bottomTabView.rightX - 60, _bottomTabView.originY - 60)];
+    }
+    
+}
+
+- (void)hideMenu
+{
+    [_settingViewController dismissMenu];
+    [_settingViewController hideMenuBtn];
 }
 
 #pragma mark - Action Methods
 
 - (void)tabAction:(UIButton*)sender
 {
+    [_settingViewController dismissMenu];
     if(sender.tag == 0){
         [[GUIManager sharedInstance] moveToAddress];
     }else if(sender.tag == 1){
         [[GUIManager sharedInstance] moveToPreach];
     }else if(sender.tag == 2){
         [[GUIManager sharedInstance] moveToNotice];
-
+        
     }
 }
 
+- (void)menuClicked:(int)index
+{
+    
+}
 @end
