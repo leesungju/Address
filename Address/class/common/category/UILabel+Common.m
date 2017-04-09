@@ -17,4 +17,6 @@
     [string addAttribute:NSForegroundColorAttributeName value:color range:range];
     [self setAttributedText:string];
 }
+
+
 @end

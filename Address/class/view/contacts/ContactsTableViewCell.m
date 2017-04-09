@@ -17,6 +17,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    [_profileImageView setCircle:[UIColor clearColor] width:0.1];
 }
 - (IBAction)smsBtnAction:(id)sender {
     NSString * sms = [NSString stringWithFormat:@"sms:%@", _phoneLabel.text];

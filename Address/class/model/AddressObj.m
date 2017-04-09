@@ -10,6 +10,14 @@
 
 @implementation AddressObj
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _memoArray = [NSMutableArray new];
+    }
+    return self;
+}
 
 - (void)setdata
 {

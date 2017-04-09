@@ -47,7 +47,7 @@
     if(_isLoad){
         NSString * contacts = [[PreferenceManager sharedInstance] getPreference:@"contacts" defualtValue:@""];
         NSArray * array = [Util stringConvertArray:contacts];
-        
+        [_oriDataArray removeAllObjects];
         [_oriDataArray addObjectsFromArray:array];
         
         NSOrderedSet *orderedSet = [NSOrderedSet orderedSetWithArray:_oriDataArray];
@@ -63,8 +63,8 @@
 {
     [super viewDidLayoutSubviews];
     [self setViewLayout:[NSArray arrayWithObjects:@"등록", @"동기화", @"백업", nil]];
+    [self selectTabMenu:0];
     [self initViews];
-    
     UITapGestureRecognizer * tapper = [[UITapGestureRecognizer alloc]
                                        initWithTarget:self action:@selector(handleSingleTap:)];
     tapper.cancelsTouchesInView = NO;
@@ -85,7 +85,7 @@
     [_searchTextField setDelegate:self];
     [_retTableView setDelegate:self];
     [_retTableView setDataSource:self];
-    [_retTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    [_retTableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
     
     NSString * contacts = [[PreferenceManager sharedInstance] getPreference:@"contacts" defualtValue:@""];
     NSArray * array = [Util stringConvertArray:contacts];
@@ -104,7 +104,7 @@
     switch (index) {
         case 0:{
             ContactsDetailViewController * contact = [ContactsDetailViewController new];
-            [contact.totalDataArray addObjectsFromArray:_oriDataArray];
+            [contact.sectionArray addObjectsFromArray:_oriDataArray];
             [contact setIndex:(int)[_oriDataArray count]];
             [contact viewMode:kViewMode_add];
             [[GUIManager sharedInstance] moveToController:contact animation:YES];
@@ -174,6 +174,18 @@
     
 }
 
+- (void)saveData:(NSDictionary*)dict
+{
+    NSMutableArray * save = [NSMutableArray new];
+    for(NSString * key in [dict allKeys]){
+        for (AddressObj *obj in [dict objectForKey:key]) {
+            [save addObject:obj.getDict];
+        }
+    }
+    NSString * resultString = [Util arrayConvertJsonString:save];
+    [[PreferenceManager sharedInstance] setPreference:resultString forKey:@"contacts"];
+}
+
 #pragma textfield delegate methods
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
@@ -214,13 +226,13 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 120;
+    return 80;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UIView *header=[[UIView alloc]initWithFrame:CGRectMake(20, 0, _retTableView.width - 40, 20)];
-    [header setBackgroundColor:RGB(0, 159, 255)];
+    [header setBackgroundColor:RGB(250, 215, 134)];
     UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake(15, 0, 320, 20)];
     [header addSubview:lbl];
     [lbl setTextColor:[UIColor whiteColor]];
@@ -244,23 +256,26 @@
     AddressObj *temp = [tempArray objectAtIndex:indexPath.row];
 
     
-    [cell.profileImageView setImage:temp.image];
+    if(temp.image){
+        [cell.profileImageView setImage:temp.image];
+    }else{
+        [cell.profileImageView setImage:[UIImage imageNamed:@"profile"]];
+    }
     [cell.nameLabel setText:temp.name];
     [cell.phoneLabel setText:temp.phoneNumber];
-    [cell.groupLabel setText:temp.group];
-    [cell.addressLabel setText:temp.address];
+    [cell.birthDayLabel setText:temp.birthDay];
     
 //    [cell.mainLabel setAttributeTextColor:[UIColor whiteColor] changeText:cell.mainLabel.text];
 //    [cell.mainLabel setAttributeTextColor:[UIColor redColor] changeText:_searchStr];
    
-    CALayer *separator = [CALayer layer];
-    separator.frame = CGRectMake(0, 119, cell.width, 1);
-    if([tempArray count] - 1 != indexPath.row && [tempArray count] > 1){
-        separator.contents = (id)[UIImage imageWithColor:RGBA(255, 255, 255, 0.5)].CGImage;
-    }else{
-        separator.contents = (id)[UIImage imageWithColor:RGB(48, 179, 254)].CGImage;
-    }
-    [cell.layer addSublayer:separator];
+//    CALayer *separator = [CALayer layer];
+//    separator.frame = CGRectMake(0, 79, cell.width, 1);
+//    if([tempArray count] - 1 != indexPath.row && [tempArray count] > 1){
+//        separator.contents = (id)[UIImage imageWithColor:RGBA(255, 255, 255, 0.5)].CGImage;
+//    }else{
+//        separator.contents = (id)[UIImage imageWithColor:RGB(48, 179, 254)].CGImage;
+//    }
+//    [cell.layer addSublayer:separator];
 
     return cell;
 }
@@ -271,10 +286,33 @@
     NSArray* tempArray = [_sections objectForKey:[_sectionArray objectAtIndex:indexPath.section]];
     
     ContactsDetailViewController * contact = [ContactsDetailViewController new];
-    [contact.totalDataArray addObjectsFromArray:tempArray];
+    [contact.sectionArray addObjectsFromArray:_sectionArray];
+    contact.dataDict = _sections;
     [contact setIndex:(int)indexPath.row];
+    [contact setSection:(int)indexPath.section];
     
     [[GUIManager sharedInstance] moveToController:contact animation:YES];
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellEditingStyleDelete;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+     NSMutableArray* tempArray = [_sections objectForKey:[_sectionArray objectAtIndex:indexPath.section]];
+    [tempArray removeObjectAtIndex:indexPath.row];
+    if([tempArray count] == 0){
+        [_sectionArray removeObjectAtIndex:indexPath.section];
+    }
+    [tableView reloadData];
+    [self saveData:_sections];
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
 }
 
 #pragma mark - action medhods

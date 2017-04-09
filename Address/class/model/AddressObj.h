@@ -20,7 +20,7 @@
 @property(strong, nonatomic) NSString * imagePath;
 @property(strong, nonatomic) UIImage * image;
 @property(strong, nonatomic) NSString * family;
-@property(strong, nonatomic) NSArray * memoArray;
+@property(strong, nonatomic) NSMutableArray * memoArray;
 @property(strong, nonatomic) NSString *wordIndex;
 
 -(void)setdata;

@@ -19,4 +19,5 @@
 - (void)setViewLayout:(NSArray*)array;
 - (void)hideMenu;
 - (void)menuClicked:(int)index;
+- (void)selectTabMenu:(int)index;
 @end

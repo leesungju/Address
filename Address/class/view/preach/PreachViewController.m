@@ -23,19 +23,13 @@
 {
     [super viewDidLayoutSubviews];
     [self setViewLayout:[NSArray arrayWithObjects:@"설정", nil]];
+    [self selectTabMenu:1];
     
-    UITapGestureRecognizer * tapper = [[UITapGestureRecognizer alloc]
-                                       initWithTarget:self action:@selector(handleSingleTap:)];
-    tapper.cancelsTouchesInView = NO;
-    [self.view addGestureRecognizer:tapper];
 }
 
 
 #pragma mark - action medhods
 
-- (void)handleSingleTap:(UITapGestureRecognizer *) sender
-{
-    
-}
+
 
 @end

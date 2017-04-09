@@ -18,7 +18,6 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    [self.view setBackgroundColor:[UIColor grayColor]];
 }
 
 - (void)viewDidAppear:(BOOL)animated

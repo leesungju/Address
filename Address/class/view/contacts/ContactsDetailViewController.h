@@ -15,7 +15,9 @@ typedef enum {
 } kViewMode;
 
 @interface ContactsDetailViewController : BaseViewController
-@property (strong, nonatomic) NSMutableArray * totalDataArray;
+@property (strong, nonatomic) NSMutableDictionary * dataDict;
+@property (strong, nonatomic) NSMutableArray * sectionArray;
+@property (assign, nonatomic) int section;
 @property (assign, nonatomic) int index;
 - (void)viewMode:(kViewMode)mode;
 @end

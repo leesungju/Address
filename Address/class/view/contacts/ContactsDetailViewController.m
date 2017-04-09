@@ -7,6 +7,7 @@
 //
 
 #import "ContactsDetailViewController.h"
+#import "MemoPopupViewController.h"
 
 @interface ContactsDetailViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UITextViewDelegate>
 @property (strong, nonatomic) IBOutlet UIButton *backBtn;
@@ -47,7 +48,8 @@
 {
     self = [super init];
     if (self) {
-        _totalDataArray = [NSMutableArray new];
+        _sectionArray = [NSMutableArray new];
+        _dataDict = [NSMutableDictionary new];
         _viewMode = kViewMode_nomarl;
         _imgPath = @"";
     }
@@ -64,8 +66,8 @@
 - (void)initViews
 {
     AddressObj * obj = [AddressObj new];
-    if([_totalDataArray count] != _index){
-        obj = [_totalDataArray objectAtIndex:_index];
+    if([[_dataDict objectForKey:[_sectionArray objectAtIndex:_section]] count] != _index){
+        obj = [[_dataDict objectForKey:[_sectionArray objectAtIndex:_section]] objectAtIndex:_index];
     }else{
         obj.name = @"이름";
         obj.phoneNumber = @"핸드폰 번호";
@@ -76,7 +78,7 @@
         obj.family = @"가족관계";
     }
     if(_viewMode == kViewMode_add){
-        [_editBtn setTitle:@"save" forState:UIControlStateNormal];
+        [_editBtn setBackgroundImage:[UIImage imageNamed:@"save"] forState:UIControlStateNormal];
         [_editView setHidden:NO];
         [_detailView setHidden:YES];
         [_editNameTextField setPlaceholder:obj.name];
@@ -95,7 +97,7 @@
         [_editFamilyTextView setDelegate:self];
         
     }else if(_viewMode == kViewMode_edit){
-        [_editBtn setTitle:@"save" forState:UIControlStateNormal];
+        [_editBtn setBackgroundImage:[UIImage imageNamed:@"save"] forState:UIControlStateNormal];
         [_editView setHidden:NO];
         [_detailView setHidden:YES];
         [_editNameTextField setText:obj.name];
@@ -114,18 +116,31 @@
         [_editFamilyTextView setDelegate:self];
         
     }else{
-        [_editBtn setTitle:@"edit" forState:UIControlStateNormal];
+        [_editBtn setBackgroundImage:[UIImage imageNamed:@"edit"] forState:UIControlStateNormal];
         [_editView setHidden:YES];
         [_detailView setHidden:NO];
-        [_detailImageView setImage:obj.image];
+        if(obj.image){
+            [_detailImageView setImage:obj.image];
+        }else{
+            [_detailImageView setImage:[UIImage imageNamed:@"profile"]];
+        }
         [_detailNameLabel setText:obj.name];
+        [_detailNameLabel setRadius:5];
         [_detailPhoneLabel setText:obj.phoneNumber];
+        [_detailPhoneLabel setRadius:5];
         [_detailBrithDayLabel setText:obj.birthDay];
+        [_detailBrithDayLabel setRadius:5];
         [_detailGroupLabel setText:obj.group];
+        [_detailGroupLabel setRadius:5];
         [_detailEmailLabel setText:obj.email];
+        [_detailEmailLabel setRadius:5];
         [_detailAddressLabel setText:obj.address];
+        [_detailAddressLabel setRadius:5];
         [_detailFamilyLabel setText:obj.family];
+        [_detailFamilyLabel setRadius:5];
         _memoArray = obj.memoArray;
+        [_detailMemoTableView setDelegate:self];
+        [_detailMemoTableView setDataSource:self];
         if([_memoArray count] > 0){
             [_detailMemoTableView reloadData];
             [_detailMemoTableView setHidden:NO];
@@ -144,7 +159,15 @@
 
 - (void)saveData
 {
-    NSString * resultString = [Util arrayConvertJsonString:_totalDataArray];
+    NSMutableArray * save = [NSMutableArray new];
+    for(NSString * key in [_dataDict allKeys]){
+        for (AddressObj *obj in [_dataDict objectForKey:key]) {
+            NSMutableDictionary *dict = obj.getDict;
+            [dict removeObjectForKey:@"image"];
+            [save addObject:dict];
+        }
+    }
+    NSString * resultString = [Util arrayConvertJsonString:save];
     [[PreferenceManager sharedInstance] setPreference:resultString forKey:@"contacts"];
     [[GUIManager sharedInstance] backControllerWithAnimation:YES];
 }
@@ -172,18 +195,20 @@
     UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if(cell == nil)
     {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         //        NSArray *nib  = [[NSBundle mainBundle] loadNibNamed:@"ContactsTableViewCell" owner:self options:nil];
         //        cell=[nib objectAtIndex:0];
     }
     
-    CALayer *separator = [CALayer layer];
-    separator.frame = CGRectMake(0, 119, cell.width, 1);
-    if([_memoArray count] - 1 != indexPath.row && [_memoArray count] > 1){
-        separator.contents = (id)[UIImage imageWithColor:RGBA(255, 255, 255, 0.5)].CGImage;
-    }else{
-        separator.contents = (id)[UIImage imageWithColor:RGB(48, 179, 254)].CGImage;
-    }
-    [cell.layer addSublayer:separator];
+    [cell.textLabel setText:[[_memoArray objectAtIndex:indexPath.row] objectForKey:@"title"]];
+    //    CALayer *separator = [CALayer layer];
+    //    separator.frame = CGRectMake(0, 119, cell.width, 1);
+    //    if([_memoArray count] - 1 != indexPath.row && [_memoArray count] > 1){
+    //        separator.contents = (id)[UIImage imageWithColor:RGBA(255, 255, 255, 0.5)].CGImage;
+    //    }else{
+    //        separator.contents = (id)[UIImage imageWithColor:RGB(48, 179, 254)].CGImage;
+    //    }
+    //    [cell.layer addSublayer:separator];
     
     return cell;
 }
@@ -195,11 +220,13 @@
 
 
 #pragma mark - Action Methods
+
 - (IBAction)backAction:(id)sender {
     [[GUIManager sharedInstance] backControllerWithAnimation:YES];
 }
+
 - (IBAction)editAction:(UIButton*)sender {
-    if([sender.titleLabel.text isEqualToString:@"save"]){
+    if(_viewMode == kViewMode_add || _viewMode == kViewMode_edit){
         //저장
         AddressObj * obj = [AddressObj new];
         if(_editNameTextField.text.length > 0 && _editPhoneextField.text.length > 0){
@@ -214,28 +241,24 @@
             obj.section = [[NSStrUtils getJasoLetter:obj.name] substringToIndex:1].uppercaseString;
             
             if(_viewMode == kViewMode_add){
-                NSMutableDictionary * dict = [NSMutableDictionary new];
-                dict = [obj getDict];
-                [dict removeObjectForKey:@"image"];
-                [_totalDataArray addObject:dict];
+                
+                [[_dataDict objectForKey:[_sectionArray objectAtIndex:_section]] addObject:obj];
             }else{
-                NSMutableDictionary * dict = [NSMutableDictionary new];
-                dict = [obj getDict];
-                [dict removeObjectForKey:@"image"];
-                [_totalDataArray removeObjectAtIndex:_index];
-                [_totalDataArray insertObject:dict atIndex:_index];
+                [[_dataDict objectForKey:[_sectionArray objectAtIndex:_section]] removeObjectAtIndex:_index];
+                [[_dataDict objectForKey:[_sectionArray objectAtIndex:_section]] insertObject:obj atIndex:_index];
             }
             [self saveData];
         }else{
             
         }
-       
+        
     }else{
         [self viewMode:kViewMode_edit];
         
     }
     
 }
+
 - (IBAction)imageAction:(id)sender {
     
     UIImagePickerController * picker = [UIImagePickerController new];
@@ -260,11 +283,24 @@
     [self presentViewController:av animated:YES completion:nil];
 }
 
+- (IBAction)memoAction:(id)sender {
+    [[GUIManager sharedInstance] showPopup:[MemoPopupViewController new] animation:YES complete:^(NSDictionary *dict) {
+        if(dict){
+            AddressObj* obj = [[_dataDict objectForKey:[_sectionArray objectAtIndex:_section]] objectAtIndex:_index];
+            [obj.memoArray addObject:dict];
+            _memoArray = obj.memoArray;
+            [_detailMemoTableView reloadData];
+            [_detailMemoTableView setHidden:NO];
+            [self saveData];
+        }
+    }];
+}
+
 
 #pragma mark - UIImagePicker Delegate Methods
+
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
 {
-    NSLog(@"%@",info);
     UIImage * img = [info valueForKey:UIImagePickerControllerEditedImage];
     [_editImageView setImage:img];
     [_imageBtn setAlpha:0.1];

@@ -12,8 +12,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *profileImageView;
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *phoneLabel;
-@property (strong, nonatomic) IBOutlet UILabel *groupLabel;
-@property (strong, nonatomic) IBOutlet UILabel *addressLabel;
+@property (strong, nonatomic) IBOutlet UILabel *birthDayLabel;
 @property (strong, nonatomic) IBOutlet UIButton *smsBtn;
 @property (strong, nonatomic) IBOutlet UIButton *tellBtn;
 

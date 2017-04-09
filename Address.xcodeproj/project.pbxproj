@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		140899A91E8549EF00E329F8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 140899A81E8549EF00E329F8 /* main.m */; };
-		140899B41E8549EF00E329F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 140899B31E8549EF00E329F8 /* Assets.xcassets */; };
+		140899B41E8549EF00E329F8 /* Asset.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 140899B31E8549EF00E329F8 /* Asset.xcassets */; };
 		140899B71E8549EF00E329F8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 140899B51E8549EF00E329F8 /* LaunchScreen.storyboard */; };
 		140899C21E8549EF00E329F8 /* AddressTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 140899C11E8549EF00E329F8 /* AddressTests.m */; };
 		140899CD1E8549EF00E329F8 /* AddressUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 140899CC1E8549EF00E329F8 /* AddressUITests.m */; };
@@ -27,6 +27,8 @@
 		1409FB601E87625300CC957D /* JsonObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1409FB5F1E87625300CC957D /* JsonObject.m */; };
 		1409FB641E877DC400CC957D /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1409FB621E877DC400CC957D /* LoginViewController.m */; };
 		1409FB651E877DC400CC957D /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1409FB631E877DC400CC957D /* LoginViewController.xib */; };
+		14155CD21E9A1B1A008C0E99 /* MemoPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14155CD01E9A1B1A008C0E99 /* MemoPopupViewController.m */; };
+		14155CD31E9A1B1A008C0E99 /* MemoPopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14155CD11E9A1B1A008C0E99 /* MemoPopupViewController.xib */; };
 		141EF83D1E86992E003B78B1 /* ContactsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 141EF8371E86992E003B78B1 /* ContactsTableViewCell.m */; };
 		141EF83E1E86992E003B78B1 /* ContactsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 141EF8381E86992E003B78B1 /* ContactsTableViewCell.xib */; };
 		141EF83F1E86992E003B78B1 /* ContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 141EF83A1E86992E003B78B1 /* ContactsViewController.m */; };
@@ -102,7 +104,7 @@
 /* Begin PBXFileReference section */
 		140899A41E8549EF00E329F8 /* Address.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Address.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		140899A81E8549EF00E329F8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		140899B31E8549EF00E329F8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		140899B31E8549EF00E329F8 /* Asset.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Asset.xcassets; sourceTree = "<group>"; };
 		140899B61E8549EF00E329F8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		140899B81E8549EF00E329F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		140899BD1E8549EF00E329F8 /* AddressTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AddressTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -139,6 +141,9 @@
 		1409FB611E877DC400CC957D /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		1409FB621E877DC400CC957D /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		1409FB631E877DC400CC957D /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		14155CCF1E9A1B1A008C0E99 /* MemoPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemoPopupViewController.h; sourceTree = "<group>"; };
+		14155CD01E9A1B1A008C0E99 /* MemoPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemoPopupViewController.m; sourceTree = "<group>"; };
+		14155CD11E9A1B1A008C0E99 /* MemoPopupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MemoPopupViewController.xib; sourceTree = "<group>"; };
 		141EF8361E86992E003B78B1 /* ContactsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsTableViewCell.h; sourceTree = "<group>"; };
 		141EF8371E86992E003B78B1 /* ContactsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsTableViewCell.m; sourceTree = "<group>"; };
 		141EF8381E86992E003B78B1 /* ContactsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactsTableViewCell.xib; sourceTree = "<group>"; };
@@ -284,7 +289,7 @@
 			children = (
 				141EF8A21E869E8E003B78B1 /* Frameworks */,
 				140899DA1E854A3100E329F8 /* class */,
-				140899B31E8549EF00E329F8 /* Assets.xcassets */,
+				140899B31E8549EF00E329F8 /* Asset.xcassets */,
 				140899B51E8549EF00E329F8 /* LaunchScreen.storyboard */,
 				140899B81E8549EF00E329F8 /* Info.plist */,
 				140899A71E8549EF00E329F8 /* Supporting Files */,
@@ -411,6 +416,9 @@
 				14D94CFB1E98AF4100C9E298 /* ContactsDetailViewController.h */,
 				14D94CFC1E98AF4100C9E298 /* ContactsDetailViewController.m */,
 				14D94CFD1E98AF4100C9E298 /* ContactsDetailViewController.xib */,
+				14155CCF1E9A1B1A008C0E99 /* MemoPopupViewController.h */,
+				14155CD01E9A1B1A008C0E99 /* MemoPopupViewController.m */,
+				14155CD11E9A1B1A008C0E99 /* MemoPopupViewController.xib */,
 			);
 			path = contacts;
 			sourceTree = "<group>";
@@ -721,13 +729,14 @@
 				141EF8F01E869E8F003B78B1 /* GPPACLPickerResources.bundle in Resources */,
 				141EF8F31E869E8F003B78B1 /* NOTICES in Resources */,
 				141EF8E21E869E8F003B78B1 /* extract-keys in Resources */,
+				14155CD31E9A1B1A008C0E99 /* MemoPopupViewController.xib in Resources */,
 				141EF8451E869947003B78B1 /* NoticeViewController.xib in Resources */,
 				141EF83E1E86992E003B78B1 /* ContactsTableViewCell.xib in Resources */,
 				141EF9081E86A44E003B78B1 /* GoogleService-Info.plist in Resources */,
 				140899B71E8549EF00E329F8 /* LaunchScreen.storyboard in Resources */,
 				14089A081E854A3100E329F8 /* MainViewController.xib in Resources */,
 				141EF8E51E869E8F003B78B1 /* upload-sym.sh in Resources */,
-				140899B41E8549EF00E329F8 /* Assets.xcassets in Resources */,
+				140899B41E8549EF00E329F8 /* Asset.xcassets in Resources */,
 				141EF8E11E869E8F003B78B1 /* dump_syms in Resources */,
 				141EF8401E86992E003B78B1 /* ContactsViewController.xib in Resources */,
 			);
@@ -773,6 +782,7 @@
 				141EF8441E869947003B78B1 /* NoticeViewController.m in Sources */,
 				14FD590D1E8614E200233DDF /* NSStrUtils.m in Sources */,
 				1409FB601E87625300CC957D /* JsonObject.m in Sources */,
+				14155CD21E9A1B1A008C0E99 /* MemoPopupViewController.m in Sources */,
 				140899A91E8549EF00E329F8 /* main.m in Sources */,
 				141EF83F1E86992E003B78B1 /* ContactsViewController.m in Sources */,
 				140899FD1E854A3100E329F8 /* UILabel+Common.m in Sources */,
