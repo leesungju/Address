@@ -8,6 +8,7 @@
 
 #import "ContactsDetailViewController.h"
 #import "MemoPopupViewController.h"
+#import "MemoTableViewCell.h"
 
 @interface ContactsDetailViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UITextViewDelegate>
 @property (strong, nonatomic) IBOutlet UIButton *backBtn;
@@ -60,13 +61,14 @@
 {
     [super viewDidLayoutSubviews];
     [self setViewLayout:[NSArray new]];
+    [self.bottomTabView setHidden:YES];
     [self initViews];
 }
 
 - (void)initViews
 {
     AddressObj * obj = [AddressObj new];
-    if([[_dataDict objectForKey:[_sectionArray objectAtIndex:_section]] count] != _index){
+    if([_sectionArray count] > 0 && [_sectionArray count] != _section+1  && [[_dataDict objectForKey:[_sectionArray objectAtIndex:_section]] count] != _index){
         obj = [[_dataDict objectForKey:[_sectionArray objectAtIndex:_section]] objectAtIndex:_index];
     }else{
         obj.name = @"이름";
@@ -141,6 +143,8 @@
         _memoArray = obj.memoArray;
         [_detailMemoTableView setDelegate:self];
         [_detailMemoTableView setDataSource:self];
+        [_detailMemoTableView setRadius:5];
+        [_detailMemoTableView setBackgroundColor:RGB(250, 254, 243)];
         if([_memoArray count] > 0){
             [_detailMemoTableView reloadData];
             [_detailMemoTableView setHidden:NO];
@@ -157,7 +161,7 @@
     [self initViews];
 }
 
-- (void)saveData
+- (void)saveData:(BOOL)isBack
 {
     NSMutableArray * save = [NSMutableArray new];
     for(NSString * key in [_dataDict allKeys]){
@@ -169,7 +173,9 @@
     }
     NSString * resultString = [Util arrayConvertJsonString:save];
     [[PreferenceManager sharedInstance] setPreference:resultString forKey:@"contacts"];
-    [[GUIManager sharedInstance] backControllerWithAnimation:YES];
+    if(isBack){
+        [[GUIManager sharedInstance] backControllerWithAnimation:YES];
+    }
 }
 
 #pragma mark - UITableView Delegate Methods
@@ -186,36 +192,65 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 40;
+    return 70;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString* CellIdentifier = @"selectCityTableViewCell";
-    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    static NSString* CellIdentifier = @"memoTableViewCell";
+    MemoTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if(cell == nil)
     {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        //        NSArray *nib  = [[NSBundle mainBundle] loadNibNamed:@"ContactsTableViewCell" owner:self options:nil];
-        //        cell=[nib objectAtIndex:0];
+        //        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        NSArray *nib  = [[NSBundle mainBundle] loadNibNamed:@"MemoTableViewCell" owner:self options:nil];
+        cell=[nib objectAtIndex:0];
     }
     
-    [cell.textLabel setText:[[_memoArray objectAtIndex:indexPath.row] objectForKey:@"title"]];
-    //    CALayer *separator = [CALayer layer];
-    //    separator.frame = CGRectMake(0, 119, cell.width, 1);
-    //    if([_memoArray count] - 1 != indexPath.row && [_memoArray count] > 1){
-    //        separator.contents = (id)[UIImage imageWithColor:RGBA(255, 255, 255, 0.5)].CGImage;
-    //    }else{
-    //        separator.contents = (id)[UIImage imageWithColor:RGB(48, 179, 254)].CGImage;
-    //    }
-    //    [cell.layer addSublayer:separator];
+    [cell setBackgroundColor:[UIColor clearColor]];
+    [cell.titleLabel setText:[[_memoArray objectAtIndex:indexPath.row] objectForKey:@"title"]];
+    [cell.detailLabel setText:[[_memoArray objectAtIndex:indexPath.row] objectForKey:@"detail"]];
+    [cell.dateLabel setText:[[_memoArray objectAtIndex:indexPath.row] objectForKey:@"date"]];
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    AddressObj* obj = [[_dataDict objectForKey:[_sectionArray objectAtIndex:_section]] objectAtIndex:_index];
+    MemoPopupViewController * memo = [MemoPopupViewController new];
+    [memo setViewMode:kViewPopupMode_nomarl];
+    [memo setIndex:(int)indexPath.row];
+    [memo setDataArray:[NSMutableArray arrayWithArray:_memoArray]];
+    [[GUIManager sharedInstance] showPopup:memo animation:YES complete:^(NSDictionary *dict) {
+        if(dict){
+            [obj.memoArray addObject:dict];
+            _memoArray = obj.memoArray;
+            [_detailMemoTableView reloadData];
+            [_detailMemoTableView setHidden:NO];
+            [self saveData:NO];
+        }
+    }];
+}
+
+
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellEditingStyleDelete;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    AddressObj* obj = [[_dataDict objectForKey:[_sectionArray objectAtIndex:_section]] objectAtIndex:_index];
+    [obj.memoArray removeObjectAtIndex:indexPath.row];
+    _memoArray = obj.memoArray;
+    [_detailMemoTableView reloadData];
+    [self saveData:NO];
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
 }
 
 
@@ -241,13 +276,19 @@
             obj.section = [[NSStrUtils getJasoLetter:obj.name] substringToIndex:1].uppercaseString;
             
             if(_viewMode == kViewMode_add){
-                
-                [[_dataDict objectForKey:[_sectionArray objectAtIndex:_section]] addObject:obj];
+                NSMutableArray * array = [_dataDict objectForKey:obj.section];
+                if([array count]>0){
+                    [array addObject:obj];
+                }else{
+                    array = [NSMutableArray new];
+                    [array addObject:obj];
+                    [_dataDict setObject:array forKey:obj.section];
+                }
             }else{
                 [[_dataDict objectForKey:[_sectionArray objectAtIndex:_section]] removeObjectAtIndex:_index];
                 [[_dataDict objectForKey:[_sectionArray objectAtIndex:_section]] insertObject:obj atIndex:_index];
             }
-            [self saveData];
+            [self saveData:YES];
         }else{
             
         }
@@ -284,18 +325,33 @@
 }
 
 - (IBAction)memoAction:(id)sender {
-    [[GUIManager sharedInstance] showPopup:[MemoPopupViewController new] animation:YES complete:^(NSDictionary *dict) {
+    AddressObj* obj = [[_dataDict objectForKey:[_sectionArray objectAtIndex:_section]] objectAtIndex:_index];
+    MemoPopupViewController * memo = [MemoPopupViewController new];
+    [memo setViewMode:kViewPopupMode_add];
+    [memo setIndex:0];
+    [memo setDataArray:obj.memoArray];
+    [[GUIManager sharedInstance] showPopup:memo animation:YES complete:^(NSDictionary *dict) {
         if(dict){
-            AddressObj* obj = [[_dataDict objectForKey:[_sectionArray objectAtIndex:_section]] objectAtIndex:_index];
-            [obj.memoArray addObject:dict];
+            [obj.memoArray insertObject:dict atIndex:0];
             _memoArray = obj.memoArray;
             [_detailMemoTableView reloadData];
             [_detailMemoTableView setHidden:NO];
-            [self saveData];
+            [self saveData:NO];
         }
     }];
 }
 
+- (void)datePickerAction:(UIDatePicker*)sender
+{
+    NSDateFormatter *formate=[[NSDateFormatter alloc]init];
+    [formate setDateFormat:@"yyyy년 MM월 dd일"];
+    _editBrithDayextField.text=[formate stringFromDate:sender.date];
+}
+
+- (void)selectDate:(id)sender
+{
+    [_editBrithDayextField resignFirstResponder];
+}
 
 #pragma mark - UIImagePicker Delegate Methods
 
@@ -312,6 +368,29 @@
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
     
+}
+
+#pragma mark - UITextField Delegate Methods
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    if(textField == _editBrithDayextField){
+        UIDatePicker *datePicker = [[UIDatePicker alloc]init];
+        [datePicker setDate:[NSDate date]];
+        NSDateFormatter *formate=[[NSDateFormatter alloc]init];
+        [formate setDateFormat:@"yyyy년 MM월 dd일"];
+        _editBrithDayextField.text=[formate stringFromDate:[NSDate date]];
+        datePicker.datePickerMode = UIDatePickerModeDate;
+        [datePicker addTarget:self action:@selector(datePickerAction:) forControlEvents:UIControlEventValueChanged];
+        [_editBrithDayextField setInputView:datePicker];
+        
+        UIToolbar *toolBar=[[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 44)];
+        [toolBar setTintColor:[UIColor grayColor]];
+        UIBarButtonItem *doneBtn=[[UIBarButtonItem alloc]initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(selectDate:)];
+        UIBarButtonItem *space=[[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+        [toolBar setItems:[NSArray arrayWithObjects:space,doneBtn, nil]];
+        [_editBrithDayextField setInputAccessoryView:toolBar];
+    }
 }
 
 

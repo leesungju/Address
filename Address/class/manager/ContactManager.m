@@ -60,7 +60,7 @@
              }
              
              NSDateFormatter *dateformate=[[NSDateFormatter alloc]init];
-             [dateformate setDateFormat:@"yyyy-MM-dd"]; // Date formater
+             [dateformate setDateFormat:@"yyyy년 MM월 dd일"]; // Date formater
              NSString *birthDay = @"";
              if(contact.birthday.date != nil){
                  birthDay = [dateformate stringFromDate:contact.birthday.date];

@@ -10,12 +10,26 @@
 
 @interface MemoPopupViewController () <UITextFieldDelegate>
 
+@property (strong, nonatomic) IBOutlet UIView *popupView;
 @property (strong, nonatomic) IBOutlet UIView *titleView;
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
+
+@property (strong, nonatomic) IBOutlet UIView *editView;
 @property (strong, nonatomic) IBOutlet UITextField *titleTextField;
 @property (strong, nonatomic) IBOutlet UITextField *dateTextField;
 @property (strong, nonatomic) IBOutlet UITextField *locationTextField;
 @property (strong, nonatomic) IBOutlet UITextView *detailTextView;
+
+@property (strong, nonatomic) IBOutlet UIView *detailView;
+@property (strong, nonatomic) IBOutlet UIView *detailTitleView;
+@property (strong, nonatomic) IBOutlet UILabel *detailTitleLabel;
+@property (strong, nonatomic) IBOutlet UIView *detailDateView;
+@property (strong, nonatomic) IBOutlet UILabel *detailDateLabel;
+@property (strong, nonatomic) IBOutlet UIView *detailLocationView;
+@property (strong, nonatomic) IBOutlet UILabel *detailLocationLabel;
+@property (strong, nonatomic) IBOutlet UIView *detailContentView;
+@property (strong, nonatomic) IBOutlet UILabel *detailContentLabel;
+
 @property (strong, nonatomic) IBOutlet UIView *bottomView;
 @property (strong, nonatomic) IBOutlet UIButton *cancelBtn;
 @property (strong, nonatomic) IBOutlet UIButton *saveBtn;
@@ -24,12 +38,66 @@
 
 @implementation MemoPopupViewController
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _dataArray = [NSMutableArray new];
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self.view addTapGestureTarget:self action:@selector(backgroundTouch:)];
+}
+
+-(void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    [self initViews];
+}
+
+- (void)initViews
+{
+    NSMutableDictionary * dict = [_dataArray objectAtIndex:_index];
     
-    [_dateTextField setDelegate:self];
+    [_popupView setRadius:10];
+    
+    if(_viewMode == kViewPopupMode_nomarl){
+        [_detailView setHidden:NO];
+        [_editView setHidden:YES];
+        [_titleLabel setText:@"메모"];
+        [_saveBtn setTitle:@"수정" forState:UIControlStateNormal];
+        [_detailTitleView setRadius:5];
+        [_detailTitleLabel setText:[dict objectForKey:@"title"]];
+        [_detailDateView setRadius:5];
+        [_detailDateLabel setText:[dict objectForKey:@"date"]];
+        [_detailLocationView setRadius:5];
+        [_detailLocationLabel setText:[dict objectForKey:@"location"]];
+        [_detailContentView setRadius:5];
+        [_detailContentLabel setText:[dict objectForKey:@"detail"]];
+    }else if(_viewMode == kViewPopupMode_add){
+        [_detailView setHidden:YES];
+        [_editView setHidden:NO];
+        [_titleLabel setText:@"메모 등록"];
+        [_saveBtn setTitle:@"저장" forState:UIControlStateNormal];
+        [_dateTextField setDelegate:self];
+        [_detailTextView setRadius:5];
+    }else if(_viewMode == kViewPopupMode_edit){
+        [_detailView setHidden:YES];
+        [_editView setHidden:NO];
+        [_titleLabel setText:@"메모 수정"];
+        [_saveBtn setTitle:@"저장" forState:UIControlStateNormal];
+        [_dateTextField setDelegate:self];
+        [_detailTextView setRadius:5];
+        
+        [_titleTextField setText:[dict objectForKey:@"title"]];
+        [_dateTextField setText:[dict objectForKey:@"date"]];
+        [_locationTextField setText:[dict objectForKey:@"location"]];
+        [_detailTextView setText:[dict objectForKey:@"detail"]];
+    }
 }
 
 
@@ -48,17 +116,23 @@
 
 - (IBAction)saveAction:(id)sender {
     NSMutableDictionary * saveDict = [NSMutableDictionary new];
-    if(_titleTextField.text.length > 0 &&
-       _dateTextField.text.length > 0 &&
-       _locationTextField.text.length > 0 &&
-       _detailTextView.text.length > 0){
-        [saveDict setObject:_titleTextField.text forKey:@"title"];
-        [saveDict setObject:_dateTextField.text forKey:@"date"];
-        [saveDict setObject:_locationTextField.text forKey:@"location"];
-        [saveDict setObject:_detailTextView.text forKey:@"detail"];
-        [[GUIManager sharedInstance] hidePopup:self animation:YES completeData:saveDict];
+    
+    if(_viewMode == kViewPopupMode_add || _viewMode == kViewPopupMode_edit){
+        if(_titleTextField.text.length > 0 &&
+           _dateTextField.text.length > 0 &&
+           _locationTextField.text.length > 0 &&
+           _detailTextView.text.length > 0){
+            [saveDict setObject:_titleTextField.text forKey:@"title"];
+            [saveDict setObject:_dateTextField.text forKey:@"date"];
+            [saveDict setObject:_locationTextField.text forKey:@"location"];
+            [saveDict setObject:_detailTextView.text forKey:@"detail"];
+            [[GUIManager sharedInstance] hidePopup:self animation:YES completeData:saveDict];
+        }else{
+            
+        }
     }else{
-        
+        _viewMode = kViewPopupMode_edit;
+        [self initViews];
     }
     
 }

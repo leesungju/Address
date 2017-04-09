@@ -74,9 +74,7 @@
 - (void)initViews
 {
     _isLoad = YES;
-    [_backBtn setImage:[UIImage imageWithColor:[UIColor yellowColor]] forState:UIControlStateNormal];
     [_backBtn addTarget:self action:@selector(backAction:) forControlEvents:UIControlEventTouchUpInside];
-    [_backBtn setImageEdgeInsets:UIEdgeInsetsMake(4, 6, 4, 6)];
     [_searchTextField setClearButtonMode:UITextFieldViewModeWhileEditing];
     [_searchTextField setBackgroundColor:[UIColor clearColor]];
     [_searchTextField setTextColor:[UIColor whiteColor]];
@@ -104,8 +102,10 @@
     switch (index) {
         case 0:{
             ContactsDetailViewController * contact = [ContactsDetailViewController new];
-            [contact.sectionArray addObjectsFromArray:_oriDataArray];
-            [contact setIndex:(int)[_oriDataArray count]];
+            [contact.sectionArray addObjectsFromArray:_sectionArray];
+            contact.dataDict = _sections;
+            [contact setIndex:0];
+            [contact setSection:(int)[_sectionArray count]-1];
             [contact viewMode:kViewMode_add];
             [[GUIManager sharedInstance] moveToController:contact animation:YES];
             break;

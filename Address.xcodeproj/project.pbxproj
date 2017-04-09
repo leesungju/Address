@@ -75,6 +75,8 @@
 		141EF9011E869FDE003B78B1 /* FCMManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 141EF9001E869FDE003B78B1 /* FCMManager.m */; };
 		141EF9041E86A1B6003B78B1 /* StorageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 141EF9031E86A1B6003B78B1 /* StorageManager.m */; };
 		141EF9081E86A44E003B78B1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 141EF9071E86A44E003B78B1 /* GoogleService-Info.plist */; };
+		142365F11E9A4C7700567E23 /* MemoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 142365EF1E9A4C7700567E23 /* MemoTableViewCell.m */; };
+		142365F21E9A4C7700567E23 /* MemoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 142365F01E9A4C7700567E23 /* MemoTableViewCell.xib */; };
 		143EBBB31E862CC000E3AA69 /* AddressObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 143EBBB21E862CC000E3AA69 /* AddressObj.m */; };
 		143EBBBA1E863FAB00E3AA69 /* AutoCompleteMng.m in Sources */ = {isa = PBXBuildFile; fileRef = 143EBBB81E863FAB00E3AA69 /* AutoCompleteMng.m */; };
 		14D887371E97CAE60046636E /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D887361E97CAE60046636E /* SettingViewController.m */; };
@@ -198,6 +200,9 @@
 		141EF9021E86A1B6003B78B1 /* StorageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StorageManager.h; sourceTree = "<group>"; };
 		141EF9031E86A1B6003B78B1 /* StorageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StorageManager.m; sourceTree = "<group>"; };
 		141EF9071E86A44E003B78B1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		142365EE1E9A4C7700567E23 /* MemoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemoTableViewCell.h; sourceTree = "<group>"; };
+		142365EF1E9A4C7700567E23 /* MemoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemoTableViewCell.m; sourceTree = "<group>"; };
+		142365F01E9A4C7700567E23 /* MemoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MemoTableViewCell.xib; sourceTree = "<group>"; };
 		143EBBB11E862CC000E3AA69 /* AddressObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressObj.h; sourceTree = "<group>"; };
 		143EBBB21E862CC000E3AA69 /* AddressObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressObj.m; sourceTree = "<group>"; };
 		143EBBB71E863FAB00E3AA69 /* AutoCompleteMng.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoCompleteMng.h; sourceTree = "<group>"; };
@@ -419,6 +424,9 @@
 				14155CCF1E9A1B1A008C0E99 /* MemoPopupViewController.h */,
 				14155CD01E9A1B1A008C0E99 /* MemoPopupViewController.m */,
 				14155CD11E9A1B1A008C0E99 /* MemoPopupViewController.xib */,
+				142365EE1E9A4C7700567E23 /* MemoTableViewCell.h */,
+				142365EF1E9A4C7700567E23 /* MemoTableViewCell.m */,
+				142365F01E9A4C7700567E23 /* MemoTableViewCell.xib */,
 			);
 			path = contacts;
 			sourceTree = "<group>";
@@ -731,6 +739,7 @@
 				141EF8E21E869E8F003B78B1 /* extract-keys in Resources */,
 				14155CD31E9A1B1A008C0E99 /* MemoPopupViewController.xib in Resources */,
 				141EF8451E869947003B78B1 /* NoticeViewController.xib in Resources */,
+				142365F21E9A4C7700567E23 /* MemoTableViewCell.xib in Resources */,
 				141EF83E1E86992E003B78B1 /* ContactsTableViewCell.xib in Resources */,
 				141EF9081E86A44E003B78B1 /* GoogleService-Info.plist in Resources */,
 				140899B71E8549EF00E329F8 /* LaunchScreen.storyboard in Resources */,
@@ -770,6 +779,7 @@
 				141EF8F41E869E8F003B78B1 /* README.md in Sources */,
 				143EBBBA1E863FAB00E3AA69 /* AutoCompleteMng.m in Sources */,
 				141EF9011E869FDE003B78B1 /* FCMManager.m in Sources */,
+				142365F11E9A4C7700567E23 /* MemoTableViewCell.m in Sources */,
 				140899FC1E854A3100E329F8 /* UIImage+Common.m in Sources */,
 				14089A071E854A3100E329F8 /* MainViewController.m in Sources */,
 				141EF83D1E86992E003B78B1 /* ContactsTableViewCell.m in Sources */,
