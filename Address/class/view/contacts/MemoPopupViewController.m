@@ -61,7 +61,10 @@
 
 - (void)initViews
 {
-    NSMutableDictionary * dict = [_dataArray objectAtIndex:_index];
+    NSMutableDictionary * dict = [NSMutableDictionary new];
+    if([_dataArray count] > 0){
+        dict = [_dataArray objectAtIndex:_index];
+    }
     
     [_popupView setRadius:10];
     

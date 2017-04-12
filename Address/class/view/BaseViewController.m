@@ -117,6 +117,11 @@
 }
 
 - (void)hideMenu{
+    [_menuBtn setHidden:NO];
+}
+
+- (void)hideMenuBtn
+{
     [_menuBtn setHidden:YES];
 }
 

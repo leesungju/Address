@@ -44,6 +44,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
     if(_isLoad){
         NSString * contacts = [[PreferenceManager sharedInstance] getPreference:@"contacts" defualtValue:@""];
         NSArray * array = [Util stringConvertArray:contacts];
@@ -57,6 +58,13 @@
         [self settingTableView:_oriDataArray];
     }
     
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [[GUIManager sharedInstance] setSetting:[NSArray arrayWithObjects:@"홈", @"등록", @"동기화", @"백업", nil] delegate:self];
+
 }
 
 - (void)viewDidLayoutSubviews

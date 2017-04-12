@@ -24,7 +24,7 @@
 {
     [super viewDidAppear:animated];
     [[GUIManager sharedInstance] removeSetting];
-    [self hideMenu];
+    [self hideMenuBtn];
     NSString * login = [[PreferenceManager sharedInstance] getPreference:@"login" defualtValue:@""];
     if(login.length <= 0){
         [[GUIManager sharedInstance] showPopup:[LoginViewController new] animation:NO complete:^(NSDictionary *dict) {
@@ -38,7 +38,7 @@
     [super viewDidLayoutSubviews];
     [self setViewLayout];
     [[GUIManager sharedInstance] removeSetting];
-    [self hideMenu];
+    [self hideMenuBtn];
 }
 
 

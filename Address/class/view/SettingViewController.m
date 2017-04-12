@@ -22,6 +22,7 @@
     self = [super init];
     if (self) {
         [self.view setFrame:frame];
+        _isOpen = NO;
     }
     return self;
 }
@@ -32,9 +33,15 @@
         [_buttonList removeAllObjects];
         [_backgroundMenuView removeFromSuperview];
         _backgroundMenuView = nil;
+    }
+    
+    if(_backgroundMenuView == nil){
         _backgroundMenuView = [UIView new];
+    }
+    if(_otherView == nil){
         _otherView = [UIView new];
     }
+    
     _buttonList = [NSMutableArray new];
     
     for (int i = 0; i< [title count] ; i++){
@@ -90,7 +97,7 @@
 {
     if (_isOpen)
     {
-        _isOpen = !_isOpen;
+        _isOpen = NO;
         [self performDismissAnimation];
     }
 }
@@ -99,7 +106,7 @@
 {
     if (!_isOpen)
     {
-        _isOpen = !_isOpen;
+        _isOpen = YES;
         [self performSelectorInBackground:@selector(performOpenAnimation) withObject:nil];
     }
 }

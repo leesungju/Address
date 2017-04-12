@@ -19,5 +19,5 @@
 - (void)setViewLayout;
 - (void)menuClicked:(int)index;
 - (void)selectTabMenu:(int)index;
-- (void)hideMenu;
+- (void)hideMenuBtn;
 @end

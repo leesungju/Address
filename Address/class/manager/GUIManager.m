@@ -70,6 +70,7 @@
 {
     _isShowSetting = NO;
     [_settingViewController.view setHidden:YES];
+    [_settingViewController dismissMenu];
 }
 
 - (void)removeSetting
