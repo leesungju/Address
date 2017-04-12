@@ -74,18 +74,18 @@
              if(contact.imageData != nil){
                  imgStr = [Util saveImage:[UIImage imageWithData:contact.imageData]];
              }
-             
-             NSMutableDictionary * dict = [NSMutableDictionary new];
-             [dict setObject:name forKey:@"name"];
-             [dict setObject:[[NSStrUtils getJasoLetter:name] substringToIndex:1].uppercaseString forKey:@"section"];
-             [dict setObject:group forKey:@"group"];
-             [dict setObject:email forKey:@"email"];
-             [dict setObject:address forKey:@"address"];
-             [dict setObject:birthDay forKey:@"birthDay"];
-             [dict setObject:imgStr forKey:@"imagePath"];
-             [dict setObject:[NSStrUtils replacePhoneNumber:phone] forKey:@"phoneNumber"];
+            
+             AddressObj * obj = [AddressObj new];
+             obj.name = name;
+             obj.section = [[NSStrUtils getJasoLetter:name] substringToIndex:1].uppercaseString;
+             obj.group = group;
+             obj.email = email;
+             obj.address = address;
+             obj.birthDay = birthDay;
+             obj.imagePath = imgStr;
+             obj.phoneNumber = [NSStrUtils replacePhoneNumber:phone];
 
-             [contactList addObject:dict];
+             [contactList addObject:obj.getDict];
          }];
     }
     return contactList;

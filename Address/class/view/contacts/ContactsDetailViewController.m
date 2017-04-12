@@ -41,6 +41,8 @@
 @property (assign, nonatomic) kViewMode viewMode;
 @property (strong, nonatomic) NSString * imgPath;
 
+@property (assign, nonatomic) BOOL isEditing;
+
 @end
 
 @implementation ContactsDetailViewController
@@ -51,6 +53,7 @@
     if (self) {
         _sectionArray = [NSMutableArray new];
         _dataDict = [NSMutableDictionary new];
+        _isEditing = NO;
         _viewMode = kViewMode_nomarl;
         _imgPath = @"";
     }
@@ -60,16 +63,18 @@
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-    [[GUIManager sharedInstance] setSetting:[NSArray arrayWithObjects:@"홈", nil] delegate:self];
-    [self setViewLayout];
-    [self.bottomTabView setHidden:YES];
-    [self initViews];
+    if(!_isEditing){
+        [[GUIManager sharedInstance] setSetting:[NSArray arrayWithObjects:@"홈", nil] delegate:self];
+        [self setViewLayout];
+        [self.bottomTabView setHidden:YES];
+        [self initViews];
+    }
 }
 
 - (void)initViews
 {
     AddressObj * obj = [AddressObj new];
-    if([_sectionArray count] > 0 && [_sectionArray count] != _section+1  && [[_dataDict objectForKey:[_sectionArray objectAtIndex:_section]] count] != _index){
+    if([_sectionArray count] > 0 && [[_dataDict objectForKey:[_sectionArray objectAtIndex:_section]] count] <= _index + 1){
         obj = [[_dataDict objectForKey:[_sectionArray objectAtIndex:_section]] objectAtIndex:_index];
     }else{
         obj.name = @"이름";
@@ -100,24 +105,26 @@
         [_editFamilyTextView setDelegate:self];
         
     }else if(_viewMode == kViewMode_edit){
-        [_editBtn setBackgroundImage:[UIImage imageNamed:@"save"] forState:UIControlStateNormal];
-        [_editView setHidden:NO];
-        [_detailView setHidden:YES];
-        [_editNameTextField setText:obj.name];
-        [_editNameTextField setDelegate:self];
-        [_editPhoneextField setText:obj.phoneNumber];
-        [_editPhoneextField setDelegate:self];
-        [_editBrithDayextField setText:obj.birthDay];
-        [_editBrithDayextField setDelegate:self];
-        [_editGroupextField setText:obj.group];
-        [_editGroupextField setDelegate:self];
-        [_editEmailextField setText:obj.email];
-        [_editEmailextField setDelegate:self];
-        [_editAddressextField setText:obj.address];
-        [_editAddressextField setDelegate:self];
-        [_editFamilyTextView setText:obj.family];
-        [_editFamilyTextView setDelegate:self];
-        
+        if(!_isEditing){
+            [_editBtn setBackgroundImage:[UIImage imageNamed:@"save"] forState:UIControlStateNormal];
+            [_editView setHidden:NO];
+            [_detailView setHidden:YES];
+            [_editNameTextField setText:obj.name];
+            [_editNameTextField setDelegate:self];
+            [_editPhoneextField setText:obj.phoneNumber];
+            [_editPhoneextField setDelegate:self];
+            [_editBrithDayextField setText:obj.birthDay];
+            [_editBrithDayextField setDelegate:self];
+            [_editGroupextField setText:obj.group];
+            [_editGroupextField setDelegate:self];
+            [_editEmailextField setText:obj.email];
+            [_editEmailextField setDelegate:self];
+            [_editAddressextField setText:obj.address];
+            [_editAddressextField setDelegate:self];
+            [_editFamilyTextView setText:obj.family];
+            [_editFamilyTextView setDelegate:self];
+            _isEditing = YES;
+        }
     }else{
         [_editBtn setBackgroundImage:[UIImage imageNamed:@"edit"] forState:UIControlStateNormal];
         [_editView setHidden:YES];
@@ -290,8 +297,9 @@
                 [[_dataDict objectForKey:[_sectionArray objectAtIndex:_section]] insertObject:obj atIndex:_index];
             }
             [self saveData:YES];
+            _isEditing = NO;
         }else if(_editPhoneextField.text.length == 0){
-           UIAlertController *av = [UIAlertController alertControllerWithTitle:@"알림" message:@"핸드폰 번호를 입력하세요!" preferredStyle:UIAlertControllerStyleAlert];\
+            UIAlertController *av = [UIAlertController alertControllerWithTitle:@"알림" message:@"핸드폰 번호를 입력하세요!" preferredStyle:UIAlertControllerStyleAlert];\
             [av addAction:[UIAlertAction actionWithTitle:@"확인" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action)
                            {
                                [_editPhoneextField becomeFirstResponder];
@@ -351,7 +359,10 @@
 {
     NSDateFormatter *formate=[[NSDateFormatter alloc]init];
     [formate setDateFormat:@"yyyy년 MM월 dd일"];
-    _editBrithDayextField.text=[formate stringFromDate:sender.date];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [_editBrithDayextField setText:[formate stringFromDate:sender.date]];
+    });
 }
 
 - (void)selectDate:(id)sender
@@ -382,10 +393,16 @@
 {
     if(textField == _editBrithDayextField){
         UIDatePicker *datePicker = [[UIDatePicker alloc]init];
-        [datePicker setDate:[NSDate date]];
-        NSDateFormatter *formate=[[NSDateFormatter alloc]init];
-        [formate setDateFormat:@"yyyy년 MM월 dd일"];
-        _editBrithDayextField.text=[formate stringFromDate:[NSDate date]];
+        if([_editBrithDayextField.text length] == 0){
+            NSDateFormatter *formate=[[NSDateFormatter alloc]init];
+            [formate setDateFormat:@"yyyy년 MM월 dd일"];
+            _editBrithDayextField.text=[formate stringFromDate:[NSDate date]];
+            [datePicker setDate:[NSDate date]];
+        }else{
+            NSDateFormatter *formate=[[NSDateFormatter alloc]init];
+            [formate setDateFormat:@"yyyy년 MM월 dd일"];
+            [datePicker setDate:[formate dateFromString:_editBrithDayextField.text]];
+        }
         datePicker.datePickerMode = UIDatePickerModeDate;
         [datePicker addTarget:self action:@selector(datePickerAction:) forControlEvents:UIControlEventValueChanged];
         [_editBrithDayextField setInputView:datePicker];
