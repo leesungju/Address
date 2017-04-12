@@ -14,9 +14,13 @@
 typedef void(^PopupViewCompletionBlock)(NSDictionary* dict);
 
 @property (strong, nonatomic) UINavigationController * mainNavigationController;
+@property (assign, nonatomic) BOOL isShowSetting;
 
 + (GUIManager *)sharedInstance;
-- (SettingViewController*)settingViewController;
+- (void)setSetting:(NSArray*)array delegate:(id)delegate;
+- (void)showSetting;
+- (void)hideSetting;
+- (void)removeSetting;
 - (void)moveToHome;
 - (void)moveToAddress;
 - (void)moveToPreach;

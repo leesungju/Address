@@ -11,7 +11,6 @@
 #import "SettingViewController.h"
 
 @interface BaseViewController () <SettingViewControllerDelegate>
-@property (strong, nonatomic) SettingViewController * settingViewController;
 @end
 
 @implementation BaseViewController
@@ -21,7 +20,6 @@
     self = [super init];
     if (self) {
         [self initView];
-        
     }
     return self;
 }
@@ -65,32 +63,22 @@
     [_tab3Btn addTarget:self action:@selector(tabAction:) forControlEvents:UIControlEventTouchUpInside];
     _tab3Btn.tag = 2;
     [_bottomTabView addSubview:_tab3Btn];
+    
+    _menuBtn = [UIButton new];
+    [_menuBtn setImage:[UIImage imageNamed:@"menu"] forState:UIControlStateNormal];
+    [_menuBtn addTarget:self action:@selector(menuAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_menuBtn];
+    
 }
 
-- (void)setViewLayout:(NSArray*)array
+- (void)setViewLayout
 {
     [_bottomTabView setFrame:CGRectMake(0, self.view.bottomY - 44, self.view.width, 44)];
     [_tab1Btn setFrame:CGRectMake(5, 0, _bottomTabView.width/3 - 10, _bottomTabView.height)];
     [_tab2Btn setFrame:CGRectMake(_tab1Btn.rightX + 10, 0, _bottomTabView.width/3 - 10, _bottomTabView.height)];
     [_tab3Btn setFrame:CGRectMake(_tab2Btn.rightX + 10, 0, _bottomTabView.width/3 - 10, _bottomTabView.height)];
-    [_settingViewController showMenuBtn];
-    NSArray *titleList = array;
-    NSArray *imageList = @[[UIImage imageWithColor:[UIColor redColor]], [UIImage imageWithColor:[UIColor yellowColor]], [UIImage imageWithColor:[UIColor blueColor]]];
     
-    if([array count] > 0){
-        _settingViewController = [[GUIManager sharedInstance] settingViewController];
-        [_settingViewController setDelegate:self];
-        [_settingViewController setMenuButton:titleList images:imageList];
-        [_settingViewController insertButton:[[GUIManager sharedInstance] mainNavigationController].view
-                                  atPosition:CGPointMake([[GUIManager sharedInstance] mainNavigationController].view.width - 60, [[GUIManager sharedInstance] mainNavigationController].view.height - 100)];
-    }
-    
-}
-
-- (void)hideMenu
-{
-    [_settingViewController dismissMenu];
-    [_settingViewController hideMenuBtn];
+    [_menuBtn setFrame:CGRectMake(_bottomTabView.rightX - 70, _bottomTabView.originY - 70, 40, 40)];
 }
 
 - (void)selectTabMenu:(int)index
@@ -117,7 +105,8 @@
 
 - (void)tabAction:(UIButton*)sender
 {
-    [_settingViewController dismissMenu];
+    [[GUIManager sharedInstance] hideSetting];
+    [[GUIManager sharedInstance] backControllerWithAnimation:NO];
     if(sender.tag == 0){
         [[GUIManager sharedInstance] moveToAddress];
     }else if(sender.tag == 1){
@@ -127,8 +116,24 @@
     }
 }
 
+- (void)hideMenu{
+    [_menuBtn setHidden:YES];
+}
+
 - (void)menuClicked:(int)index
 {
-    
+    if(index == 0){
+        [[GUIManager sharedInstance] moveToHome];
+    }
 }
+
+- (void)menuAction:(UIButton*)sender
+{
+    if(![[GUIManager sharedInstance] isShowSetting]){
+        [[GUIManager sharedInstance] showSetting];
+        [_menuBtn setHidden:YES];
+    }
+}
+
+
 @end

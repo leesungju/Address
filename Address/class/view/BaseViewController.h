@@ -14,10 +14,10 @@
 @property (strong, nonatomic) UIButton * tab1Btn;
 @property (strong, nonatomic) UIButton * tab2Btn;
 @property (strong, nonatomic) UIButton * tab3Btn;
+@property (strong, nonatomic) UIButton * menuBtn;
 
-
-- (void)setViewLayout:(NSArray*)array;
-- (void)hideMenu;
+- (void)setViewLayout;
 - (void)menuClicked:(int)index;
 - (void)selectTabMenu:(int)index;
+- (void)hideMenu;
 @end

@@ -62,7 +62,9 @@
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-    [self setViewLayout:[NSArray arrayWithObjects:@"등록", @"동기화", @"백업", nil]];
+    [[GUIManager sharedInstance] setSetting:[NSArray arrayWithObjects:@"홈", @"등록", @"동기화", @"백업", nil] delegate:self];
+
+    [self setViewLayout];
     [self selectTabMenu:0];
     [self initViews];
     UITapGestureRecognizer * tapper = [[UITapGestureRecognizer alloc]
@@ -99,8 +101,12 @@
 
 - (void)menuClicked:(int)index
 {
+    [super menuClicked:index];
     switch (index) {
-        case 0:{
+        case 0:
+            
+            break;
+        case 1:{
             ContactsDetailViewController * contact = [ContactsDetailViewController new];
             [contact.sectionArray addObjectsFromArray:_sectionArray];
             contact.dataDict = _sections;
@@ -110,7 +116,7 @@
             [[GUIManager sharedInstance] moveToController:contact animation:YES];
             break;
         }
-        case 1: {
+        case 2: {
             [_oriDataArray addObjectsFromArray:[[ContactManager sharedInstance] getContact]];
             NSOrderedSet *orderedSet = [NSOrderedSet orderedSetWithArray:_oriDataArray];
             [_oriDataArray removeAllObjects];
@@ -119,7 +125,7 @@
             [[PreferenceManager sharedInstance] setPreference:resultString forKey:@"contacts"];
             break;
         }
-        case 2:
+        case 3:
             
             break;
         default:
@@ -318,7 +324,7 @@
 #pragma mark - action medhods
 - (void)backAction:(id)gesture
 {
-    [[GUIManager sharedInstance] moveToHome];
+    [[GUIManager sharedInstance] backControllerWithAnimation:YES];
 }
 
 - (void)handleSingleTap:(UITapGestureRecognizer *) sender

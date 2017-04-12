@@ -14,9 +14,6 @@
 
 @interface GUIManager ()
 
-@property (strong, nonatomic) ContactsViewController * contactsViewController;
-@property (strong, nonatomic) PreachViewController * preachViewController;
-@property (strong, nonatomic) NoticeViewController * noticeViewController;
 @property (strong, nonatomic) SettingViewController * settingViewController;
 @property (nonatomic, copy) void (^popupCompletion)(NSDictionary* dict);
 
@@ -42,84 +39,70 @@
     return self;
 }
 
-- (SettingViewController*)settingViewController
+- (void)setSetting:(NSArray*)array delegate:(id)delegate
 {
     if(_settingViewController == nil){
-        _settingViewController = [SettingViewController new];
+        _settingViewController = [[SettingViewController alloc] initWithFrame:[_mainNavigationController.view bounds]];
     }
-    return _settingViewController;
+    
+    NSArray *titleList = array;
+    NSArray *imageList = @[[UIImage imageWithColor:[UIColor redColor]], [UIImage imageWithColor:[UIColor yellowColor]], [UIImage imageWithColor:[UIColor blueColor]],[UIImage imageWithColor:[UIColor blueColor]]];
+    
+    if([array count] > 0){
+        _settingViewController = [[GUIManager sharedInstance] settingViewController];
+        [_settingViewController setDelegate:delegate];
+        [_settingViewController setMenuButton:titleList images:imageList];
+    }
+    [_mainNavigationController.view addSubview:_settingViewController.view];
+    [_mainNavigationController addChildViewController:_settingViewController];
+    [_settingViewController.view setHidden:YES];
+    _isShowSetting = NO;
 }
+
+- (void)showSetting
+{
+    _isShowSetting =YES;
+    [_settingViewController.view setHidden:NO];
+    [_settingViewController showMenu];
+}
+
+- (void)hideSetting
+{
+    _isShowSetting = NO;
+    [_settingViewController.view setHidden:YES];
+}
+
+- (void)removeSetting
+{
+    if(_settingViewController != nil){
+        [_settingViewController.view removeFromSuperview];
+        _settingViewController.view = nil;
+        [_settingViewController removeFromParentViewController];
+        _settingViewController = nil;
+    }
+}
+
 - (void)moveToHome
 {
+    [self removeSetting];
     [_mainNavigationController popToRootViewControllerAnimated:YES];
-    if(_contactsViewController != nil){
-        [_contactsViewController.view removeFromSuperview];
-        _contactsViewController.view = nil;
-        [_contactsViewController removeFromParentViewController];
-        _contactsViewController = nil;
-    }
-    if(_preachViewController !=nil){
-        [_preachViewController.view removeFromSuperview];
-        _preachViewController.view = nil;
-        [_preachViewController removeFromParentViewController];
-        _preachViewController = nil;
-    }
-    if(_noticeViewController !=nil){
-        [_noticeViewController.view removeFromSuperview];
-        _noticeViewController.view = nil;
-        [_noticeViewController removeFromParentViewController];
-        _noticeViewController = nil;
-    }
 }
 
 - (void)moveToAddress
 {
-    [self removeView];
-    if(_contactsViewController == nil){
-        _contactsViewController = [ContactsViewController new];
-        [self moveToController:_contactsViewController animation:YES];
-    }
+    [self moveToController:[ContactsViewController new] animation:YES];
 }
 
 - (void)moveToPreach
 {
-    [self removeView];
-    if(_preachViewController == nil){
-        _preachViewController = [PreachViewController new];
-        [self moveToController:_preachViewController animation:YES];
-    }
+
+    [self moveToController:[PreachViewController new] animation:YES];
 }
 
 - (void)moveToNotice
 {
-    [self removeView];
-    if(_noticeViewController == nil){
-        _noticeViewController = [NoticeViewController new];
-        [self moveToController:_noticeViewController animation:YES];
-    }
-}
 
-- (void)removeView
-{
-    [self backControllerWithAnimation:NO];
-    if(_contactsViewController != nil){
-        [_contactsViewController.view removeFromSuperview];
-        _contactsViewController.view = nil;
-        [_contactsViewController removeFromParentViewController];
-        _contactsViewController = nil;
-    }
-    if(_preachViewController !=nil){
-        [_preachViewController.view removeFromSuperview];
-        _preachViewController.view = nil;
-        [_preachViewController removeFromParentViewController];
-        _preachViewController = nil;
-    }
-    if(_noticeViewController !=nil){
-        [_noticeViewController.view removeFromSuperview];
-        _noticeViewController.view = nil;
-        [_noticeViewController removeFromParentViewController];
-        _noticeViewController = nil;
-    }
+    [self moveToController:[NoticeViewController new] animation:YES];
 }
 
 - (void)moveToController:(UIViewController*)controller animation:(BOOL)isAnimation
@@ -137,6 +120,7 @@
 
 - (void)backControllerWithAnimation:(BOOL)isAnimation
 {
+    [self removeSetting];
     [_mainNavigationController popViewControllerAnimated:isAnimation];
 }
 

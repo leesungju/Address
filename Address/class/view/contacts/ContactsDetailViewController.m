@@ -60,7 +60,8 @@
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-    [self setViewLayout:[NSArray new]];
+    [[GUIManager sharedInstance] setSetting:[NSArray arrayWithObjects:@"홈", nil] delegate:self];
+    [self setViewLayout];
     [self.bottomTabView setHidden:YES];
     [self initViews];
 }

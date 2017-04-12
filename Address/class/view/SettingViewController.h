@@ -12,28 +12,27 @@
 @protocol SettingViewControllerDelegate <NSObject>
 
 - (void)menuClicked:(int)index;
+@optional
+- (void)hideMenu;
 
 @end
 
-@interface SettingViewController : NSObject
+@interface SettingViewController : UIViewController
 {
     UIView              *_backgroundMenuView;
     UIView              *_otherView;
-    UIButton            *_menuButton;
     NSMutableArray      *_buttonList;
 }
 
 
-@property (nonatomic, retain) UIColor *menuColor;
 @property (nonatomic) BOOL isOpen;
 
 @property (nonatomic, retain) id<SettingViewControllerDelegate> delegate;
 
+- (instancetype)initWithFrame:(CGRect)frame;
 - (void)setMenuButton:(NSArray*)title images:(NSArray*)images;
-- (void)insertButton:(UIView*)view atPosition:(CGPoint)position;
+- (void)showMenu;
 - (void)dismissMenu;
-- (void)hideMenuBtn;
-- (void)showMenuBtn;
-
+- (void)removeView;
 @end
 

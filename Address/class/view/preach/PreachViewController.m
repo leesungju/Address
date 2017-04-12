@@ -22,7 +22,8 @@
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-    [self setViewLayout:[NSArray arrayWithObjects:@"설정", nil]];
+    [[GUIManager sharedInstance] setSetting:[NSArray arrayWithObjects:@"홈", nil] delegate:self];
+    [self setViewLayout];
     [self selectTabMenu:1];
     
 }

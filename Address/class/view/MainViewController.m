@@ -23,7 +23,8 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self setViewLayout:[NSArray arrayWithObjects:@"설정", nil]];
+    [[GUIManager sharedInstance] removeSetting];
+    [self hideMenu];
     NSString * login = [[PreferenceManager sharedInstance] getPreference:@"login" defualtValue:@""];
     if(login.length <= 0){
         [[GUIManager sharedInstance] showPopup:[LoginViewController new] animation:NO complete:^(NSDictionary *dict) {
@@ -35,7 +36,9 @@
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-    [self setViewLayout:[NSArray arrayWithObjects:@"설정", nil]];
+    [self setViewLayout];
+    [[GUIManager sharedInstance] removeSetting];
+    [self hideMenu];
 }
 
 
