@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="69.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gKF-Rg-g2P">
@@ -52,7 +52,6 @@
                 </subviews>
                 <color key="backgroundColor" red="0.98039215690000003" green="0.99607843139999996" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
-                    <constraint firstItem="74N-P7-fVW" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="10" id="IzD-6A-jIg"/>
                     <constraint firstItem="74N-P7-fVW" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="5" id="MJE-EH-1Hy"/>
                     <constraint firstItem="5lG-t7-UGL" firstAttribute="top" secondItem="gKF-Rg-g2P" secondAttribute="bottom" constant="5" id="c3t-Op-4uX"/>
                     <constraint firstItem="5lG-t7-UGL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="gpi-uU-yKV"/>

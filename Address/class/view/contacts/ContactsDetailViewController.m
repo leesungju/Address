@@ -267,7 +267,7 @@
         AddressObj * obj = [AddressObj new];
         if(_editNameTextField.text.length > 0 && _editPhoneextField.text.length > 0){
             obj.name = _editNameTextField.text;
-            obj.phoneNumber = _editPhoneextField.text;
+            obj.phoneNumber = [NSStrUtils replacePhoneNumber:_editPhoneextField.text];
             obj.birthDay = _editBrithDayextField.text;
             obj.group = _editGroupextField.text;
             obj.email = _editEmailextField.text;
@@ -290,8 +290,13 @@
                 [[_dataDict objectForKey:[_sectionArray objectAtIndex:_section]] insertObject:obj atIndex:_index];
             }
             [self saveData:YES];
-        }else{
-            
+        }else if(_editPhoneextField.text.length == 0){
+           UIAlertController *av = [UIAlertController alertControllerWithTitle:@"알림" message:@"핸드폰 번호를 입력하세요!" preferredStyle:UIAlertControllerStyleAlert];\
+            [av addAction:[UIAlertAction actionWithTitle:@"확인" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action)
+                           {
+                               [_editPhoneextField becomeFirstResponder];
+                           }]];
+            [self presentViewController:av animated:YES completion:nil];
         }
         
     }else{
