@@ -27,6 +27,10 @@
 		1409FB601E87625300CC957D /* JsonObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1409FB5F1E87625300CC957D /* JsonObject.m */; };
 		1409FB641E877DC400CC957D /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1409FB621E877DC400CC957D /* LoginViewController.m */; };
 		1409FB651E877DC400CC957D /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1409FB631E877DC400CC957D /* LoginViewController.xib */; };
+		1412F88C1EA0F11200BBB491 /* SyncPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1412F88A1EA0F11200BBB491 /* SyncPopupViewController.m */; };
+		1412F88D1EA0F11200BBB491 /* SyncPopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1412F88B1EA0F11200BBB491 /* SyncPopupViewController.xib */; };
+		1412F8951EA0F94500BBB491 /* SyncTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1412F8931EA0F94500BBB491 /* SyncTableViewCell.m */; };
+		1412F8961EA0F94500BBB491 /* SyncTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1412F8941EA0F94500BBB491 /* SyncTableViewCell.xib */; };
 		14155CD21E9A1B1A008C0E99 /* MemoPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14155CD01E9A1B1A008C0E99 /* MemoPopupViewController.m */; };
 		14155CD31E9A1B1A008C0E99 /* MemoPopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14155CD11E9A1B1A008C0E99 /* MemoPopupViewController.xib */; };
 		141EF83D1E86992E003B78B1 /* ContactsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 141EF8371E86992E003B78B1 /* ContactsTableViewCell.m */; };
@@ -143,6 +147,12 @@
 		1409FB611E877DC400CC957D /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		1409FB621E877DC400CC957D /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		1409FB631E877DC400CC957D /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		1412F8891EA0F11200BBB491 /* SyncPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncPopupViewController.h; sourceTree = "<group>"; };
+		1412F88A1EA0F11200BBB491 /* SyncPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncPopupViewController.m; sourceTree = "<group>"; };
+		1412F88B1EA0F11200BBB491 /* SyncPopupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SyncPopupViewController.xib; sourceTree = "<group>"; };
+		1412F8921EA0F94500BBB491 /* SyncTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncTableViewCell.h; sourceTree = "<group>"; };
+		1412F8931EA0F94500BBB491 /* SyncTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncTableViewCell.m; sourceTree = "<group>"; };
+		1412F8941EA0F94500BBB491 /* SyncTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SyncTableViewCell.xib; sourceTree = "<group>"; };
 		14155CCF1E9A1B1A008C0E99 /* MemoPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemoPopupViewController.h; sourceTree = "<group>"; };
 		14155CD01E9A1B1A008C0E99 /* MemoPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemoPopupViewController.m; sourceTree = "<group>"; };
 		14155CD11E9A1B1A008C0E99 /* MemoPopupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MemoPopupViewController.xib; sourceTree = "<group>"; };
@@ -427,6 +437,12 @@
 				142365EE1E9A4C7700567E23 /* MemoTableViewCell.h */,
 				142365EF1E9A4C7700567E23 /* MemoTableViewCell.m */,
 				142365F01E9A4C7700567E23 /* MemoTableViewCell.xib */,
+				1412F8891EA0F11200BBB491 /* SyncPopupViewController.h */,
+				1412F88A1EA0F11200BBB491 /* SyncPopupViewController.m */,
+				1412F88B1EA0F11200BBB491 /* SyncPopupViewController.xib */,
+				1412F8921EA0F94500BBB491 /* SyncTableViewCell.h */,
+				1412F8931EA0F94500BBB491 /* SyncTableViewCell.m */,
+				1412F8941EA0F94500BBB491 /* SyncTableViewCell.xib */,
 			);
 			path = contacts;
 			sourceTree = "<group>";
@@ -740,7 +756,9 @@
 				14155CD31E9A1B1A008C0E99 /* MemoPopupViewController.xib in Resources */,
 				141EF8451E869947003B78B1 /* NoticeViewController.xib in Resources */,
 				142365F21E9A4C7700567E23 /* MemoTableViewCell.xib in Resources */,
+				1412F8961EA0F94500BBB491 /* SyncTableViewCell.xib in Resources */,
 				141EF83E1E86992E003B78B1 /* ContactsTableViewCell.xib in Resources */,
+				1412F88D1EA0F11200BBB491 /* SyncPopupViewController.xib in Resources */,
 				141EF9081E86A44E003B78B1 /* GoogleService-Info.plist in Resources */,
 				140899B71E8549EF00E329F8 /* LaunchScreen.storyboard in Resources */,
 				14089A081E854A3100E329F8 /* MainViewController.xib in Resources */,
@@ -780,10 +798,12 @@
 				143EBBBA1E863FAB00E3AA69 /* AutoCompleteMng.m in Sources */,
 				141EF9011E869FDE003B78B1 /* FCMManager.m in Sources */,
 				142365F11E9A4C7700567E23 /* MemoTableViewCell.m in Sources */,
+				1412F8951EA0F94500BBB491 /* SyncTableViewCell.m in Sources */,
 				140899FC1E854A3100E329F8 /* UIImage+Common.m in Sources */,
 				14089A071E854A3100E329F8 /* MainViewController.m in Sources */,
 				141EF83D1E86992E003B78B1 /* ContactsTableViewCell.m in Sources */,
 				14FD590A1E86114700233DDF /* BaseViewController.m in Sources */,
+				1412F88C1EA0F11200BBB491 /* SyncPopupViewController.m in Sources */,
 				140899FE1E854A3100E329F8 /* UIView+Common.m in Sources */,
 				140899FF1E854A3100E329F8 /* ContactManager.m in Sources */,
 				143EBBB31E862CC000E3AA69 /* AddressObj.m in Sources */,

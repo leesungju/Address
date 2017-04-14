@@ -10,6 +10,7 @@
 #import "ContactsTableViewCell.h"
 #import "AutoCompleteMng.h"
 #import "ContactsDetailViewController.h"
+#import "SyncPopupViewController.h"
 
 @interface ContactsViewController () <UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UIButton *backBtn;
@@ -64,14 +65,14 @@
 {
     [super viewDidAppear:animated];
     [[GUIManager sharedInstance] setSetting:[NSArray arrayWithObjects:@"홈", @"등록", @"동기화", @"백업", nil] delegate:self];
-
+    
 }
 
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
     [[GUIManager sharedInstance] setSetting:[NSArray arrayWithObjects:@"홈", @"등록", @"동기화", @"백업", nil] delegate:self];
-
+    
     [self setViewLayout];
     [self selectTabMenu:0];
     [self initViews];
@@ -125,12 +126,17 @@
             break;
         }
         case 2: {
-            [_oriDataArray addObjectsFromArray:[[ContactManager sharedInstance] getContact]];
-            NSOrderedSet *orderedSet = [NSOrderedSet orderedSetWithArray:_oriDataArray];
-            [_oriDataArray removeAllObjects];
-            [_oriDataArray addObjectsFromArray:[orderedSet array]];
-            NSString * resultString = [Util arrayConvertJsonString:_oriDataArray];
-            [[PreferenceManager sharedInstance] setPreference:resultString forKey:@"contacts"];
+            
+            SyncPopupViewController * sync = [SyncPopupViewController new];
+            [[GUIManager sharedInstance] showPopup:sync animation:YES complete:^(NSDictionary *dict) {
+                if(dict != nil){
+                    [_oriDataArray addObjectsFromArray:[dict objectForKey:@"data"]];
+                    NSString * resultString = [Util arrayConvertJsonString:_oriDataArray];
+                    [[PreferenceManager sharedInstance] setPreference:resultString forKey:@"contacts"];
+                }
+                [self settingTableView:_oriDataArray];
+            }];
+            
             break;
         }
         case 3:
@@ -139,7 +145,7 @@
         default:
             break;
     }
-    [self settingTableView:_oriDataArray];
+    
 }
 
 - (void)settingTableView:(NSArray*)data
@@ -182,7 +188,7 @@
 - (NSMutableArray*)sortDictionary:(NSDictionary*)dict
 {
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"self"
-                                                  ascending:YES];
+                                                                   ascending:YES];
     NSArray *descriptors = [NSArray arrayWithObject:sortDescriptor];
     return [[NSMutableArray alloc] initWithArray:[dict.allKeys sortedArrayUsingDescriptors:descriptors] copyItems:YES];
     
@@ -268,7 +274,7 @@
     [cell setBackgroundColor:[UIColor clearColor]];
     NSArray* tempArray = [_sections objectForKey:[_sectionArray objectAtIndex:indexPath.section]];
     AddressObj *temp = [tempArray objectAtIndex:indexPath.row];
-
+    
     
     if(temp.image){
         [cell.profileImageView setImage:temp.image];
@@ -279,25 +285,23 @@
     [cell.phoneLabel setText:temp.phoneNumber];
     [cell.birthDayLabel setText:temp.birthDay];
     
-//    [cell.mainLabel setAttributeTextColor:[UIColor whiteColor] changeText:cell.mainLabel.text];
-//    [cell.mainLabel setAttributeTextColor:[UIColor redColor] changeText:_searchStr];
-   
-//    CALayer *separator = [CALayer layer];
-//    separator.frame = CGRectMake(0, 79, cell.width, 1);
-//    if([tempArray count] - 1 != indexPath.row && [tempArray count] > 1){
-//        separator.contents = (id)[UIImage imageWithColor:RGBA(255, 255, 255, 0.5)].CGImage;
-//    }else{
-//        separator.contents = (id)[UIImage imageWithColor:RGB(48, 179, 254)].CGImage;
-//    }
-//    [cell.layer addSublayer:separator];
-
+    //    [cell.mainLabel setAttributeTextColor:[UIColor whiteColor] changeText:cell.mainLabel.text];
+    //    [cell.mainLabel setAttributeTextColor:[UIColor redColor] changeText:_searchStr];
+    
+    //    CALayer *separator = [CALayer layer];
+    //    separator.frame = CGRectMake(0, 79, cell.width, 1);
+    //    if([tempArray count] - 1 != indexPath.row && [tempArray count] > 1){
+    //        separator.contents = (id)[UIImage imageWithColor:RGBA(255, 255, 255, 0.5)].CGImage;
+    //    }else{
+    //        separator.contents = (id)[UIImage imageWithColor:RGB(48, 179, 254)].CGImage;
+    //    }
+    //    [cell.layer addSublayer:separator];
+    
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
-    NSArray* tempArray = [_sections objectForKey:[_sectionArray objectAtIndex:indexPath.section]];
     
     ContactsDetailViewController * contact = [ContactsDetailViewController new];
     [contact.sectionArray addObjectsFromArray:_sectionArray];
@@ -315,13 +319,20 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-     NSMutableArray* tempArray = [_sections objectForKey:[_sectionArray objectAtIndex:indexPath.section]];
-    [tempArray removeObjectAtIndex:indexPath.row];
-    if([tempArray count] == 0){
-        [_sectionArray removeObjectAtIndex:indexPath.section];
-    }
-    [tableView reloadData];
-    [self saveData:_sections];
+    UIAlertController *av = [UIAlertController alertControllerWithTitle:@"알림" message:@"삭제하시겠습니까?" preferredStyle:UIAlertControllerStyleAlert];
+    [av addAction:[UIAlertAction actionWithTitle:@"확인" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        NSMutableArray* tempArray = [_sections objectForKey:[_sectionArray objectAtIndex:indexPath.section]];
+        [tempArray removeObjectAtIndex:indexPath.row];
+        if([tempArray count] == 0){
+            [_sectionArray removeObjectAtIndex:indexPath.section];
+        }
+        [tableView reloadData];
+        [self saveData:_sections];
+    }]];
+    [av addAction:[UIAlertAction actionWithTitle:@"취소" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {
+                      
+    }]];
+    [self presentViewController:av animated:YES completion:nil];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -347,7 +358,7 @@
     
     [_sectionArray removeAllObjects];
     for (NSString * key in [_sections allKeys]){
-       AutoCompleteMng * automng = [[AutoCompleteMng alloc] initWithData:[_sections objectForKey:key]];
+        AutoCompleteMng * automng = [[AutoCompleteMng alloc] initWithData:[_sections objectForKey:key]];
         NSArray* filteredData = [automng search:_searchStr];
         if([filteredData count] > 0){
             [_sections setObject:filteredData forKey:key];
