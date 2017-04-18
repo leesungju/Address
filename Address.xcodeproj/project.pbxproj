@@ -27,6 +27,10 @@
 		1409FB601E87625300CC957D /* JsonObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1409FB5F1E87625300CC957D /* JsonObject.m */; };
 		1409FB641E877DC400CC957D /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1409FB621E877DC400CC957D /* LoginViewController.m */; };
 		1409FB651E877DC400CC957D /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1409FB631E877DC400CC957D /* LoginViewController.xib */; };
+		140E224D1EA63490007B2F61 /* NoticeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 140E224B1EA63490007B2F61 /* NoticeTableViewCell.m */; };
+		140E224E1EA63490007B2F61 /* NoticeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 140E224C1EA63490007B2F61 /* NoticeTableViewCell.xib */; };
+		140E22521EA634AE007B2F61 /* NoticeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 140E22501EA634AE007B2F61 /* NoticeDetailViewController.m */; };
+		140E22531EA634AE007B2F61 /* NoticeDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 140E22511EA634AE007B2F61 /* NoticeDetailViewController.xib */; };
 		1412F88C1EA0F11200BBB491 /* SyncPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1412F88A1EA0F11200BBB491 /* SyncPopupViewController.m */; };
 		1412F88D1EA0F11200BBB491 /* SyncPopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1412F88B1EA0F11200BBB491 /* SyncPopupViewController.xib */; };
 		1412F8951EA0F94500BBB491 /* SyncTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1412F8931EA0F94500BBB491 /* SyncTableViewCell.m */; };
@@ -148,6 +152,12 @@
 		1409FB611E877DC400CC957D /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		1409FB621E877DC400CC957D /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		1409FB631E877DC400CC957D /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		140E224A1EA63490007B2F61 /* NoticeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoticeTableViewCell.h; sourceTree = "<group>"; };
+		140E224B1EA63490007B2F61 /* NoticeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoticeTableViewCell.m; sourceTree = "<group>"; };
+		140E224C1EA63490007B2F61 /* NoticeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoticeTableViewCell.xib; sourceTree = "<group>"; };
+		140E224F1EA634AE007B2F61 /* NoticeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoticeDetailViewController.h; sourceTree = "<group>"; };
+		140E22501EA634AE007B2F61 /* NoticeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoticeDetailViewController.m; sourceTree = "<group>"; };
+		140E22511EA634AE007B2F61 /* NoticeDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoticeDetailViewController.xib; sourceTree = "<group>"; };
 		1412F8891EA0F11200BBB491 /* SyncPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncPopupViewController.h; sourceTree = "<group>"; };
 		1412F88A1EA0F11200BBB491 /* SyncPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncPopupViewController.m; sourceTree = "<group>"; };
 		1412F88B1EA0F11200BBB491 /* SyncPopupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SyncPopupViewController.xib; sourceTree = "<group>"; };
@@ -457,6 +467,12 @@
 				141EF8411E869947003B78B1 /* NoticeViewController.h */,
 				141EF8421E869947003B78B1 /* NoticeViewController.m */,
 				141EF8431E869947003B78B1 /* NoticeViewController.xib */,
+				140E224A1EA63490007B2F61 /* NoticeTableViewCell.h */,
+				140E224B1EA63490007B2F61 /* NoticeTableViewCell.m */,
+				140E224C1EA63490007B2F61 /* NoticeTableViewCell.xib */,
+				140E224F1EA634AE007B2F61 /* NoticeDetailViewController.h */,
+				140E22501EA634AE007B2F61 /* NoticeDetailViewController.m */,
+				140E22511EA634AE007B2F61 /* NoticeDetailViewController.xib */,
 			);
 			path = notice;
 			sourceTree = "<group>";
@@ -757,6 +773,7 @@
 				14D94CFF1E98AF4100C9E298 /* ContactsDetailViewController.xib in Resources */,
 				141EF8F11E869E8F003B78B1 /* GoogleSignIn.bundle in Resources */,
 				141EF8E01E869E8F003B78B1 /* batch-upload in Resources */,
+				140E22531EA634AE007B2F61 /* NoticeDetailViewController.xib in Resources */,
 				141EF8EF1E869E8F003B78B1 /* GINInviteResources.bundle in Resources */,
 				1409FB651E877DC400CC957D /* LoginViewController.xib in Resources */,
 				141EF84B1E869B4C003B78B1 /* PreachViewController.xib in Resources */,
@@ -766,6 +783,7 @@
 				141EF8F31E869E8F003B78B1 /* NOTICES in Resources */,
 				141EF8E21E869E8F003B78B1 /* extract-keys in Resources */,
 				14155CD31E9A1B1A008C0E99 /* MemoPopupViewController.xib in Resources */,
+				140E224E1EA63490007B2F61 /* NoticeTableViewCell.xib in Resources */,
 				141EF8451E869947003B78B1 /* NoticeViewController.xib in Resources */,
 				142365F21E9A4C7700567E23 /* MemoTableViewCell.xib in Resources */,
 				1412F8961EA0F94500BBB491 /* SyncTableViewCell.xib in Resources */,
@@ -805,6 +823,8 @@
 				14D94CFE1E98AF4100C9E298 /* ContactsDetailViewController.m in Sources */,
 				14089A021E854A3100E329F8 /* PreferenceManager.m in Sources */,
 				1409FB641E877DC400CC957D /* LoginViewController.m in Sources */,
+				140E22521EA634AE007B2F61 /* NoticeDetailViewController.m in Sources */,
+				140E224D1EA63490007B2F61 /* NoticeTableViewCell.m in Sources */,
 				141EF84A1E869B4C003B78B1 /* PreachViewController.m in Sources */,
 				141EF8F41E869E8F003B78B1 /* README.md in Sources */,
 				143EBBBA1E863FAB00E3AA69 /* AutoCompleteMng.m in Sources */,
