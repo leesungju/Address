@@ -20,6 +20,7 @@
 
     #import <Contacts/Contacts.h>
     #import <ContactsUI/ContactsUI.h>
+    #import <MessageUI/MessageUI.h>
     #import "Firebase.h"
 
     #import "GUIManager.h"

@@ -83,6 +83,7 @@
 		142365F21E9A4C7700567E23 /* MemoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 142365F01E9A4C7700567E23 /* MemoTableViewCell.xib */; };
 		143EBBB31E862CC000E3AA69 /* AddressObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 143EBBB21E862CC000E3AA69 /* AddressObj.m */; };
 		143EBBBA1E863FAB00E3AA69 /* AutoCompleteMng.m in Sources */ = {isa = PBXBuildFile; fileRef = 143EBBB81E863FAB00E3AA69 /* AutoCompleteMng.m */; };
+		1461810C1EA509D8005EDC88 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1461810B1EA509D8005EDC88 /* MessageUI.framework */; };
 		14D887371E97CAE60046636E /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D887361E97CAE60046636E /* SettingViewController.m */; };
 		14D94CFE1E98AF4100C9E298 /* ContactsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D94CFC1E98AF4100C9E298 /* ContactsDetailViewController.m */; };
 		14D94CFF1E98AF4100C9E298 /* ContactsDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14D94CFD1E98AF4100C9E298 /* ContactsDetailViewController.xib */; };
@@ -217,6 +218,7 @@
 		143EBBB21E862CC000E3AA69 /* AddressObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressObj.m; sourceTree = "<group>"; };
 		143EBBB71E863FAB00E3AA69 /* AutoCompleteMng.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoCompleteMng.h; sourceTree = "<group>"; };
 		143EBBB81E863FAB00E3AA69 /* AutoCompleteMng.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoCompleteMng.m; sourceTree = "<group>"; };
+		1461810B1EA509D8005EDC88 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		14D887351E97CAE60046636E /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
 		14D887361E97CAE60046636E /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		14D94CFB1E98AF4100C9E298 /* ContactsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsDetailViewController.h; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1461810C1EA509D8005EDC88 /* MessageUI.framework in Frameworks */,
 				141EF8E61E869E8F003B78B1 /* FirebaseDatabase.framework in Frameworks */,
 				141EF8E81E869E8F003B78B1 /* FirebaseDynamicLinks.framework in Frameworks */,
 				141EF8EA1E869E8F003B78B1 /* GTMOAuth2.framework in Frameworks */,
@@ -286,6 +289,7 @@
 				140899C01E8549EF00E329F8 /* AddressTests */,
 				140899CB1E8549EF00E329F8 /* AddressUITests */,
 				140899A51E8549EF00E329F8 /* Products */,
+				1461810A1EA509D8005EDC88 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -633,6 +637,14 @@
 				143EBBB81E863FAB00E3AA69 /* AutoCompleteMng.m */,
 			);
 			path = autoSearch;
+			sourceTree = "<group>";
+		};
+		1461810A1EA509D8005EDC88 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1461810B1EA509D8005EDC88 /* MessageUI.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

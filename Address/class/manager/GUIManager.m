@@ -46,7 +46,7 @@
     }
     
     NSArray *titleList = array;
-    NSArray *imageList = @[[UIImage imageWithColor:[UIColor redColor]], [UIImage imageWithColor:[UIColor yellowColor]], [UIImage imageWithColor:[UIColor blueColor]],[UIImage imageWithColor:[UIColor blueColor]]];
+    NSArray *imageList = @[[UIImage imageWithColor:[UIColor redColor]], [UIImage imageWithColor:[UIColor yellowColor]], [UIImage imageWithColor:[UIColor blueColor]],[UIImage imageWithColor:[UIColor blueColor]], [UIImage imageWithColor:[UIColor blueColor]]];
     
     if([array count] > 0){
         _settingViewController = [[GUIManager sharedInstance] settingViewController];

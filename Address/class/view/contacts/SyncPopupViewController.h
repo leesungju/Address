@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum {
+    kViewType_Snyc,
+    kViewType_sms
+} kViewType;
+
 @interface SyncPopupViewController : UIViewController
+
+@property (assign, nonatomic) kViewType type;
 
 @end

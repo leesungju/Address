@@ -45,6 +45,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self.menuBtn setHidden:NO];
     
     if(_isLoad){
         NSString * contacts = [[PreferenceManager sharedInstance] getPreference:@"contacts" defualtValue:@""];
@@ -64,14 +65,14 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [[GUIManager sharedInstance] setSetting:[NSArray arrayWithObjects:@"홈", @"등록", @"동기화", @"백업", nil] delegate:self];
+    [[GUIManager sharedInstance] setSetting:[NSArray arrayWithObjects:@"홈", @"등록", @"동기화", @"단체문자", @"백업", nil] delegate:self];
     
 }
 
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-    [[GUIManager sharedInstance] setSetting:[NSArray arrayWithObjects:@"홈", @"등록", @"동기화", @"백업", nil] delegate:self];
+    [[GUIManager sharedInstance] setSetting:[NSArray arrayWithObjects:@"홈", @"등록", @"동기화", @"단체문자", @"백업", nil] delegate:self];
     
     [self setViewLayout];
     [self selectTabMenu:0];
@@ -122,12 +123,14 @@
             [contact setIndex:0];
             [contact setSection:(int)[_sectionArray count]-1];
             [contact viewMode:kViewMode_add];
+            [[GUIManager sharedInstance] hideSetting];
             [[GUIManager sharedInstance] moveToController:contact animation:YES];
             break;
         }
         case 2: {
             
             SyncPopupViewController * sync = [SyncPopupViewController new];
+            [sync setType:kViewType_Snyc];
             [[GUIManager sharedInstance] showPopup:sync animation:YES complete:^(NSDictionary *dict) {
                 if(dict != nil){
                     [_oriDataArray addObjectsFromArray:[dict objectForKey:@"data"]];
@@ -139,7 +142,15 @@
             
             break;
         }
-        case 3:
+        case 3:{
+            SyncPopupViewController * sync = [SyncPopupViewController new];
+            [sync setType:kViewType_sms];
+            [[GUIManager sharedInstance] showPopup:sync animation:YES complete:^(NSDictionary *dict) {
+                
+            }];
+            break;
+        }
+        case 4:
             
             break;
         default:
@@ -276,8 +287,15 @@
     AddressObj *temp = [tempArray objectAtIndex:indexPath.row];
     
     
-    if(temp.image){
+    if([temp.image isKindOfClass:[UIImage class]]){
         [cell.profileImageView setImage:temp.image];
+    }else if(temp.imagePath.length > 0){
+        UIImage * image = [[UIImage alloc] initWithContentsOfFile:temp.imagePath];
+        if(image){
+            [cell.profileImageView setImage:image];
+        }else{
+            [cell.profileImageView setImage:[UIImage imageNamed:@"profile"]];
+        }
     }else{
         [cell.profileImageView setImage:[UIImage imageNamed:@"profile"]];
     }

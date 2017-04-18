@@ -9,7 +9,7 @@
 #import "SyncPopupViewController.h"
 #import "SyncTableViewCell.h"
 
-@interface SyncPopupViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface SyncPopupViewController () <UITableViewDelegate, UITableViewDataSource, MFMessageComposeViewControllerDelegate>
 @property (strong, nonatomic) IBOutlet UIView *popupView;
 @property (strong, nonatomic) IBOutlet UIView *titleView;
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
@@ -18,6 +18,9 @@
 @property (strong, nonatomic) IBOutlet UIButton *cancelBtn;
 @property (strong, nonatomic) IBOutlet UIButton *allBtn;
 @property (strong, nonatomic) IBOutlet UIButton *saveBtn;
+@property (strong, nonatomic) IBOutlet UIView *bottomView2;
+@property (strong, nonatomic) IBOutlet UIButton *cancelBtn2;
+@property (strong, nonatomic) IBOutlet UIButton *sendBtn;
 
 @property (strong, nonatomic) NSMutableArray * contactsArray;
 @property (strong, nonatomic) NSMutableDictionary * saveDict;
@@ -52,17 +55,38 @@
 
 - (void)initViews
 {
-    [_popupView setRadius:10];
-    _contactsArray = [NSMutableArray new];
-    [_contactsArray addObjectsFromArray:[[ContactManager sharedInstance] getContact]];
-    [_tableView setDelegate:self];
-    [_tableView setDataSource:self];
-    [_tableView setRadius:5];
-//    [_tableView setBackgroundColor:RGB(250, 254, 243)];
-    [_tableView setAllowsMultipleSelection:YES];
-    [_tableView setTableHeaderView:nil];
-    [_tableView setTableFooterView:nil];
-    [_tableView reloadData];
+    if(_type == kViewType_Snyc){
+        [_popupView setRadius:10];
+        _contactsArray = [NSMutableArray new];
+        [_contactsArray addObjectsFromArray:[[ContactManager sharedInstance] getContact]];
+        [_tableView setDelegate:self];
+        [_tableView setDataSource:self];
+        [_tableView setRadius:5];
+        [_tableView setAllowsMultipleSelection:YES];
+        [_tableView setTableHeaderView:nil];
+        [_tableView setTableFooterView:nil];
+        [_tableView reloadData];
+        [_titleLabel setText:@"동기화"];
+        
+        [_bottomView setHidden:NO];
+        [_bottomView2 setHidden:YES];
+    }else{
+        [_popupView setRadius:10];
+        _contactsArray = [NSMutableArray new];
+        NSString * contacts = [[PreferenceManager sharedInstance] getPreference:@"contacts" defualtValue:@""];
+        [_contactsArray addObjectsFromArray:[Util stringConvertArray:contacts]];
+        [_tableView setDelegate:self];
+        [_tableView setDataSource:self];
+        [_tableView setRadius:5];
+        [_tableView setAllowsMultipleSelection:YES];
+        [_tableView setTableHeaderView:nil];
+        [_tableView setTableFooterView:nil];
+        [_tableView reloadData];
+        [_titleLabel setText:@"단체문자"];
+        
+        [_bottomView setHidden:YES];
+        [_bottomView2 setHidden:NO];
+    }
     
 
 }
@@ -126,6 +150,9 @@
 - (IBAction)allAction:(id)sender {
     UIAlertController *av = [UIAlertController alertControllerWithTitle:@"알림" message:@"전체 목록을 저장 하시겠습니까?" preferredStyle:UIAlertControllerStyleAlert];
     [av addAction:[UIAlertAction actionWithTitle:@"확인" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        for(NSDictionary * dict in _contactsArray){
+            [dict setValue:@"" forKey:@"image"];
+        }
         [[GUIManager sharedInstance] hidePopup:self animation:YES completeData:[NSDictionary dictionaryWithObject:_contactsArray forKey:@"data"]];
     }]];
     [av addAction:[UIAlertAction actionWithTitle:@"취소" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {
@@ -150,4 +177,25 @@
     [self presentViewController:av animated:YES completion:nil];
 }
 
+- (IBAction)sendAction:(id)sender {
+    MFMessageComposeViewController * sms = [[MFMessageComposeViewController alloc] init];
+    if([MFMessageComposeViewController canSendText])
+    {
+        NSMutableArray * save = [NSMutableArray new];
+        for (NSString * key in [_saveDict allKeys]) {
+            [save addObject:[[_saveDict objectForKey:key] objectForKey:@"phoneNumber"]];
+        }
+        
+        sms.body = @"";
+        sms.recipients = save;
+        sms.messageComposeDelegate = self;
+        [self presentViewController:sms animated:YES completion:nil];
+    }
+}
+
+
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 @end

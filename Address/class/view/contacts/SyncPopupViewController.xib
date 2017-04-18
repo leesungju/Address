@@ -13,9 +13,12 @@
             <connections>
                 <outlet property="allBtn" destination="Crb-vg-2jV" id="qQR-KP-Ylk"/>
                 <outlet property="bottomView" destination="g41-rT-3jh" id="MmP-uy-7cC"/>
+                <outlet property="bottomView2" destination="Fu1-4S-7MH" id="6C1-tD-2Hm"/>
                 <outlet property="cancelBtn" destination="og4-I5-bjd" id="JFp-m1-f8r"/>
+                <outlet property="cancelBtn2" destination="VqD-tC-noa" id="WzP-u1-pES"/>
                 <outlet property="popupView" destination="tTX-uU-EDz" id="Uoe-q8-c8c"/>
                 <outlet property="saveBtn" destination="SHP-Z8-jNf" id="OKE-0R-E5S"/>
+                <outlet property="sendBtn" destination="5WF-UR-scv" id="8G0-3o-7V2"/>
                 <outlet property="tableView" destination="ABR-2U-unt" id="1Co-Xk-kGt"/>
                 <outlet property="titleLabel" destination="R4h-4v-SU8" id="xuO-dg-nvt"/>
                 <outlet property="titleView" destination="ep3-cI-FQK" id="aXQ-Bc-35D"/>
@@ -134,6 +137,51 @@
                                 <constraint firstAttribute="bottom" secondItem="og4-I5-bjd" secondAttribute="bottom" id="sfQ-if-cwC"/>
                             </constraints>
                         </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fu1-4S-7MH">
+                            <rect key="frame" x="0.0" y="360" width="300" height="40"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VqD-tC-noa">
+                                    <rect key="frame" x="0.0" y="0.0" width="149.5" height="40"/>
+                                    <color key="backgroundColor" red="0.81568627449999997" green="0.98039215690000003" blue="0.54117647059999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <state key="normal" title="취소">
+                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="cancelAction:" destination="-1" eventType="touchUpInside" id="iew-11-ayJ"/>
+                                    </connections>
+                                </button>
+                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DS9-q7-p5P">
+                                    <rect key="frame" x="149.5" y="0.0" width="1" height="40"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="1" id="XtL-YA-qeo"/>
+                                    </constraints>
+                                </view>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5WF-UR-scv">
+                                    <rect key="frame" x="150.5" y="0.0" width="149.5" height="40"/>
+                                    <color key="backgroundColor" red="0.81568627449999997" green="0.98039215690000003" blue="0.54117647059999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <state key="normal" title="보내기">
+                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="sendAction:" destination="-1" eventType="touchUpInside" id="b77-8X-I32"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="VqD-tC-noa" secondAttribute="bottom" id="2um-4t-Aeo"/>
+                                <constraint firstItem="5WF-UR-scv" firstAttribute="leading" secondItem="DS9-q7-p5P" secondAttribute="trailing" id="3vD-D5-jej"/>
+                                <constraint firstItem="DS9-q7-p5P" firstAttribute="centerX" secondItem="Fu1-4S-7MH" secondAttribute="centerX" id="69T-2l-gVs"/>
+                                <constraint firstItem="DS9-q7-p5P" firstAttribute="leading" secondItem="VqD-tC-noa" secondAttribute="trailing" id="IqI-wB-ZIK"/>
+                                <constraint firstItem="5WF-UR-scv" firstAttribute="top" secondItem="Fu1-4S-7MH" secondAttribute="top" id="O1y-Tk-DRI"/>
+                                <constraint firstItem="VqD-tC-noa" firstAttribute="leading" secondItem="Fu1-4S-7MH" secondAttribute="leading" id="SVT-3a-Qe9"/>
+                                <constraint firstAttribute="trailing" secondItem="5WF-UR-scv" secondAttribute="trailing" id="jw3-ko-5h2"/>
+                                <constraint firstAttribute="bottom" secondItem="5WF-UR-scv" secondAttribute="bottom" id="kxb-uN-4BJ"/>
+                                <constraint firstAttribute="height" constant="40" id="p1N-Qr-TgC"/>
+                                <constraint firstItem="VqD-tC-noa" firstAttribute="top" secondItem="Fu1-4S-7MH" secondAttribute="top" id="yIC-Nb-fWc"/>
+                            </constraints>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" red="0.98039215690000003" green="0.84313725490000002" blue="0.52549019610000003" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -141,12 +189,15 @@
                         <constraint firstItem="ep3-cI-FQK" firstAttribute="top" secondItem="tTX-uU-EDz" secondAttribute="top" id="MvL-yO-4wA"/>
                         <constraint firstItem="ep3-cI-FQK" firstAttribute="leading" secondItem="g41-rT-3jh" secondAttribute="leading" id="R2O-Bq-YKR"/>
                         <constraint firstAttribute="height" constant="400" id="U1j-0i-xjC"/>
+                        <constraint firstItem="Fu1-4S-7MH" firstAttribute="leading" secondItem="tTX-uU-EDz" secondAttribute="leading" id="Wg7-BG-Q6m"/>
                         <constraint firstAttribute="width" constant="300" id="Yz3-2v-rRi"/>
                         <constraint firstAttribute="trailing" secondItem="ABR-2U-unt" secondAttribute="trailing" id="ZOa-z4-zgQ"/>
                         <constraint firstAttribute="trailing" secondItem="ep3-cI-FQK" secondAttribute="trailing" id="auk-1l-Ofe"/>
                         <constraint firstItem="ABR-2U-unt" firstAttribute="top" secondItem="ep3-cI-FQK" secondAttribute="bottom" id="ck4-MW-bhy"/>
                         <constraint firstItem="ep3-cI-FQK" firstAttribute="trailing" secondItem="g41-rT-3jh" secondAttribute="trailing" id="ebs-fT-QVN"/>
+                        <constraint firstAttribute="bottom" secondItem="Fu1-4S-7MH" secondAttribute="bottom" id="hU7-Fl-mNq"/>
                         <constraint firstItem="ABR-2U-unt" firstAttribute="leading" secondItem="tTX-uU-EDz" secondAttribute="leading" id="pdk-wT-6F2"/>
+                        <constraint firstAttribute="trailing" secondItem="Fu1-4S-7MH" secondAttribute="trailing" id="sTQ-jc-lIN"/>
                         <constraint firstAttribute="bottom" secondItem="g41-rT-3jh" secondAttribute="bottom" id="txu-rs-0ek"/>
                         <constraint firstItem="ep3-cI-FQK" firstAttribute="leading" secondItem="tTX-uU-EDz" secondAttribute="leading" id="uPI-Er-lSX"/>
                     </constraints>

@@ -52,6 +52,7 @@
         button.tag = i;
         [button addTarget:self action:@selector(onMenuButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         [button setTitle:[title objectAtIndex:i] forState:UIControlStateNormal];
+        [button.titleLabel setFont:[UIFont systemFontOfSize:14]];
         [_buttonList addObject:button];
         [_backgroundMenuView addSubview:button];
     }
