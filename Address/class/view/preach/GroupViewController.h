@@ -1,5 +1,5 @@
 //
-//  PreachViewController.h
+//  GroupViewController.h
 //  Address
 //
 //  Created by LeeSungJu on 2017. 3. 25..
@@ -8,6 +8,6 @@
 
 #import "BaseViewController.h"
 
-@interface PreachViewController : BaseViewController
+@interface GroupViewController : BaseViewController
 
 @end

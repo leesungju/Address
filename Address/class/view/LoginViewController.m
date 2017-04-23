@@ -34,12 +34,18 @@
         NSString * name = [NSStrUtils urlEncoding:[_nameTextField text]];
         NSString * phone = [[_phoneTextField text] stringByReplacingOccurrencesOfString:@"-" withString:@""];
         if([self checkPhone:phone]){
-            NSString * key = [phone  substringFromIndex:3];
+            NSString * key = [UIDevice getDeviceId];
             [_data setObject:name forKey:@"name"];
             [_data setObject:phone forKey:@"phone"];
-            NSString * string = [NSString stringWithFormat:@"%@",_data];
-            [[PreferenceManager sharedInstance] setPreference:string forKey:@"login"];
-            [[StorageManager sharedInstance] saveUser:string forKey:key];
+            MemberObj * obj = [MemberObj new];
+            [obj setName:name];
+            [obj setPhoneNumber:phone];
+            [obj setMemberId:[UIDevice getDeviceId]];
+            
+            [[PreferenceManager sharedInstance] setPreference:[obj getJsonString] forKey:@"login"];
+            [[PreferenceManager sharedInstance] setPreference:name forKey:@"name"];
+            [[PreferenceManager sharedInstance] setPreference:phone forKey:@"phone"];
+            [[StorageManager sharedInstance] saveUser:[obj getDict] forKey:key];
             ret = YES;
         }
     }
@@ -56,19 +62,8 @@
 
 - (IBAction)startBtnAction:(id)sender {
     
-    if([self saveData]){
-        [[StorageManager sharedInstance] loadPermissionforKey:[_data objectForKey:@"phone"] WithBlock:^(FIRDataSnapshot *snapshot) {
-            NSString * permissionforKey = (NSString*)snapshot.value;
-            if(![permissionforKey isKindOfClass:[NSNull class]] && permissionforKey.length > 0){
-                [[PreferenceManager sharedInstance] setPreference:permissionforKey forKey:@"permission"];
-            }else{
-                [[PreferenceManager sharedInstance] setPreference:@"normal" forKey:@"permission"];
-            }
-            [[GUIManager sharedInstance] hidePopup:self animation:YES completeData:_data];
-        } withCancelBlock:^(NSError *error) {
-            
-        }];
-        
-    }
+    [[GUIManager sharedInstance] hidePopup:self animation:YES completeData:_data];
+    [self saveData];
+
 }
 @end

@@ -13,7 +13,6 @@
             <connections>
                 <outlet property="backBtn" destination="1uC-vi-mQn" id="7Ac-Xm-chl"/>
                 <outlet property="retTableView" destination="UVL-cU-Wmg" id="Vxg-gz-Kd9"/>
-                <outlet property="searchImageView" destination="fQa-CZ-ii9" id="sbV-f3-1xS"/>
                 <outlet property="searchTextField" destination="qGl-MI-cY3" id="wqn-vD-LwN"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -49,22 +48,13 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fQa-CZ-ii9">
-                                    <rect key="frame" x="327" y="17" width="28" height="26"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="26" id="MOi-Mf-BBY"/>
-                                        <constraint firstAttribute="width" constant="28" id="ckb-Qn-FyB"/>
-                                    </constraints>
-                                </imageView>
                             </subviews>
                             <constraints>
                                 <constraint firstAttribute="height" constant="60" id="25d-xs-VDg"/>
                                 <constraint firstItem="qGl-MI-cY3" firstAttribute="top" secondItem="haJ-Ni-OIo" secondAttribute="top" constant="10" id="Bdl-o4-tNj"/>
                                 <constraint firstItem="1uC-vi-mQn" firstAttribute="centerY" secondItem="haJ-Ni-OIo" secondAttribute="centerY" id="EJS-wn-utq"/>
                                 <constraint firstAttribute="bottom" secondItem="qGl-MI-cY3" secondAttribute="bottom" constant="10" id="F6z-g2-Jfa"/>
-                                <constraint firstAttribute="trailing" secondItem="fQa-CZ-ii9" secondAttribute="trailing" constant="20" id="I6J-Za-g1T"/>
                                 <constraint firstAttribute="trailing" secondItem="qGl-MI-cY3" secondAttribute="trailing" constant="10" id="bD2-2A-FU8"/>
-                                <constraint firstItem="fQa-CZ-ii9" firstAttribute="centerY" secondItem="haJ-Ni-OIo" secondAttribute="centerY" id="g1v-Ix-zyf"/>
                                 <constraint firstItem="1uC-vi-mQn" firstAttribute="leading" secondItem="haJ-Ni-OIo" secondAttribute="leading" constant="10" id="l89-nu-H4C"/>
                                 <constraint firstItem="qGl-MI-cY3" firstAttribute="leading" secondItem="1uC-vi-mQn" secondAttribute="trailing" constant="10" id="ui6-Ak-5LB"/>
                             </constraints>

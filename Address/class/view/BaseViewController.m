@@ -45,7 +45,7 @@
     [_bottomTabView addSubview:_tab1Btn];
     
     _tab2Btn = [UIButton new];
-    [_tab2Btn setTitle:@"설교" forState:UIControlStateNormal];
+    [_tab2Btn setTitle:@"그룹" forState:UIControlStateNormal];
     [_tab2Btn setRadius:5];
     [_tab2Btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [_tab2Btn setBackgroundColor:RGB(250, 254, 243)];

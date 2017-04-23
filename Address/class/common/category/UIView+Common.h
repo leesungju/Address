@@ -6,7 +6,7 @@
 //  Copyright © 2017년 Aireleven. All rights reserved.
 //
 
-@interface UIView (AECommon)
+@interface UIView (SJCommon)
 
 @property (nonatomic, assign) CGPoint bottomRightPoint;
 @property (nonatomic, assign) float_t bottomY;

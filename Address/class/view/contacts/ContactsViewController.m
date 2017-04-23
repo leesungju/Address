@@ -15,7 +15,6 @@
 @interface ContactsViewController () <UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UIButton *backBtn;
 @property (strong, nonatomic) IBOutlet UITextField *searchTextField;
-@property (strong, nonatomic) IBOutlet UIImageView *searchImageView;
 @property (strong, nonatomic) IBOutlet UITableView *retTableView;
 @property (strong, nonatomic) NSMutableDictionary * sections;
 @property (strong, nonatomic) NSMutableDictionary * oriSections;
@@ -223,10 +222,8 @@
     _searchStr = [textField.text stringByReplacingCharactersInRange:range withString:string];
     if(_searchStr.length > 0){
         [self searchText];
-        [_searchImageView setHidden:YES];
     }else {
         [self settingTableView:_oriDataArray];
-        [_searchImageView setHidden:NO];
     }
     return YES;
 }
@@ -373,10 +370,9 @@
 
 - (void)searchText
 {
-    
     [_sectionArray removeAllObjects];
     for (NSString * key in [_sections allKeys]){
-        AutoCompleteMng * automng = [[AutoCompleteMng alloc] initWithData:[_sections objectForKey:key]];
+        AutoCompleteMng * automng = [[AutoCompleteMng alloc] initWithData:[_sections objectForKey:key] className:@"AddressObj"];
         NSArray* filteredData = [automng search:_searchStr];
         if([filteredData count] > 0){
             [_sections setObject:filteredData forKey:key];

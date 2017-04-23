@@ -10,7 +10,7 @@
 
 @implementation AutoCompleteMng
 
--(id)initWithData:(NSMutableArray*)data
+-(id)initWithData:(NSMutableArray*)data className:(NSString*)className
 {
     self = [super init];
     if (self)
@@ -20,7 +20,9 @@
         
         for(int i =0; i<count; i++)
         {
-            AddressObj * temp = [data objectAtIndex:i];
+            Class arrayClass = NSClassFromString (className);
+            id temp = [[arrayClass alloc] init];
+            temp = [data objectAtIndex:i];
             [temp setdata];
             [acdArr addObject:temp];
         }

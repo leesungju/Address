@@ -7,7 +7,7 @@
 //
 
 
-@interface UIImage (AECommon)
+@interface UIImage (SJCommon)
 
 +(UIImage *) imageWithColor:(UIColor *)color;
 +(UIImage *) imageWithColor:(UIColor *)color width:(float)width  height:(float)height;

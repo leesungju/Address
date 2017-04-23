@@ -13,7 +13,7 @@
     NSMutableArray *acdArr; //AutoCompleteData Array.
 }
 
--(id)initWithData:(NSMutableArray*)data;
+-(id)initWithData:(NSMutableArray*)data className:(NSString*)className;
 -(NSArray*)search:(NSString*)keyword;
 
 @end

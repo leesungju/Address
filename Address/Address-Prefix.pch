@@ -14,6 +14,7 @@
     #import "UIView+Common.h"
     #import "UIImage+Common.h"
     #import "UILabel+Common.h"
+    #import "UIDevice+Common.h"
     #import "Util.h"
     #import "NSStrUtils.h"
     #import "Constants.h"
@@ -31,6 +32,9 @@
 
     #import "JsonObject.h"
     #import "AddressObj.h"
+    #import "GroupObj.h"
+    #import "MemberObj.h"
+    #import "ContentsObj.h"
 
     #import "BaseViewController.h"
 

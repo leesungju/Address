@@ -8,7 +8,7 @@
 
 #import "UIView+Common.h"
 
-@implementation UIView (AECommon)
+@implementation UIView (SJCommon)
 
 @dynamic bottomRightPoint;
 @dynamic bottomY;

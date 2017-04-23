@@ -8,7 +8,7 @@
 
 #import "UILabel+Common.h"
 
-@implementation UILabel (AECommon)
+@implementation UILabel (SJCommon)
 
 - (void)setAttributeTextColor:(UIColor*)color changeText:(NSString*)text
 {

@@ -31,19 +31,30 @@
 		140E224E1EA63490007B2F61 /* NoticeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 140E224C1EA63490007B2F61 /* NoticeTableViewCell.xib */; };
 		140E22521EA634AE007B2F61 /* NoticeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 140E22501EA634AE007B2F61 /* NoticeDetailViewController.m */; };
 		140E22531EA634AE007B2F61 /* NoticeDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 140E22511EA634AE007B2F61 /* NoticeDetailViewController.xib */; };
+		1412260F1EAC51A9001DBBB1 /* GroupTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1412260D1EAC51A9001DBBB1 /* GroupTableViewCell.m */; };
+		141226101EAC51A9001DBBB1 /* GroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1412260E1EAC51A9001DBBB1 /* GroupTableViewCell.xib */; };
+		141226141EAC5B2F001DBBB1 /* CreateGroupPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 141226121EAC5B2F001DBBB1 /* CreateGroupPopupViewController.m */; };
+		141226151EAC5B2F001DBBB1 /* CreateGroupPopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 141226131EAC5B2F001DBBB1 /* CreateGroupPopupViewController.xib */; };
+		141226191EAC8A57001DBBB1 /* GroupDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 141226171EAC8A57001DBBB1 /* GroupDetailViewController.m */; };
+		1412261A1EAC8A57001DBBB1 /* GroupDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 141226181EAC8A57001DBBB1 /* GroupDetailViewController.xib */; };
 		1412F88C1EA0F11200BBB491 /* SyncPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1412F88A1EA0F11200BBB491 /* SyncPopupViewController.m */; };
 		1412F88D1EA0F11200BBB491 /* SyncPopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1412F88B1EA0F11200BBB491 /* SyncPopupViewController.xib */; };
 		1412F8951EA0F94500BBB491 /* SyncTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1412F8931EA0F94500BBB491 /* SyncTableViewCell.m */; };
 		1412F8961EA0F94500BBB491 /* SyncTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1412F8941EA0F94500BBB491 /* SyncTableViewCell.xib */; };
 		14155CD21E9A1B1A008C0E99 /* MemoPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14155CD01E9A1B1A008C0E99 /* MemoPopupViewController.m */; };
 		14155CD31E9A1B1A008C0E99 /* MemoPopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14155CD11E9A1B1A008C0E99 /* MemoPopupViewController.xib */; };
+		14170D2E1EAB1DC5002FE36E /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 14170D2D1EAB1DC5002FE36E /* KeychainItemWrapper.m */; };
+		14170D311EAB1EF2002FE36E /* UIDevice+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 14170D301EAB1EF2002FE36E /* UIDevice+Common.m */; };
+		14170D341EAB4346002FE36E /* GroupObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 14170D331EAB4346002FE36E /* GroupObj.m */; };
+		14170D371EAB4819002FE36E /* MemberObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 14170D361EAB4819002FE36E /* MemberObj.m */; };
+		14170D3A1EAB7FC1002FE36E /* ContentsObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 14170D391EAB7FC1002FE36E /* ContentsObj.m */; };
 		141EF83D1E86992E003B78B1 /* ContactsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 141EF8371E86992E003B78B1 /* ContactsTableViewCell.m */; };
 		141EF83E1E86992E003B78B1 /* ContactsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 141EF8381E86992E003B78B1 /* ContactsTableViewCell.xib */; };
 		141EF83F1E86992E003B78B1 /* ContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 141EF83A1E86992E003B78B1 /* ContactsViewController.m */; };
 		141EF8401E86992E003B78B1 /* ContactsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 141EF83B1E86992E003B78B1 /* ContactsViewController.xib */; };
 		141EF8441E869947003B78B1 /* NoticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 141EF8421E869947003B78B1 /* NoticeViewController.m */; };
 		141EF8451E869947003B78B1 /* NoticeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 141EF8431E869947003B78B1 /* NoticeViewController.xib */; };
-		141EF84A1E869B4C003B78B1 /* PreachViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 141EF8481E869B4C003B78B1 /* PreachViewController.m */; };
+		141EF84A1E869B4C003B78B1 /* GroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 141EF8481E869B4C003B78B1 /* GroupViewController.m */; };
 		141EF84B1E869B4C003B78B1 /* PreachViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 141EF8491E869B4C003B78B1 /* PreachViewController.xib */; };
 		141EF8D51E869E8F003B78B1 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 141EF8A51E869E8E003B78B1 /* GoogleMobileAds.framework */; };
 		141EF8D61E869E8F003B78B1 /* FirebaseAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 141EF8A71E869E8E003B78B1 /* FirebaseAnalytics.framework */; };
@@ -158,6 +169,15 @@
 		140E224F1EA634AE007B2F61 /* NoticeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoticeDetailViewController.h; sourceTree = "<group>"; };
 		140E22501EA634AE007B2F61 /* NoticeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoticeDetailViewController.m; sourceTree = "<group>"; };
 		140E22511EA634AE007B2F61 /* NoticeDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoticeDetailViewController.xib; sourceTree = "<group>"; };
+		1412260C1EAC51A9001DBBB1 /* GroupTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupTableViewCell.h; sourceTree = "<group>"; };
+		1412260D1EAC51A9001DBBB1 /* GroupTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupTableViewCell.m; sourceTree = "<group>"; };
+		1412260E1EAC51A9001DBBB1 /* GroupTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupTableViewCell.xib; sourceTree = "<group>"; };
+		141226111EAC5B2F001DBBB1 /* CreateGroupPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateGroupPopupViewController.h; sourceTree = "<group>"; };
+		141226121EAC5B2F001DBBB1 /* CreateGroupPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateGroupPopupViewController.m; sourceTree = "<group>"; };
+		141226131EAC5B2F001DBBB1 /* CreateGroupPopupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateGroupPopupViewController.xib; sourceTree = "<group>"; };
+		141226161EAC8A57001DBBB1 /* GroupDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupDetailViewController.h; sourceTree = "<group>"; };
+		141226171EAC8A57001DBBB1 /* GroupDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupDetailViewController.m; sourceTree = "<group>"; };
+		141226181EAC8A57001DBBB1 /* GroupDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupDetailViewController.xib; sourceTree = "<group>"; };
 		1412F8891EA0F11200BBB491 /* SyncPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncPopupViewController.h; sourceTree = "<group>"; };
 		1412F88A1EA0F11200BBB491 /* SyncPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncPopupViewController.m; sourceTree = "<group>"; };
 		1412F88B1EA0F11200BBB491 /* SyncPopupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SyncPopupViewController.xib; sourceTree = "<group>"; };
@@ -167,6 +187,16 @@
 		14155CCF1E9A1B1A008C0E99 /* MemoPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemoPopupViewController.h; sourceTree = "<group>"; };
 		14155CD01E9A1B1A008C0E99 /* MemoPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemoPopupViewController.m; sourceTree = "<group>"; };
 		14155CD11E9A1B1A008C0E99 /* MemoPopupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MemoPopupViewController.xib; sourceTree = "<group>"; };
+		14170D2C1EAB1DC5002FE36E /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
+		14170D2D1EAB1DC5002FE36E /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
+		14170D2F1EAB1EF2002FE36E /* UIDevice+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Common.h"; sourceTree = "<group>"; };
+		14170D301EAB1EF2002FE36E /* UIDevice+Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Common.m"; sourceTree = "<group>"; };
+		14170D321EAB4346002FE36E /* GroupObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupObj.h; sourceTree = "<group>"; };
+		14170D331EAB4346002FE36E /* GroupObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupObj.m; sourceTree = "<group>"; };
+		14170D351EAB4819002FE36E /* MemberObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemberObj.h; sourceTree = "<group>"; };
+		14170D361EAB4819002FE36E /* MemberObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemberObj.m; sourceTree = "<group>"; };
+		14170D381EAB7FC1002FE36E /* ContentsObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentsObj.h; sourceTree = "<group>"; };
+		14170D391EAB7FC1002FE36E /* ContentsObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentsObj.m; sourceTree = "<group>"; };
 		141EF8361E86992E003B78B1 /* ContactsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsTableViewCell.h; sourceTree = "<group>"; };
 		141EF8371E86992E003B78B1 /* ContactsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsTableViewCell.m; sourceTree = "<group>"; };
 		141EF8381E86992E003B78B1 /* ContactsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactsTableViewCell.xib; sourceTree = "<group>"; };
@@ -176,8 +206,8 @@
 		141EF8411E869947003B78B1 /* NoticeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoticeViewController.h; sourceTree = "<group>"; };
 		141EF8421E869947003B78B1 /* NoticeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoticeViewController.m; sourceTree = "<group>"; };
 		141EF8431E869947003B78B1 /* NoticeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoticeViewController.xib; sourceTree = "<group>"; };
-		141EF8471E869B4C003B78B1 /* PreachViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreachViewController.h; sourceTree = "<group>"; };
-		141EF8481E869B4C003B78B1 /* PreachViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreachViewController.m; sourceTree = "<group>"; };
+		141EF8471E869B4C003B78B1 /* GroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupViewController.h; sourceTree = "<group>"; };
+		141EF8481E869B4C003B78B1 /* GroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupViewController.m; sourceTree = "<group>"; };
 		141EF8491E869B4C003B78B1 /* PreachViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreachViewController.xib; sourceTree = "<group>"; };
 		141EF8A51E869E8E003B78B1 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
 		141EF8A71E869E8E003B78B1 /* FirebaseAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseAnalytics.framework; sourceTree = "<group>"; };
@@ -370,6 +400,8 @@
 		140899DD1E854A3100E329F8 /* common */ = {
 			isa = PBXGroup;
 			children = (
+				14170D2C1EAB1DC5002FE36E /* KeychainItemWrapper.h */,
+				14170D2D1EAB1DC5002FE36E /* KeychainItemWrapper.m */,
 				1409FB5D1E87625300CC957D /* Constants.h */,
 				1409FB5E1E87625300CC957D /* JsonObject.h */,
 				1409FB5F1E87625300CC957D /* JsonObject.m */,
@@ -391,6 +423,8 @@
 				140899E41E854A3100E329F8 /* UILabel+Common.m */,
 				140899E51E854A3100E329F8 /* UIView+Common.h */,
 				140899E61E854A3100E329F8 /* UIView+Common.m */,
+				14170D2F1EAB1EF2002FE36E /* UIDevice+Common.h */,
+				14170D301EAB1EF2002FE36E /* UIDevice+Common.m */,
 			);
 			path = category;
 			sourceTree = "<group>";
@@ -416,7 +450,7 @@
 		140899F01E854A3100E329F8 /* view */ = {
 			isa = PBXGroup;
 			children = (
-				141EF8461E869B3B003B78B1 /* preach */,
+				141EF8461E869B3B003B78B1 /* group */,
 				141EF8351E86992E003B78B1 /* contacts */,
 				141EF83C1E86992E003B78B1 /* notice */,
 				140899F71E854A3100E329F8 /* MainViewController.h */,
@@ -477,13 +511,23 @@
 			path = notice;
 			sourceTree = "<group>";
 		};
-		141EF8461E869B3B003B78B1 /* preach */ = {
+		141EF8461E869B3B003B78B1 /* group */ = {
 			isa = PBXGroup;
 			children = (
-				141EF8471E869B4C003B78B1 /* PreachViewController.h */,
-				141EF8481E869B4C003B78B1 /* PreachViewController.m */,
+				141EF8471E869B4C003B78B1 /* GroupViewController.h */,
+				141EF8481E869B4C003B78B1 /* GroupViewController.m */,
 				141EF8491E869B4C003B78B1 /* PreachViewController.xib */,
+				1412260C1EAC51A9001DBBB1 /* GroupTableViewCell.h */,
+				1412260D1EAC51A9001DBBB1 /* GroupTableViewCell.m */,
+				1412260E1EAC51A9001DBBB1 /* GroupTableViewCell.xib */,
+				141226111EAC5B2F001DBBB1 /* CreateGroupPopupViewController.h */,
+				141226121EAC5B2F001DBBB1 /* CreateGroupPopupViewController.m */,
+				141226131EAC5B2F001DBBB1 /* CreateGroupPopupViewController.xib */,
+				141226161EAC8A57001DBBB1 /* GroupDetailViewController.h */,
+				141226171EAC8A57001DBBB1 /* GroupDetailViewController.m */,
+				141226181EAC8A57001DBBB1 /* GroupDetailViewController.xib */,
 			);
+			name = group;
 			path = preach;
 			sourceTree = "<group>";
 		};
@@ -642,6 +686,12 @@
 			children = (
 				143EBBB11E862CC000E3AA69 /* AddressObj.h */,
 				143EBBB21E862CC000E3AA69 /* AddressObj.m */,
+				14170D321EAB4346002FE36E /* GroupObj.h */,
+				14170D331EAB4346002FE36E /* GroupObj.m */,
+				14170D351EAB4819002FE36E /* MemberObj.h */,
+				14170D361EAB4819002FE36E /* MemberObj.m */,
+				14170D381EAB7FC1002FE36E /* ContentsObj.h */,
+				14170D391EAB7FC1002FE36E /* ContentsObj.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -781,6 +831,7 @@
 				141EF8E31E869E8F003B78B1 /* upload-sym in Resources */,
 				141EF8F01E869E8F003B78B1 /* GPPACLPickerResources.bundle in Resources */,
 				141EF8F31E869E8F003B78B1 /* NOTICES in Resources */,
+				1412261A1EAC8A57001DBBB1 /* GroupDetailViewController.xib in Resources */,
 				141EF8E21E869E8F003B78B1 /* extract-keys in Resources */,
 				14155CD31E9A1B1A008C0E99 /* MemoPopupViewController.xib in Resources */,
 				140E224E1EA63490007B2F61 /* NoticeTableViewCell.xib in Resources */,
@@ -789,9 +840,11 @@
 				1412F8961EA0F94500BBB491 /* SyncTableViewCell.xib in Resources */,
 				141EF83E1E86992E003B78B1 /* ContactsTableViewCell.xib in Resources */,
 				1412F88D1EA0F11200BBB491 /* SyncPopupViewController.xib in Resources */,
+				141226101EAC51A9001DBBB1 /* GroupTableViewCell.xib in Resources */,
 				141EF9081E86A44E003B78B1 /* GoogleService-Info.plist in Resources */,
 				140899B71E8549EF00E329F8 /* LaunchScreen.storyboard in Resources */,
 				14089A081E854A3100E329F8 /* MainViewController.xib in Resources */,
+				141226151EAC5B2F001DBBB1 /* CreateGroupPopupViewController.xib in Resources */,
 				141EF8E51E869E8F003B78B1 /* upload-sym.sh in Resources */,
 				140899B41E8549EF00E329F8 /* Asset.xcassets in Resources */,
 				141EF8E11E869E8F003B78B1 /* dump_syms in Resources */,
@@ -823,17 +876,21 @@
 				14D94CFE1E98AF4100C9E298 /* ContactsDetailViewController.m in Sources */,
 				14089A021E854A3100E329F8 /* PreferenceManager.m in Sources */,
 				1409FB641E877DC400CC957D /* LoginViewController.m in Sources */,
+				1412260F1EAC51A9001DBBB1 /* GroupTableViewCell.m in Sources */,
 				140E22521EA634AE007B2F61 /* NoticeDetailViewController.m in Sources */,
 				140E224D1EA63490007B2F61 /* NoticeTableViewCell.m in Sources */,
-				141EF84A1E869B4C003B78B1 /* PreachViewController.m in Sources */,
+				141EF84A1E869B4C003B78B1 /* GroupViewController.m in Sources */,
 				141EF8F41E869E8F003B78B1 /* README.md in Sources */,
 				143EBBBA1E863FAB00E3AA69 /* AutoCompleteMng.m in Sources */,
+				141226191EAC8A57001DBBB1 /* GroupDetailViewController.m in Sources */,
 				141EF9011E869FDE003B78B1 /* FCMManager.m in Sources */,
 				142365F11E9A4C7700567E23 /* MemoTableViewCell.m in Sources */,
 				1412F8951EA0F94500BBB491 /* SyncTableViewCell.m in Sources */,
 				140899FC1E854A3100E329F8 /* UIImage+Common.m in Sources */,
+				14170D2E1EAB1DC5002FE36E /* KeychainItemWrapper.m in Sources */,
 				14089A071E854A3100E329F8 /* MainViewController.m in Sources */,
 				141EF83D1E86992E003B78B1 /* ContactsTableViewCell.m in Sources */,
+				14170D341EAB4346002FE36E /* GroupObj.m in Sources */,
 				14FD590A1E86114700233DDF /* BaseViewController.m in Sources */,
 				1412F88C1EA0F11200BBB491 /* SyncPopupViewController.m in Sources */,
 				140899FE1E854A3100E329F8 /* UIView+Common.m in Sources */,
@@ -842,13 +899,17 @@
 				141EF9041E86A1B6003B78B1 /* StorageManager.m in Sources */,
 				140899FA1E854A3100E329F8 /* AppDelegate.m in Sources */,
 				141EF8441E869947003B78B1 /* NoticeViewController.m in Sources */,
+				14170D311EAB1EF2002FE36E /* UIDevice+Common.m in Sources */,
 				14FD590D1E8614E200233DDF /* NSStrUtils.m in Sources */,
 				1409FB601E87625300CC957D /* JsonObject.m in Sources */,
 				14155CD21E9A1B1A008C0E99 /* MemoPopupViewController.m in Sources */,
 				140899A91E8549EF00E329F8 /* main.m in Sources */,
+				141226141EAC5B2F001DBBB1 /* CreateGroupPopupViewController.m in Sources */,
+				14170D3A1EAB7FC1002FE36E /* ContentsObj.m in Sources */,
 				141EF83F1E86992E003B78B1 /* ContactsViewController.m in Sources */,
 				140899FD1E854A3100E329F8 /* UILabel+Common.m in Sources */,
 				140899FB1E854A3100E329F8 /* Util.m in Sources */,
+				14170D371EAB4819002FE36E /* MemberObj.m in Sources */,
 				14089A011E854A3100E329F8 /* GUIManager.m in Sources */,
 				14D887371E97CAE60046636E /* SettingViewController.m in Sources */,
 			);

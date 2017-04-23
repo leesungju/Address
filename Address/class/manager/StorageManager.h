@@ -12,10 +12,15 @@
 
 + (StorageManager *)sharedInstance;
 
-- (void)saveUser:(NSString*)josnString forKey:(NSString*)key;
-- (void)loadUserKey:(NSString*)key WithBlock:(void (^)(FIRDataSnapshot *snapshot))block withCancelBlock:(nullable void (^)(NSError* error))cancelBlock;
+- (void)saveUser:(id)obj forKey:(NSString*)key;
+- (void)loadUserKey:(NSString*)key WithBlock:(void (^)(FIRDataSnapshot *snapshot))block withCancelBlock:(void (^)(NSError* error))cancelBlock;
 
-- (void)savePermissionforKey:(NSString*)key;
-- (void)loadPermissionforKey:(NSString*)key WithBlock:(void (^)(FIRDataSnapshot *snapshot))block withCancelBlock:(nullable void (^)(NSError* error))cancelBlock;
+- (void)saveGroup:(id)obj forKey:(NSString*)key;
+- (void)loadGroupWithBlock:(void (^)(FIRDataSnapshot *snapshot))block withCancelBlock:(void (^)(NSError* error))cancelBlock;
+- (void)removeGroupKey:(NSString*)key;
+
+- (void)joinGroup:(id)obj forKey:(NSString*)key;
+- (void)loadMember:(NSString*)key WithBlock:(void (^)(FIRDataSnapshot *snapshot))block withCancelBlock:(void (^)(NSError* error))cancelBlock;
+- (void)removeMemberWithGroup:(NSString*)group forKey:(NSString*)key;
 
 @end

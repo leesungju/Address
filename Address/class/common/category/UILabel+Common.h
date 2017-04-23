@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface UILabel (AECommon)
+@interface UILabel (SJCommon)
 
 - (void)setAttributeTextColor:(UIColor*)color changeText:(NSString*)text;
 
