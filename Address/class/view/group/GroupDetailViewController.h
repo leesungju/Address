@@ -10,4 +10,7 @@
 
 @interface GroupDetailViewController : BaseViewController
 
+@property (strong, nonatomic) GroupObj * group;
+@property (strong, nonatomic) MemberObj * member;
+
 @end

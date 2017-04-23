@@ -334,8 +334,7 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UIAlertController *av = [UIAlertController alertControllerWithTitle:@"알림" message:@"삭제하시겠습니까?" preferredStyle:UIAlertControllerStyleAlert];
-    [av addAction:[UIAlertAction actionWithTitle:@"확인" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    [[GUIManager sharedInstance] showComfirm:@"삭제하시겠습니까?" viewCon:self handler:^(UIAlertAction *action) {
         NSMutableArray* tempArray = [_sections objectForKey:[_sectionArray objectAtIndex:indexPath.section]];
         [tempArray removeObjectAtIndex:indexPath.row];
         if([tempArray count] == 0){
@@ -343,11 +342,9 @@
         }
         [tableView reloadData];
         [self saveData:_sections];
-    }]];
-    [av addAction:[UIAlertAction actionWithTitle:@"취소" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {
-                      
-    }]];
-    [self presentViewController:av animated:YES completion:nil];
+    } cancelHandler:^(UIAlertAction *action) {
+        
+    }];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath

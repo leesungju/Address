@@ -141,7 +141,7 @@
                             <rect key="frame" x="0.0" y="360" width="300" height="40"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VqD-tC-noa">
-                                    <rect key="frame" x="0.0" y="0.0" width="149.5" height="40"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="150" height="40"/>
                                     <color key="backgroundColor" red="0.81568627449999997" green="0.98039215690000003" blue="0.54117647059999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <state key="normal" title="취소">
                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -150,15 +150,15 @@
                                         <action selector="cancelAction:" destination="-1" eventType="touchUpInside" id="iew-11-ayJ"/>
                                     </connections>
                                 </button>
-                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DS9-q7-p5P">
-                                    <rect key="frame" x="149.5" y="0.0" width="1" height="40"/>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DS9-q7-p5P">
+                                    <rect key="frame" x="150" y="0.0" width="1" height="40"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="1" id="XtL-YA-qeo"/>
                                     </constraints>
                                 </view>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5WF-UR-scv">
-                                    <rect key="frame" x="150.5" y="0.0" width="149.5" height="40"/>
+                                    <rect key="frame" x="151" y="0.0" width="149" height="40"/>
                                     <color key="backgroundColor" red="0.81568627449999997" green="0.98039215690000003" blue="0.54117647059999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <state key="normal" title="보내기">
                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -174,8 +174,10 @@
                                 <constraint firstItem="5WF-UR-scv" firstAttribute="leading" secondItem="DS9-q7-p5P" secondAttribute="trailing" id="3vD-D5-jej"/>
                                 <constraint firstItem="DS9-q7-p5P" firstAttribute="centerX" secondItem="Fu1-4S-7MH" secondAttribute="centerX" id="69T-2l-gVs"/>
                                 <constraint firstItem="DS9-q7-p5P" firstAttribute="leading" secondItem="VqD-tC-noa" secondAttribute="trailing" id="IqI-wB-ZIK"/>
+                                <constraint firstItem="DS9-q7-p5P" firstAttribute="bottom" secondItem="VqD-tC-noa" secondAttribute="bottom" id="KX8-p6-yJm"/>
                                 <constraint firstItem="5WF-UR-scv" firstAttribute="top" secondItem="Fu1-4S-7MH" secondAttribute="top" id="O1y-Tk-DRI"/>
                                 <constraint firstItem="VqD-tC-noa" firstAttribute="leading" secondItem="Fu1-4S-7MH" secondAttribute="leading" id="SVT-3a-Qe9"/>
+                                <constraint firstItem="DS9-q7-p5P" firstAttribute="top" secondItem="Fu1-4S-7MH" secondAttribute="top" id="giI-fC-IAE"/>
                                 <constraint firstAttribute="trailing" secondItem="5WF-UR-scv" secondAttribute="trailing" id="jw3-ko-5h2"/>
                                 <constraint firstAttribute="bottom" secondItem="5WF-UR-scv" secondAttribute="bottom" id="kxb-uN-4BJ"/>
                                 <constraint firstAttribute="height" constant="40" id="p1N-Qr-TgC"/>

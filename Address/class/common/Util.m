@@ -41,6 +41,13 @@
     return [format stringFromDate:date];
 }
 
++ (NSString*)fullDateConvertString:(NSDate*)date
+{
+    NSDateFormatter * format = [[NSDateFormatter alloc] init];
+    [format setDateFormat:@"yyyy-MM-dd hh:mm"];
+    return [format stringFromDate:date];
+}
+
 + (NSString*)timeStamp
 {
     return [NSString stringWithFormat:@"%ld", (long)[[NSDate date] timeIntervalSince1970]];

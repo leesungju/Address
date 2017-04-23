@@ -12,7 +12,7 @@
 
 @property (strong, nonatomic) NSString * groupId;
 @property (strong, nonatomic) NSString * groupContents;
-@property (strong, nonatomic) NSArray * contents;
+@property (strong, nonatomic) NSDictionary * contents;
 @property (strong, nonatomic) NSNumber * contentsCount;
 @property (strong, nonatomic) NSDictionary * member;
 @property (strong, nonatomic) NSNumber * memberCount;

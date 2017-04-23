@@ -10,6 +10,7 @@
 #import "GroupTableViewCell.h"
 #import "CreateGroupPopupViewController.h"
 #import "AutoCompleteMng.h"
+#import "GroupDetailViewController.h"
 
 @interface GroupViewController () <UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource, GroupTableViewCellDelegate>
 @property (strong, nonatomic) IBOutlet UIButton *backBtn;
@@ -37,6 +38,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 }
+
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [[GUIManager sharedInstance] setSetting:[NSArray arrayWithObjects:@"홈", @"그룹생성", nil] delegate:self];
+    [self dataReset];
+}
+
 
 - (void)viewDidLayoutSubviews
 {
@@ -68,7 +78,8 @@
 
 - (void)dataReset
 {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    [[GUIManager sharedInstance] showLoading];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [[StorageManager sharedInstance] loadGroupWithBlock:^(FIRDataSnapshot *snapshot) {
             [_groupArray removeAllObjects];
             NSMutableDictionary * groupDict = (NSMutableDictionary*)snapshot.value;
@@ -80,10 +91,9 @@
                 
                 NSSortDescriptor *sorter = [[NSSortDescriptor alloc] initWithKey:@"memberCount" ascending:NO];
                 [_groupArray sortUsingDescriptors:[NSArray arrayWithObject:sorter]];
-                
-                
-                [_retTableView reloadData];
+                [_retTableView reloadData];   
             }
+            [[GUIManager sharedInstance] hideLoading];
         } withCancelBlock:^(NSError *error) {
             
         }];
@@ -102,13 +112,7 @@
             [groupPopupView setType:kGroupViewType_add];
             [[GUIManager sharedInstance] showPopup:groupPopupView animation:YES complete:^(NSDictionary *dict) {
                 if(dict){
-                    [_groupArray removeAllObjects];
-                    if(![dict isKindOfClass:[NSNull class]]){
-                        for (NSDictionary * temp in [dict allKeys]){
-                            [_groupArray addObject:[dict objectForKey:temp]];
-                        }
-                        [_retTableView reloadData];
-                    }
+                    [self dataReset];
                 }
             }];
             break;
@@ -167,6 +171,11 @@
         [cell.starImageView setImage:[UIImage imageNamed:@"star_no_sel"]];
         [cell.joinButton setEnabled:YES];
     }
+    if([group.publicType intValue] == 1){
+        [cell.lockImageView setImage:[UIImage imageNamed:@"lock"]];
+    }else{
+        [cell.lockImageView setImage:[UIImage imageNamed:@"unlock"]];
+    }
     
     return cell;
 }
@@ -178,13 +187,23 @@
     if([group.memberCount intValue] > 0){
         for (NSDictionary * key in [group.member allKeys]) {
             if([[[group.member objectForKey:key] objectForKey:@"memberId"] isEqualToString:[UIDevice getDeviceId]]){
+                GroupDetailViewController * groupDetail = [GroupDetailViewController new];
+                [groupDetail setGroup:group];
+                MemberObj * member = [MemberObj new];
+                [member setDict:[group.member objectForKey:key]];
+                [groupDetail setMember:member];
+                [[GUIManager sharedInstance] moveToController:groupDetail animation:YES];
                 
             }else{
-                [self showAlert:@"그룹에 가입되지 않았습니다. 가입후 이용해 주세요."];
+                [[GUIManager sharedInstance] showAlert:@"그룹에 가입되지 않았습니다. 가입후 이용해 주세요." viewCon:self handler:^(UIAlertAction *action) {
+                    
+                }];
             }
         }
     }else{
-        [self showAlert:@"그룹에 가입되지 않았습니다. 가입후 이용해 주세요."];
+        [[GUIManager sharedInstance] showAlert:@"그룹에 가입되지 않았습니다. 가입후 이용해 주세요." viewCon:self handler:^(UIAlertAction *action) {
+            
+        }];
     }
     
 }
@@ -232,7 +251,9 @@
                 [[StorageManager sharedInstance] joinGroup:[member getDict] forKey:group.groupId];
                 [self dataReset];
             }else{
-                [self showAlert:@"비밀번호를 확인후 재시도 해주세요"];
+                [[GUIManager sharedInstance] showAlert:@"비밀번호를 확인후 재시도 해주세요" viewCon:self handler:^(UIAlertAction *action) {
+                    
+                }];
             }
         }]];
         
@@ -244,6 +265,9 @@
         [member setPhoneNumber:[UIDevice getPhoneNumber]];
         [member setPermission:[NSNumber numberWithInt:0]];
         [[StorageManager sharedInstance] joinGroup:[member getDict] forKey:group.groupId];
+        [[GUIManager sharedInstance] showAlert:@"그룹의 가입되었습니다." viewCon:self handler:^(UIAlertAction *action) {
+            
+        }];
         [self dataReset];
     }
 }
@@ -290,15 +314,5 @@
     [_retTableView reloadData];
 }
 
-#pragma mark - Util Methods
-- (void)showAlert:(NSString*)message
-{
-    UIAlertController *av = [UIAlertController alertControllerWithTitle:@"알림" message:message preferredStyle:UIAlertControllerStyleAlert];\
-    [av addAction:[UIAlertAction actionWithTitle:@"확인" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action)
-                   {
-                   }]];
-    [self presentViewController:av animated:YES completion:nil];
-
-}
 
 @end

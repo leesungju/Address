@@ -20,6 +20,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *countImageView;
 @property (strong, nonatomic) IBOutlet UILabel *countLabel;
 @property (strong, nonatomic) IBOutlet UILabel *dateLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *lockImageView;
 
 @property (strong, nonatomic) GroupObj * group;
 

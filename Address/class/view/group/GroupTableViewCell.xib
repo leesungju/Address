@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="321" height="80"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="321" height="79.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="321" height="80"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star_no_sel" translatesAutoresizingMaskIntoConstraints="NO" id="bJ5-qd-ubd">
@@ -64,16 +64,24 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oYg-99-xQx">
-                        <rect key="frame" x="70" y="59" width="100" height="12"/>
+                        <rect key="frame" x="70" y="59" width="90" height="12"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="100" id="Awi-9I-VIt"/>
+                            <constraint firstAttribute="width" constant="90" id="Awi-9I-VIt"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vZy-dL-vlM">
+                        <rect key="frame" x="160" y="60" width="10" height="10"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="10" id="YfA-Rc-ud2"/>
+                            <constraint firstAttribute="height" constant="10" id="tNu-KX-el6"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="vZy-dL-vlM" firstAttribute="centerY" secondItem="oYg-99-xQx" secondAttribute="centerY" id="3t4-AM-Wg3"/>
                     <constraint firstAttribute="trailing" secondItem="qWp-2V-ijJ" secondAttribute="trailing" constant="20" id="6Qi-FY-Gul"/>
                     <constraint firstItem="oYg-99-xQx" firstAttribute="leading" secondItem="Z04-6d-Y3a" secondAttribute="leading" id="7mS-VM-S5Q"/>
                     <constraint firstItem="8Fg-RP-yQn" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="25" id="8DO-G3-8o4"/>
@@ -85,6 +93,7 @@
                     <constraint firstItem="qWp-2V-ijJ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="YNM-sY-EaI"/>
                     <constraint firstItem="Z04-6d-Y3a" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="faZ-36-ojA"/>
                     <constraint firstItem="yt3-kG-yu9" firstAttribute="centerY" secondItem="8Fg-RP-yQn" secondAttribute="centerY" id="mgU-tw-owY"/>
+                    <constraint firstItem="vZy-dL-vlM" firstAttribute="leading" secondItem="oYg-99-xQx" secondAttribute="trailing" id="uRX-VY-axu"/>
                     <constraint firstItem="bJ5-qd-ubd" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="vEh-pf-BYL"/>
                 </constraints>
             </tableViewCellContentView>
@@ -93,6 +102,7 @@
                 <outlet property="countLabel" destination="yt3-kG-yu9" id="FyM-sV-2hK"/>
                 <outlet property="dateLabel" destination="oYg-99-xQx" id="T5U-pS-XuK"/>
                 <outlet property="joinButton" destination="qWp-2V-ijJ" id="KOL-NS-WXk"/>
+                <outlet property="lockImageView" destination="vZy-dL-vlM" id="XHs-EB-0lv"/>
                 <outlet property="starImageView" destination="bJ5-qd-ubd" id="DSB-0V-RdK"/>
                 <outlet property="titleLabel" destination="Z04-6d-Y3a" id="TOx-cB-kCV"/>
             </connections>

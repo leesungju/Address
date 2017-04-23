@@ -11,10 +11,11 @@
 #import "ContactsViewController.h"
 #import "NoticeViewController.h"
 #import "GroupViewController.h"
-
+#import "LoadingView.h"
 @interface GUIManager ()
 
 @property (strong, nonatomic) SettingViewController * settingViewController;
+@property (strong, nonatomic) UIView * backgroundView;
 @property (nonatomic, copy) void (^popupCompletion)(NSDictionary* dict);
 
 @end
@@ -46,7 +47,7 @@
     }
     
     NSArray *titleList = array;
-    NSArray *imageList = @[[UIImage imageWithColor:[UIColor redColor]], [UIImage imageWithColor:[UIColor yellowColor]], [UIImage imageWithColor:[UIColor blueColor]],[UIImage imageWithColor:[UIColor blueColor]], [UIImage imageWithColor:[UIColor blueColor]]];
+    NSArray *imageList = @[[UIImage imageWithColor:[UIColor clearColor]], [UIImage imageWithColor:[UIColor clearColor]], [UIImage imageWithColor:[UIColor clearColor]],[UIImage imageWithColor:[UIColor clearColor]], [UIImage imageWithColor:[UIColor clearColor]]];
     
     if([array count] > 0){
         _settingViewController = [[GUIManager sharedInstance] settingViewController];
@@ -96,13 +97,13 @@
 
 - (void)moveToPreach
 {
-
+    
     [self moveToController:[GroupViewController new] animation:YES];
 }
 
 - (void)moveToNotice
 {
-
+    
     [self moveToController:[NoticeViewController new] animation:YES];
 }
 
@@ -152,5 +153,41 @@
     [controller removeFromParentViewController];
     [controller.view removeFromSuperview];
 }
+
+- (void)showLoading
+{
+    if(_backgroundView == nil){
+        _backgroundView = [[UIView alloc] initWithFrame:_mainNavigationController.view.bounds];
+        [_backgroundView setBackgroundColor:RGBA(0, 0, 0, 0.5)];
+        [LoadingView setOnView:_backgroundView];
+        [_mainNavigationController.view addSubview:_backgroundView];
+    }
+}
+
+- (void)hideLoading
+{
+    [LoadingView hideFromView:_backgroundView];
+    [_backgroundView removeFromSuperview];
+    _backgroundView = nil;
+}
+
+- (void)showAlert:(NSString*)message viewCon:(UIViewController*)viewCon handler:(void (^)(UIAlertAction *action))handler
+{
+    UIAlertController *av = [UIAlertController alertControllerWithTitle:@"알림" message:message preferredStyle:UIAlertControllerStyleAlert];
+    [av addAction:[UIAlertAction actionWithTitle:@"확인" style:UIAlertActionStyleCancel handler:handler]];
+    [viewCon presentViewController:av animated:YES completion:nil];
+    
+}
+
+- (void)showComfirm:(NSString*)message viewCon:(UIViewController*)viewCon handler:(void (^)(UIAlertAction *action))handler cancelHandler:(void (^)(UIAlertAction *action))cancelHandler
+{
+    UIAlertController *av = [UIAlertController alertControllerWithTitle:@"알림" message:message preferredStyle:UIAlertControllerStyleAlert];
+    [av addAction:[UIAlertAction actionWithTitle:@"확인" style:UIAlertActionStyleDefault handler:handler]];
+    [av addAction:[UIAlertAction actionWithTitle:@"취소" style:UIAlertActionStyleCancel handler:cancelHandler]];
+
+    [viewCon presentViewController:av animated:YES completion:nil];
+    
+}
+
 
 @end

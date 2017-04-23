@@ -299,12 +299,9 @@
             [self saveData:YES];
             _isEditing = NO;
         }else if(_editPhoneextField.text.length == 0){
-            UIAlertController *av = [UIAlertController alertControllerWithTitle:@"알림" message:@"핸드폰 번호를 입력하세요!" preferredStyle:UIAlertControllerStyleAlert];\
-            [av addAction:[UIAlertAction actionWithTitle:@"확인" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action)
-                           {
-                               [_editPhoneextField becomeFirstResponder];
-                           }]];
-            [self presentViewController:av animated:YES completion:nil];
+            [[GUIManager sharedInstance] showAlert:@"핸드폰 번호를 입력하세요!" viewCon:self handler:^(UIAlertAction *action) {
+                [_editPhoneextField becomeFirstResponder];
+            }];
         }
         
     }else{

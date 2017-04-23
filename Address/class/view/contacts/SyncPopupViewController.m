@@ -148,17 +148,16 @@
 }
 
 - (IBAction)allAction:(id)sender {
-    UIAlertController *av = [UIAlertController alertControllerWithTitle:@"알림" message:@"전체 목록을 저장 하시겠습니까?" preferredStyle:UIAlertControllerStyleAlert];
-    [av addAction:[UIAlertAction actionWithTitle:@"확인" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    
+    [[GUIManager sharedInstance] showComfirm:@"전체 목록을 저장 하시겠습니까?" viewCon:self handler:^(UIAlertAction *action) {
         for(NSDictionary * dict in _contactsArray){
             [dict setValue:@"" forKey:@"image"];
         }
         [[GUIManager sharedInstance] hidePopup:self animation:YES completeData:[NSDictionary dictionaryWithObject:_contactsArray forKey:@"data"]];
-    }]];
-    [av addAction:[UIAlertAction actionWithTitle:@"취소" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {
+    } cancelHandler:^(UIAlertAction *action) {
         
-    }]];
-    [self presentViewController:av animated:YES completion:nil];
+    }];
+
 }
 
 - (IBAction)saveAction:(id)sender {
@@ -166,15 +165,12 @@
     for (NSString * key in [_saveDict allKeys]) {
         [save addObject:[_saveDict objectForKey:key]];
     }
-    UIAlertController *av = [UIAlertController alertControllerWithTitle:@"알림" message:[NSString stringWithFormat:@"%d개의 목록을 저장 하시겠습니까?",(int)[save count]] preferredStyle:UIAlertControllerStyleAlert];
-    [av addAction:[UIAlertAction actionWithTitle:@"확인" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [[GUIManager sharedInstance] hidePopup:self animation:YES completeData:[NSDictionary dictionaryWithObject:save forKey:@"data"]];
-
-    }]];
-    [av addAction:[UIAlertAction actionWithTitle:@"취소" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {
+    
+    [[GUIManager sharedInstance] showComfirm:[NSString stringWithFormat:@"%d개의 목록을 저장 하시겠습니까?",(int)[save count]] viewCon:self handler:^(UIAlertAction *action) {
+         [[GUIManager sharedInstance] hidePopup:self animation:YES completeData:[NSDictionary dictionaryWithObject:save forKey:@"data"]];
+    } cancelHandler:^(UIAlertAction *action) {
         
-    }]];
-    [self presentViewController:av animated:YES completion:nil];
+    }];
 }
 
 - (IBAction)sendAction:(id)sender {

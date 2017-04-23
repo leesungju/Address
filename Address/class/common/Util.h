@@ -14,5 +14,6 @@
 + (NSArray*)stringConvertArray:(NSString*)str;
 + (NSString*)saveImage:(UIImage*)image;
 + (NSString*)dateConvertString:(NSDate*)date;
++ (NSString*)fullDateConvertString:(NSDate*)date;
 + (NSString*)timeStamp;
 @end
