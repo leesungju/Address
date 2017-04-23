@@ -10,7 +10,7 @@
 #import "MainViewController.h"
 #import "ContactsViewController.h"
 #import "NoticeViewController.h"
-#import "PreachViewController.h"
+#import "GroupViewController.h"
 
 @interface GUIManager ()
 
@@ -97,7 +97,7 @@
 - (void)moveToPreach
 {
 
-    [self moveToController:[PreachViewController new] animation:YES];
+    [self moveToController:[GroupViewController new] animation:YES];
 }
 
 - (void)moveToNotice
