@@ -19,7 +19,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.view setBackgroundColor:[UIColor orangeColor]];
+    [self.view setBackgroundColor:RGB(250, 215, 134)];
 }
 
 - (BOOL)saveData

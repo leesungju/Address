@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -23,7 +23,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="이름" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="P6G-mr-b2I">
-                    <rect key="frame" x="87.5" y="318" width="200" height="30"/>
+                    <rect key="frame" x="87.5" y="218.5" width="200" height="30"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="200" id="HI5-48-SbG"/>
                     </constraints>
@@ -31,8 +31,8 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="전화번호" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jaq-G6-nvU">
-                    <rect key="frame" x="139" y="356" width="97" height="30"/>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="전화번호" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jaq-G6-nvU">
+                    <rect key="frame" x="87.5" y="258.5" width="200" height="30"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="200" id="oFt-hk-peB"/>
                     </constraints>
@@ -40,8 +40,8 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZGK-Lb-YKt">
-                    <rect key="frame" x="164" y="425" width="46" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZGK-Lb-YKt">
+                    <rect key="frame" x="161" y="318.5" width="52" height="30"/>
                     <state key="normal" title="시작하기"/>
                     <connections>
                         <action selector="startBtnAction:" destination="-1" eventType="touchUpInside" id="Kfa-jz-55f"/>
@@ -56,7 +56,7 @@
                 <constraint firstItem="P6G-mr-b2I" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Wk4-WC-Yu0"/>
                 <constraint firstItem="Jaq-G6-nvU" firstAttribute="top" secondItem="P6G-mr-b2I" secondAttribute="bottom" constant="10" id="cAX-Vn-79g"/>
                 <constraint firstItem="ZGK-Lb-YKt" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="kYn-nQ-PG0"/>
-                <constraint firstItem="P6G-mr-b2I" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="tZD-sv-x6q"/>
+                <constraint firstItem="P6G-mr-b2I" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="-100" id="tZD-sv-x6q"/>
             </constraints>
         </view>
     </objects>
