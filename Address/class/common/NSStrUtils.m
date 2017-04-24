@@ -210,15 +210,12 @@ static  unichar JONG_SUNG[] = { 0x0000, 0x3131 , 0x3132, 0x3133, 0x3134, 0x3135 
 
 +(NSString*)urlEncoding:(NSString *)str
 {
-    NSCharacterSet *allowedCharacters = [NSCharacterSet URLFragmentAllowedCharacterSet];
-    return [str stringByAddingPercentEncodingWithAllowedCharacters:allowedCharacters];
+    return [str stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet alphanumericCharacterSet]];
 }
 
 +(NSString*)urlDecoding:(NSString *)str
 {
-    NSURL *URL = [NSURL URLWithString:str];
-    NSURLComponents *components = [NSURLComponents componentsWithURL:URL resolvingAgainstBaseURL:NO];
-    return components.fragment;
+    return [str stringByRemovingPercentEncoding];
 }
 
 @end
