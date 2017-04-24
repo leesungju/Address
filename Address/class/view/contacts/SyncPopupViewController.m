@@ -70,7 +70,7 @@
         
         [_bottomView setHidden:NO];
         [_bottomView2 setHidden:YES];
-    }else{
+    }else if(_type == kViewType_sms){
         [_popupView setRadius:10];
         _contactsArray = [NSMutableArray new];
         NSString * contacts = [[PreferenceManager sharedInstance] getPreference:@"contacts" defualtValue:@""];
@@ -86,6 +86,24 @@
         
         [_bottomView setHidden:YES];
         [_bottomView2 setHidden:NO];
+    }else if(_type == kViewType_groupSms){
+        [_popupView setRadius:10];
+        _contactsArray = [NSMutableArray new];
+        for(NSString * key in _dataDict.allKeys){
+            [_contactsArray addObject:[_dataDict objectForKey:key]];
+        }
+        [_tableView setDelegate:self];
+        [_tableView setDataSource:self];
+        [_tableView setRadius:5];
+        [_tableView setAllowsMultipleSelection:YES];
+        [_tableView setTableHeaderView:nil];
+        [_tableView setTableFooterView:nil];
+        [_tableView reloadData];
+        [_titleLabel setText:@"단체문자"];
+        
+        [_bottomView setHidden:YES];
+        [_bottomView2 setHidden:NO];
+        
     }
     
 

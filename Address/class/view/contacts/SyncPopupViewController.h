@@ -10,11 +10,13 @@
 
 typedef enum {
     kViewType_Snyc,
-    kViewType_sms
+    kViewType_sms,
+    kViewType_groupSms
 } kViewType;
 
 @interface SyncPopupViewController : UIViewController
 
 @property (assign, nonatomic) kViewType type;
+@property (strong, nonatomic) NSDictionary * dataDict;
 
 @end

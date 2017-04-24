@@ -7,6 +7,7 @@
 //
 
 #import "CreateGroupPopupViewController.h"
+#import "SyncPopupViewController.h"
 
 @interface CreateGroupPopupViewController ()
 
@@ -82,6 +83,7 @@
             [_normalPublicBtn setEnabled:NO];
         }
         [_memberView setRadius:5];
+        [_memberView addTapGestureTarget:self action:@selector(smsAction:)];
         [_memberLabel setText:[NSString stringWithFormat:@"%d",[_groupObj.memberCount intValue]]];
         
         [_contentsView setRadius:5];
@@ -200,4 +202,20 @@
     }];
 }
 
+- (void)smsAction:(id)sender
+{
+    [[GUIManager sharedInstance] hidePopup:self animation:YES completeData:nil];
+    [[StorageManager sharedInstance] loadMember:_groupObj.groupId withBlock:^(FIRDataSnapshot *snapshot) {
+        NSDictionary * dict = snapshot.value;
+        SyncPopupViewController * sync = [SyncPopupViewController new];
+        [sync setType:kViewType_groupSms];
+        [sync setDataDict:dict];
+        [[GUIManager sharedInstance] showPopup:sync animation:YES complete:^(NSDictionary *dict) {
+            
+        }];
+
+    } withCancelBlock:^(NSError *error) {
+        
+    }];
+}
 @end

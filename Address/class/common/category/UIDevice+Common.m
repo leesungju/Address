@@ -27,7 +27,7 @@
 
 + (NSString*)getName
 {
-    return [[PreferenceManager sharedInstance] getPreference:@"name" defualtValue:@""];
+    return [NSStrUtils urlDecoding:[[PreferenceManager sharedInstance] getPreference:@"name" defualtValue:@""]];
 }
 
 + (NSString*)getPhoneNumber
