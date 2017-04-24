@@ -102,6 +102,54 @@
                                 <constraint firstItem="gMU-gz-GOJ" firstAttribute="leading" secondItem="Gdt-or-Hag" secondAttribute="trailing" id="yGM-kl-IzK"/>
                             </constraints>
                         </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vSh-in-8WD">
+                            <rect key="frame" x="-0.5" y="39.5" width="300.5" height="420"/>
+                            <subviews>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="제목" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HMD-6N-fcO">
+                                    <rect key="frame" x="9.5" y="10" width="280.5" height="30"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="Uam-yS-nTK"/>
+                                        <constraint firstAttribute="height" constant="30" id="eZe-Lr-wGo"/>
+                                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="30" id="vrJ-Ev-SXF"/>
+                                    </constraints>
+                                    <nil key="textColor"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="G0Q-5X-GIq">
+                                    <rect key="frame" x="10" y="50" width="280.5" height="320"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                </textView>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="icK-mm-4c3">
+                                    <rect key="frame" x="10" y="380" width="280.5" height="30"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="30" id="ck5-8W-yfx"/>
+                                    </constraints>
+                                    <state key="normal" title="파일">
+                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="editFileBtnAction:" destination="-1" eventType="touchUpInside" id="HfY-pa-0k9"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="icK-mm-4c3" firstAttribute="leading" secondItem="vSh-in-8WD" secondAttribute="leading" constant="10" id="2Oh-Ht-zGa"/>
+                                <constraint firstAttribute="bottom" secondItem="icK-mm-4c3" secondAttribute="bottom" constant="10" id="4uc-ze-fet"/>
+                                <constraint firstItem="G0Q-5X-GIq" firstAttribute="leading" secondItem="vSh-in-8WD" secondAttribute="leading" constant="10" id="9E0-tl-9Ab"/>
+                                <constraint firstItem="G0Q-5X-GIq" firstAttribute="top" secondItem="HMD-6N-fcO" secondAttribute="bottom" constant="10" id="9EP-CN-QDo"/>
+                                <constraint firstAttribute="trailing" secondItem="G0Q-5X-GIq" secondAttribute="trailing" constant="10" id="GWE-Ay-dQg"/>
+                                <constraint firstAttribute="trailing" secondItem="icK-mm-4c3" secondAttribute="trailing" constant="10" id="KLq-i8-rf7"/>
+                                <constraint firstItem="HMD-6N-fcO" firstAttribute="leading" secondItem="vSh-in-8WD" secondAttribute="leading" constant="10" id="WGs-ta-6IL"/>
+                                <constraint firstItem="icK-mm-4c3" firstAttribute="top" secondItem="G0Q-5X-GIq" secondAttribute="bottom" constant="10" id="bFu-LO-J3q"/>
+                                <constraint firstItem="HMD-6N-fcO" firstAttribute="top" secondItem="vSh-in-8WD" secondAttribute="top" constant="10" id="v3K-fr-URw"/>
+                                <constraint firstAttribute="trailing" secondItem="HMD-6N-fcO" secondAttribute="trailing" constant="10" id="vmz-ak-FtD"/>
+                            </constraints>
+                        </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eUg-Ca-hDt">
                             <rect key="frame" x="-0.5" y="39.5" width="300.5" height="420"/>
                             <subviews>
@@ -160,7 +208,7 @@
                                     </constraints>
                                 </view>
                             </subviews>
-                            <color key="backgroundColor" red="0.81618767979999995" green="0.98052781820000001" blue="0.54128909110000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="fFZ-k8-08z" secondAttribute="trailing" constant="10" id="2rq-25-Fm9"/>
                                 <constraint firstAttribute="bottom" secondItem="ShW-1z-dUo" secondAttribute="bottom" constant="10" id="5r3-7f-SSG"/>
@@ -172,54 +220,6 @@
                                 <constraint firstItem="fFZ-k8-08z" firstAttribute="top" secondItem="TNu-BS-TtO" secondAttribute="bottom" constant="10" id="VLF-Oa-BGc"/>
                                 <constraint firstItem="ShW-1z-dUo" firstAttribute="top" secondItem="fFZ-k8-08z" secondAttribute="bottom" constant="10" id="e5R-JY-T5A"/>
                                 <constraint firstAttribute="trailing" secondItem="TNu-BS-TtO" secondAttribute="trailing" constant="10" id="gfv-Bi-1yB"/>
-                            </constraints>
-                        </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vSh-in-8WD">
-                            <rect key="frame" x="-0.5" y="39.5" width="300.5" height="420"/>
-                            <subviews>
-                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="제목" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HMD-6N-fcO">
-                                    <rect key="frame" x="9.5" y="10" width="280.5" height="30"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="Uam-yS-nTK"/>
-                                        <constraint firstAttribute="height" constant="30" id="eZe-Lr-wGo"/>
-                                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="30" id="vrJ-Ev-SXF"/>
-                                    </constraints>
-                                    <nil key="textColor"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits"/>
-                                </textField>
-                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="G0Q-5X-GIq">
-                                    <rect key="frame" x="10" y="50" width="280.5" height="320"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                </textView>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="icK-mm-4c3">
-                                    <rect key="frame" x="10" y="380" width="280.5" height="30"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="30" id="ck5-8W-yfx"/>
-                                    </constraints>
-                                    <state key="normal" title="파일">
-                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="editFileBtnAction:" destination="-1" eventType="touchUpInside" id="HfY-pa-0k9"/>
-                                    </connections>
-                                </button>
-                            </subviews>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstItem="icK-mm-4c3" firstAttribute="leading" secondItem="vSh-in-8WD" secondAttribute="leading" constant="10" id="2Oh-Ht-zGa"/>
-                                <constraint firstAttribute="bottom" secondItem="icK-mm-4c3" secondAttribute="bottom" constant="10" id="4uc-ze-fet"/>
-                                <constraint firstItem="G0Q-5X-GIq" firstAttribute="leading" secondItem="vSh-in-8WD" secondAttribute="leading" constant="10" id="9E0-tl-9Ab"/>
-                                <constraint firstItem="G0Q-5X-GIq" firstAttribute="top" secondItem="HMD-6N-fcO" secondAttribute="bottom" constant="10" id="9EP-CN-QDo"/>
-                                <constraint firstAttribute="trailing" secondItem="G0Q-5X-GIq" secondAttribute="trailing" constant="10" id="GWE-Ay-dQg"/>
-                                <constraint firstAttribute="trailing" secondItem="icK-mm-4c3" secondAttribute="trailing" constant="10" id="KLq-i8-rf7"/>
-                                <constraint firstItem="HMD-6N-fcO" firstAttribute="leading" secondItem="vSh-in-8WD" secondAttribute="leading" constant="10" id="WGs-ta-6IL"/>
-                                <constraint firstItem="icK-mm-4c3" firstAttribute="top" secondItem="G0Q-5X-GIq" secondAttribute="bottom" constant="10" id="bFu-LO-J3q"/>
-                                <constraint firstItem="HMD-6N-fcO" firstAttribute="top" secondItem="vSh-in-8WD" secondAttribute="top" constant="10" id="v3K-fr-URw"/>
-                                <constraint firstAttribute="trailing" secondItem="HMD-6N-fcO" secondAttribute="trailing" constant="10" id="vmz-ak-FtD"/>
                             </constraints>
                         </view>
                     </subviews>

@@ -60,6 +60,7 @@
         if(_contentsObj.filePath.length > 0){
             [_normalFileBtn setEnabled:YES];
         }else{
+            [_normalFileBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
             [_normalFileBtn setEnabled:NO];
         }
         
