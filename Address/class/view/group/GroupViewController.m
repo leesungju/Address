@@ -162,6 +162,7 @@
             if([[[group.member objectForKey:key] objectForKey:@"memberId"] isEqualToString:[UIDevice getDeviceId]]){
                 [cell.starImageView setImage:[UIImage imageNamed:@"star_sel"]];
                 [cell.joinButton setEnabled:NO];
+                break;
             }else{
                 [cell.starImageView setImage:[UIImage imageNamed:@"star_no_sel"]];
                 [cell.joinButton setEnabled:YES];
@@ -193,7 +194,7 @@
                 [member setDict:[group.member objectForKey:key]];
                 [groupDetail setMember:member];
                 [[GUIManager sharedInstance] moveToController:groupDetail animation:YES];
-                
+                break;
             }else{
                 [[GUIManager sharedInstance] showAlert:@"그룹에 가입되지 않았습니다. 가입후 이용해 주세요." viewCon:self handler:^(UIAlertAction *action) {
                     

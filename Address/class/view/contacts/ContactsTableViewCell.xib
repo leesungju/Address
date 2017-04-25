@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="411" height="100"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="411" height="100"/>
+                <rect key="frame" x="0.0" y="0.0" width="411" height="99.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cgp-G3-rux">
@@ -27,19 +27,19 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dDS-WU-oFv">
-                        <rect key="frame" x="107" y="13" width="100" height="15"/>
+                        <rect key="frame" x="107" y="13" width="150" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="E7m-w4-zW5"/>
-                            <constraint firstAttribute="width" constant="100" id="kDD-fQ-Bfg"/>
+                            <constraint firstAttribute="width" constant="150" id="kDD-fQ-Bfg"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V4p-tj-OMG">
-                        <rect key="frame" x="105" y="33" width="100" height="15"/>
+                        <rect key="frame" x="105" y="33" width="150" height="15"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="100" id="YHl-eT-0f1"/>
+                            <constraint firstAttribute="width" constant="150" id="YHl-eT-0f1"/>
                             <constraint firstAttribute="height" constant="15" id="d7F-0V-GvG"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -47,10 +47,10 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ddz-ao-ydC">
-                        <rect key="frame" x="105" y="53" width="200" height="15"/>
+                        <rect key="frame" x="105" y="53" width="150" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="Drr-LO-ZhU"/>
-                            <constraint firstAttribute="width" constant="200" id="qte-mW-Hf7"/>
+                            <constraint firstAttribute="width" constant="150" id="qte-mW-Hf7"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <nil key="textColor"/>

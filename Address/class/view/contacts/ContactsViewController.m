@@ -64,14 +64,14 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [[GUIManager sharedInstance] setSetting:[NSArray arrayWithObjects:@"홈", @"등록", @"동기화", @"단체문자", @"백업", nil] delegate:self];
+    [[GUIManager sharedInstance] setSetting:[NSArray arrayWithObjects:@"홈", @"등록", @"동기화", @"단체문자", nil] delegate:self];
     
 }
 
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-    [[GUIManager sharedInstance] setSetting:[NSArray arrayWithObjects:@"홈", @"등록", @"동기화", @"단체문자", @"백업", nil] delegate:self];
+    [[GUIManager sharedInstance] setSetting:[NSArray arrayWithObjects:@"홈", @"등록", @"동기화", @"단체문자", nil] delegate:self];
     
     [self setViewLayout];
     [self selectTabMenu:0];
