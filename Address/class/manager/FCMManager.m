@@ -31,6 +31,18 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
     return sharedInstance;
 }
 
+- (void)addGroup:(NSString*)groupId
+{
+    NSString * group = [NSString stringWithFormat:@"/topics/%@",groupId];
+    [[FIRMessaging messaging] subscribeToTopic:group];
+}
+
+- (void)deleteGroup:(NSString*)groupId
+{
+    NSString * group = [NSString stringWithFormat:@"/topics/%@",groupId];
+    [[FIRMessaging messaging] unsubscribeFromTopic:group];
+}
+
 - (void)initialize {
     UIApplication* application = [UIApplication sharedApplication];
     // Register for remote notifications. This shows a permission dialog on first run, to
@@ -88,6 +100,7 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
     NSLog(@"%s, %@", __FUNCTION__, token);
     // TODO : FCM에서 전달 된 푸시 토큰 서버로 등록
     _pushToken = token;
+    [[PreferenceManager sharedInstance] setPreference:_pushToken forKey:@"pushToken"];
 }
 
 - (void)didReceiveRemoteNotification:(NSDictionary *)userInfo {

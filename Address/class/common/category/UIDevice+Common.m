@@ -35,4 +35,8 @@
     return [[PreferenceManager sharedInstance] getPreference:@"phone" defualtValue:@""];
 }
 
++ (NSString*)getPushToken
+{
+    return [[PreferenceManager sharedInstance] getPreference:@"pushToken" defualtValue:@""];
+}
 @end

@@ -119,7 +119,7 @@
             ContactsDetailViewController * contact = [ContactsDetailViewController new];
             [contact.sectionArray addObjectsFromArray:_sectionArray];
             contact.dataDict = _sections;
-            [contact setIndex:0];
+            [contact setIndex:-1];
             [contact setSection:(int)[_sectionArray count]-1];
             [contact viewMode:kViewMode_add];
             [[GUIManager sharedInstance] hideSetting];
@@ -212,8 +212,11 @@
             [save addObject:obj.getDict];
         }
     }
-    NSString * resultString = [Util arrayConvertJsonString:save];
+    NSString * resultString = ([save count]> 0)?[Util arrayConvertJsonString:save]:@"";
     [[PreferenceManager sharedInstance] setPreference:resultString forKey:@"contacts"];
+    NSArray * array = [Util stringConvertArray:resultString];
+    [_oriDataArray removeAllObjects];
+    [_oriDataArray addObjectsFromArray:array];
 }
 
 #pragma textfield delegate methods

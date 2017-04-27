@@ -105,7 +105,11 @@
         [_contentsObj setCreateDt:[Util fullDateConvertString:[NSDate new]]];
         [_contentsObj setContentsId:[Util timeStamp]];
         [[StorageManager sharedInstance] saveContents:[_contentsObj getDict] forKey:_group.groupId];
+        NSString * message = [NSString stringWithFormat:@"'%@'의 글이 1건이 등록 되었습니다.", _group.groupContents];
+        [[PushManager sharedInstance] makePushMessage:_group.groupId message:message];
         [[GUIManager sharedInstance] hidePopup:self animation:YES completeData:[_contentsObj getDict]];
+        
+        
         
     }else if(_type == kGroupContentsViewType_edit){
         [_contentsObj setContentsTitle:_editTitleTextField.text];

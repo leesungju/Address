@@ -74,9 +74,9 @@
 - (void)setViewLayout
 {
     [_bottomTabView setFrame:CGRectMake(0, self.view.bottomY - 44, self.view.width, 44)];
-    [_tab1Btn setFrame:CGRectMake(5, 0, _bottomTabView.width/3 - 10, _bottomTabView.height)];
-    [_tab2Btn setFrame:CGRectMake(_tab1Btn.rightX + 10, 0, _bottomTabView.width/3 - 10, _bottomTabView.height)];
-    [_tab3Btn setFrame:CGRectMake(_tab2Btn.rightX + 10, 0, _bottomTabView.width/3 - 10, _bottomTabView.height)];
+    [_tab1Btn setFrame:CGRectMake(5, 0, _bottomTabView.width/2 - 10, _bottomTabView.height)];
+    [_tab2Btn setFrame:CGRectMake(_tab1Btn.rightX + 10, 0, _bottomTabView.width/2 - 10, _bottomTabView.height)];
+//    [_tab3Btn setFrame:CGRectMake(_tab2Btn.rightX + 10, 0, _bottomTabView.width/3 - 10, _bottomTabView.height)];
     
     [_menuBtn setFrame:CGRectMake(_bottomTabView.rightX - 70, _bottomTabView.originY - 70, 40, 40)];
 }

@@ -19,7 +19,8 @@
 @property (strong, nonatomic) NSString * createDt;
 @property (strong, nonatomic) NSNumber * publicType;
 @property (strong, nonatomic) NSString * pwd;
-@property(strong, nonatomic) NSString *wordIndex;
+@property (strong, nonatomic) NSString *wordIndex;
+@property (strong, nonatomic) NSString * pushId;
 
 -(void)setdata;
 -(NSString*)getWordIndex;

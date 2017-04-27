@@ -13,5 +13,5 @@
 + (NSString*)getDeviceId;
 + (NSString*)getName;
 + (NSString*)getPhoneNumber;
-
++ (NSString*)getPushToken;
 @end

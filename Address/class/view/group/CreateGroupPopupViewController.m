@@ -66,6 +66,7 @@
     [_member setMemberId:[UIDevice getDeviceId]];
     [_member setPhoneNumber:[UIDevice getPhoneNumber]];
     [_member setPermission:[NSNumber numberWithInt:0]];
+    [_member setPushToken:[UIDevice getPushToken]];
     
     if(_type == kGroupViewType_nomarl){
 
@@ -160,6 +161,7 @@
         }
         [_groupObj setGroupId:[Util timeStamp]];
         [_groupObj setCreateDt:[Util dateConvertString:[NSDate new]]];
+        [_groupObj setPushId:_groupObj.groupId];
         [_member setPermission:[NSNumber numberWithInt:1]];
         
         [[StorageManager sharedInstance] saveGroup:[_groupObj getDict] forKey:_groupObj.groupId];
@@ -186,7 +188,6 @@
     [[GUIManager sharedInstance] hidePopup:self animation:YES completeData:nil];
 }
 
-#pragma mark - Action Methods
 - (void)backgroundTouch:(id)sender
 {
     [_pwdTextField resignFirstResponder];

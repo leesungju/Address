@@ -13,6 +13,7 @@
 @property (strong, nonatomic) NSString * memberId;
 @property (strong, nonatomic) NSString * name;
 @property (strong, nonatomic) NSString * phoneNumber;
+@property (strong, nonatomic) NSString * pushToken;
 @property (strong, nonatomic) NSNumber * permission;
 
 @end

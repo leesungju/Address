@@ -16,12 +16,13 @@
 
 @property (strong, nonatomic) IBOutlet UIView *detailView;
 @property (strong, nonatomic) IBOutlet UIImageView *detailImageView;
-@property (strong, nonatomic) IBOutlet UILabel *detailNameLabel;
-@property (strong, nonatomic) IBOutlet UILabel *detailPhoneLabel;
-@property (strong, nonatomic) IBOutlet UILabel *detailBrithDayLabel;
-@property (strong, nonatomic) IBOutlet UILabel *detailGroupLabel;
-@property (strong, nonatomic) IBOutlet UILabel *detailEmailLabel;
-@property (strong, nonatomic) IBOutlet UILabel *detailAddressLabel;
+@property (strong, nonatomic) IBOutlet UITextField *detailNameTextField;
+@property (strong, nonatomic) IBOutlet UITextField *detailPhoneTextField;
+@property (strong, nonatomic) IBOutlet UITextField *detailBrithDayTextField;
+@property (strong, nonatomic) IBOutlet UITextField *detailGroupTextField;
+@property (strong, nonatomic) IBOutlet UITextField *detailEmailTextField;
+@property (strong, nonatomic) IBOutlet UITextField *detailAddressTextField;
+@property (strong, nonatomic) IBOutlet UITextView *detailFamilyTextField;
 @property (strong, nonatomic) IBOutlet UILabel *detailFamilyLabel;
 @property (strong, nonatomic) IBOutlet UIButton *detailMemoBtn;
 @property (strong, nonatomic) IBOutlet UITableView *detailMemoTableView;
@@ -74,7 +75,7 @@
 - (void)initViews
 {
     AddressObj * obj = [AddressObj new];
-    if([_sectionArray count] > 0 && [[_dataDict objectForKey:[_sectionArray objectAtIndex:_section]] count] <= _index + 1){
+    if([_sectionArray count] > 0 && _index != -1){
         obj = [[_dataDict objectForKey:[_sectionArray objectAtIndex:_section]] objectAtIndex:_index];
     }else{
         obj.name = @"이름";
@@ -103,6 +104,7 @@
         [_editAddressextField setDelegate:self];
         [_editFamilyTextView setText:obj.family];
         [_editFamilyTextView setDelegate:self];
+        [_editFamilyTextView setRadius:5];
         
     }else if(_viewMode == kViewMode_edit){
         if(!_isEditing){
@@ -123,31 +125,39 @@
             [_editAddressextField setDelegate:self];
             [_editFamilyTextView setText:obj.family];
             [_editFamilyTextView setDelegate:self];
+            [_editFamilyTextView setRadius:5];
             _isEditing = YES;
         }
     }else{
         [_editBtn setBackgroundImage:[UIImage imageNamed:@"edit"] forState:UIControlStateNormal];
         [_editView setHidden:YES];
         [_detailView setHidden:NO];
-        if(obj.image){
-            [_detailImageView setImage:obj.image];
+        if(obj.imagePath.length > 0){
+            UIImage * image = [[UIImage alloc] initWithContentsOfFile:obj.imagePath];
+            [_detailImageView setImage:image];
         }else{
             [_detailImageView setImage:[UIImage imageNamed:@"profile"]];
         }
-        [_detailNameLabel setText:obj.name];
-        [_detailNameLabel setRadius:5];
-        [_detailPhoneLabel setText:obj.phoneNumber];
-        [_detailPhoneLabel setRadius:5];
-        [_detailBrithDayLabel setText:obj.birthDay];
-        [_detailBrithDayLabel setRadius:5];
-        [_detailGroupLabel setText:obj.group];
-        [_detailGroupLabel setRadius:5];
-        [_detailEmailLabel setText:obj.email];
-        [_detailEmailLabel setRadius:5];
-        [_detailAddressLabel setText:obj.address];
-        [_detailAddressLabel setRadius:5];
-        [_detailFamilyLabel setText:obj.family];
-        [_detailFamilyLabel setRadius:5];
+        [_detailNameTextField setText:obj.name];
+        [_detailNameTextField setEnabled:NO];
+        [_detailPhoneTextField setText:obj.phoneNumber];
+        [_detailPhoneTextField setEnabled:NO];
+        [_detailBrithDayTextField setText:obj.birthDay];
+        [_detailBrithDayTextField setEnabled:NO];
+        [_detailGroupTextField setText:obj.group];
+        [_detailGroupTextField setEnabled:NO];
+        [_detailEmailTextField setText:obj.email];
+        [_detailEmailTextField setEnabled:NO];
+        [_detailAddressTextField setText:obj.address];
+        [_detailAddressTextField setEnabled:NO];
+        [_detailFamilyTextField setText:obj.family];
+        [_detailFamilyTextField setEditable:NO];
+        [_detailFamilyTextField setRadius:5];
+        if(obj.family.length > 0){
+            [_detailFamilyLabel setHidden:YES];
+        }else{
+            [_detailFamilyLabel setHidden:NO];
+        }
         _memoArray = obj.memoArray;
         [_detailMemoTableView setDelegate:self];
         [_detailMemoTableView setDataSource:self];

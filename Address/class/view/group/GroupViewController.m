@@ -186,6 +186,7 @@
     GroupObj * group = [GroupObj new];
     [group setDict:[_groupArray objectAtIndex:indexPath.row]];
     if([group.memberCount intValue] > 0){
+        BOOL isExist = YES;
         for (NSDictionary * key in [group.member allKeys]) {
             if([[[group.member objectForKey:key] objectForKey:@"memberId"] isEqualToString:[UIDevice getDeviceId]]){
                 GroupDetailViewController * groupDetail = [GroupDetailViewController new];
@@ -194,12 +195,16 @@
                 [member setDict:[group.member objectForKey:key]];
                 [groupDetail setMember:member];
                 [[GUIManager sharedInstance] moveToController:groupDetail animation:YES];
+                isExist = YES;
                 break;
             }else{
-                [[GUIManager sharedInstance] showAlert:@"그룹에 가입되지 않았습니다. 가입후 이용해 주세요." viewCon:self handler:^(UIAlertAction *action) {
-                    
-                }];
+                isExist = NO;
             }
+        }
+        if(!isExist){
+            [[GUIManager sharedInstance] showAlert:@"그룹에 가입되지 않았습니다. 가입후 이용해 주세요." viewCon:self handler:^(UIAlertAction *action) {
+            
+            }];
         }
     }else{
         [[GUIManager sharedInstance] showAlert:@"그룹에 가입되지 않았습니다. 가입후 이용해 주세요." viewCon:self handler:^(UIAlertAction *action) {

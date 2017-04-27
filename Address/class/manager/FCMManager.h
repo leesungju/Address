@@ -20,6 +20,7 @@
 - (void)connectToFcm;
 - (void)disconnectFromFcm;
 
-- (void)setBizappReady:(BOOL)ready;
+- (void)addGroup:(NSString*)groupId;
+- (void)deleteGroup:(NSString*)groupId;
 
 @end

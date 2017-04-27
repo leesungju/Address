@@ -63,8 +63,8 @@
         [_tableView setDataSource:self];
         [_tableView setRadius:5];
         [_tableView setAllowsMultipleSelection:YES];
-        [_tableView setTableHeaderView:nil];
-        [_tableView setTableFooterView:nil];
+        _tableView.tableHeaderView = nil;
+        _tableView.tableFooterView = nil;
         [_tableView reloadData];
         [_titleLabel setText:@"동기화"];
         
@@ -79,8 +79,8 @@
         [_tableView setDataSource:self];
         [_tableView setRadius:5];
         [_tableView setAllowsMultipleSelection:YES];
-        [_tableView setTableHeaderView:nil];
-        [_tableView setTableFooterView:nil];
+        _tableView.tableHeaderView = nil;
+        _tableView.tableFooterView = nil;
         [_tableView reloadData];
         [_titleLabel setText:@"단체문자"];
         
@@ -96,8 +96,8 @@
         [_tableView setDataSource:self];
         [_tableView setRadius:5];
         [_tableView setAllowsMultipleSelection:YES];
-        [_tableView setTableHeaderView:nil];
-        [_tableView setTableFooterView:nil];
+        _tableView.tableHeaderView = nil;
+        _tableView.tableFooterView = nil;
         [_tableView reloadData];
         [_titleLabel setText:@"단체문자"];
         
@@ -127,11 +127,6 @@
     return 30;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 0;
-}
-
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString* CellIdentifier = @"memoTableViewCell";
@@ -151,13 +146,23 @@
     return cell;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([_saveDict objectForKey:indexPath] == nil) {
         [_saveDict setObject:[_contactsArray objectAtIndex:indexPath.row] forKey:indexPath];
     }else{
         [_saveDict removeObjectForKey:indexPath];
     }
+}
+
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([_saveDict objectForKey:indexPath] == nil) {
+        [_saveDict setObject:[_contactsArray objectAtIndex:indexPath.row] forKey:indexPath];
+    }else{
+        [_saveDict removeObjectForKey:indexPath];
+    }
+
 }
 
 #pragma mark - Action Methods

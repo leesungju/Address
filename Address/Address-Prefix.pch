@@ -29,6 +29,7 @@
     #import "ContactManager.h"
     #import "FCMManager.h"
     #import "StorageManager.h"
+    #import "PushManager.h"
 
     #import "JsonObject.h"
     #import "AddressObj.h"

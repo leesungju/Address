@@ -72,6 +72,7 @@
         post[@"groups"][key][@"memberCount"] = [NSNumber numberWithInt:memberCount];
         post[@"groups"][key][@"member"] = member;
         [currentData setValue:post];
+        [[FCMManager sharedInstance] addGroup:key];
         return [FIRTransactionResult successWithValue:currentData];
     } andCompletionBlock:^(NSError * _Nullable error,
                            BOOL committed,
@@ -104,6 +105,7 @@
             int memberCount = (int)[member count];
             post[@"groups"][group][@"memberCount"] = [NSNumber numberWithInt:memberCount];
             [currentData setValue:post];
+            [[FCMManager sharedInstance] deleteGroup:group];
             return [FIRTransactionResult successWithValue:currentData];
         } andCompletionBlock:^(NSError * _Nullable error,
                                BOOL committed,
