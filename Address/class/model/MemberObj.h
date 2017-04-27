@@ -15,5 +15,6 @@
 @property (strong, nonatomic) NSString * phoneNumber;
 @property (strong, nonatomic) NSString * pushToken;
 @property (strong, nonatomic) NSNumber * permission;
+@property (strong, nonatomic) NSString * createDate;
 
 @end

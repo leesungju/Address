@@ -31,7 +31,7 @@
     }else if( _phoneTextField.text.length <= 0){
         
     }else{
-        NSString * name = [NSStrUtils urlEncoding:[_nameTextField text]];
+        NSString * name = [_nameTextField text];
         NSString * phone = [[_phoneTextField text] stringByReplacingOccurrencesOfString:@"-" withString:@""];
         if([self checkPhone:phone]){
             NSString * key = [UIDevice getDeviceId];
@@ -41,9 +41,10 @@
             [obj setName:name];
             [obj setPhoneNumber:phone];
             [obj setMemberId:[UIDevice getDeviceId]];
+            [obj setCreateDate:[Util fullDateConvertString:[NSDate new]]];
             
             [[PreferenceManager sharedInstance] setPreference:[obj getJsonString] forKey:@"login"];
-            [[PreferenceManager sharedInstance] setPreference:name forKey:@"name"];
+            [[PreferenceManager sharedInstance] setPreference:[NSStrUtils urlEncoding:name] forKey:@"name"];
             [[PreferenceManager sharedInstance] setPreference:phone forKey:@"phone"];
             [[StorageManager sharedInstance] saveUser:[obj getDict] forKey:key];
             ret = YES;
