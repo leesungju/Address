@@ -73,8 +73,10 @@
     }else if(_type == kViewType_sms){
         [_popupView setRadius:10];
         _contactsArray = [NSMutableArray new];
-        NSString * contacts = [[PreferenceManager sharedInstance] getPreference:@"contacts" defualtValue:@""];
-        [_contactsArray addObjectsFromArray:[Util stringConvertArray:contacts]];
+//        NSString * contacts = [[PreferenceManager sharedInstance] getPreference:@"contacts" defualtValue:@""];
+        [_contactsArray addObjectsFromArray:_contactArray];
+        NSSortDescriptor *sorter = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+        [_contactsArray sortUsingDescriptors:[NSArray arrayWithObject:sorter]];
         [_tableView setDelegate:self];
         [_tableView setDataSource:self];
         [_tableView setRadius:5];

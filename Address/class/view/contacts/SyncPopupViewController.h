@@ -18,5 +18,6 @@ typedef enum {
 
 @property (assign, nonatomic) kViewType type;
 @property (strong, nonatomic) NSDictionary * dataDict;
+@property (strong, nonatomic) NSArray * contactArray;
 
 @end

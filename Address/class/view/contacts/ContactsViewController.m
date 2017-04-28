@@ -144,6 +144,7 @@
         case 3:{
             SyncPopupViewController * sync = [SyncPopupViewController new];
             [sync setType:kViewType_sms];
+            [sync setContactArray:_oriDataArray];
             [[GUIManager sharedInstance] showPopup:sync animation:YES complete:^(NSDictionary *dict) {
                 
             }];
