@@ -253,6 +253,7 @@
                 [member setMemberId:[UIDevice getDeviceId]];
                 [member setName:[UIDevice getName]];
                 [member setPhoneNumber:[UIDevice getPhoneNumber]];
+                [member setImagePath:[UIDevice getImagePath]];
                 [member setPermission:[NSNumber numberWithInt:0]];
                 [[StorageManager sharedInstance] joinGroup:[member getDict] forKey:group.groupId];
                 [self dataReset];
@@ -270,6 +271,7 @@
         [member setName:[UIDevice getName]];
         [member setPhoneNumber:[UIDevice getPhoneNumber]];
         [member setPermission:[NSNumber numberWithInt:0]];
+        [member setImagePath:[UIDevice getImagePath]];
         [[StorageManager sharedInstance] joinGroup:[member getDict] forKey:group.groupId];
         [[GUIManager sharedInstance] showAlert:@"그룹의 가입되었습니다." viewCon:self handler:^(UIAlertAction *action) {
             

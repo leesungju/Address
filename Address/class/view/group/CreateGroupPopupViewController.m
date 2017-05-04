@@ -67,6 +67,7 @@
     [_member setPhoneNumber:[UIDevice getPhoneNumber]];
     [_member setPermission:[NSNumber numberWithInt:0]];
     [_member setPushToken:[UIDevice getPushToken]];
+    [_member setImagePath:[UIDevice getImagePath]];
     
     if(_type == kGroupViewType_nomarl){
 

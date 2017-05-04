@@ -15,5 +15,6 @@
 @property (strong, nonatomic) NSString * contents;
 @property (strong, nonatomic) NSString * filePath;
 @property (strong, nonatomic) NSString * createDt;
+@property (strong, nonatomic) NSMutableArray * imageArray;
 
 @end

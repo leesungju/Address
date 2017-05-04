@@ -67,6 +67,7 @@
     _menuBtn = [UIButton new];
     [_menuBtn setImage:[UIImage imageNamed:@"menu"] forState:UIControlStateNormal];
     [_menuBtn addTarget:self action:@selector(menuAction:) forControlEvents:UIControlEventTouchUpInside];
+    [_menuBtn setAlpha:0.8];
     [self.view addSubview:_menuBtn];
     
 }

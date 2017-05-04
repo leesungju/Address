@@ -7,6 +7,7 @@
 //
 
 #import "NSStrUtils.h"
+#import <CommonCrypto/CommonDigest.h>
 
 @implementation NSStrUtils
 
@@ -216,6 +217,20 @@ static  unichar JONG_SUNG[] = { 0x0000, 0x3131 , 0x3132, 0x3133, 0x3134, 0x3135 
 +(NSString*)urlDecoding:(NSString *)str
 {
     return [str stringByRemovingPercentEncoding];
+}
+
++(NSString*)md5:(NSString *)str
+{
+    const char * pointer = str.UTF8String;
+    unsigned char md5Buffer[CC_MD5_DIGEST_LENGTH];
+    
+    CC_MD5(pointer, (CC_LONG)strlen(pointer), md5Buffer);
+    
+    NSMutableString * string = [NSMutableString stringWithCapacity:CC_MD5_DIGEST_LENGTH * 2];
+    for (int i = 0; i < CC_MD5_DIGEST_LENGTH; i++) {
+        [string appendFormat:@"%02x", md5Buffer[i]];
+    }
+    return string;
 }
 
 @end

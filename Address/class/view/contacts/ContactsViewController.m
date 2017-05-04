@@ -22,6 +22,7 @@
 @property (strong, nonatomic) NSMutableArray * oriDataArray;
 @property (strong, nonatomic) NSString * searchStr;
 @property (assign, nonatomic) BOOL isLoad;
+@property (assign, nonatomic) BOOL isSearching;
 
 @end
 
@@ -33,6 +34,7 @@
     if (self) {
         _oriDataArray = [NSMutableArray new];
         _isLoad = NO;
+        _isSearching = NO;
     }
     return self;
 }
@@ -46,6 +48,7 @@
     [super viewWillAppear:animated];
     [self.menuBtn setHidden:NO];
     
+    if(_isSearching)return;
     if(_isLoad){
         NSString * contacts = [[PreferenceManager sharedInstance] getPreference:@"contacts" defualtValue:@""];
         NSArray * array = [Util stringConvertArray:contacts];
@@ -64,15 +67,16 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [[GUIManager sharedInstance] setSetting:[NSArray arrayWithObjects:@"홈", @"등록", @"동기화", @"단체문자", nil] delegate:self];
+    [[GUIManager sharedInstance] setSetting:[NSArray arrayWithObjects:@"홈", @"등록", @"동기화", @"단체문자", @"백업", nil] delegate:self];
     
 }
 
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-    [[GUIManager sharedInstance] setSetting:[NSArray arrayWithObjects:@"홈", @"등록", @"동기화", @"단체문자", nil] delegate:self];
+    [[GUIManager sharedInstance] setSetting:[NSArray arrayWithObjects:@"홈", @"등록", @"동기화", @"단체문자", @"백업", nil] delegate:self];
     
+    if(_isSearching)return;
     [self setViewLayout];
     [self selectTabMenu:0];
     [self initViews];
@@ -150,9 +154,91 @@
             }];
             break;
         }
-        case 4:
+        case 4:{
+            
+            UIAlertController *av = [UIAlertController alertControllerWithTitle:@"알림" message:@"1. 현재 정보는 저장된 정보로 변경됩니다.\n2. 프로필 사진은 저장되지 않습니다." preferredStyle:UIAlertControllerStyleAlert];
+            [av addAction:[UIAlertAction actionWithTitle:@"저장하기" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                UIAlertController * alertController = [UIAlertController alertControllerWithTitle: @"알림"
+                                                                                          message: @"전화번호를 입력하세요! (예:01012341234)"
+                                                                                   preferredStyle:UIAlertControllerStyleAlert];
+                [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+                    textField.placeholder = @"Phone";
+                    textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+                    textField.borderStyle = UITextBorderStyleRoundedRect;
+                }];
+                
+                [alertController addAction:[UIAlertAction actionWithTitle:@"취소" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                    
+                }]];
+                
+                [alertController addAction:[UIAlertAction actionWithTitle:@"확인" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                    NSArray * textfields = alertController.textFields;
+                    UITextField * urlTextField = textfields[0];
+                    if([Util checkPhone:[NSStrUtils replacePhoneNumber:urlTextField.text]]){
+                        NSString * hash = [NSStrUtils md5:[NSStrUtils replacePhoneNumber:urlTextField.text]];
+                        NSString * contacts = [[PreferenceManager sharedInstance] getPreference:@"contacts" defualtValue:@""];
+                        [[StorageManager sharedInstance] savebackupContacts:contacts forKey:hash];
+                        [[GUIManager sharedInstance] showAlert:@"저장되었습니다." viewCon:self handler:nil];
+                    }else{
+                        [[GUIManager sharedInstance] showAlert:@"전화번호를 확인후 재시도 해주세요!" viewCon:self handler:nil];
+                    }
+                }]];
+                [self presentViewController:alertController animated:YES completion:nil];
+            }]];;
+            [av addAction:[UIAlertAction actionWithTitle:@"불러오기" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                UIAlertController * alertController = [UIAlertController alertControllerWithTitle: @"알림"
+                                                                                          message: @"전화번호를 입력하세요! (예:01012341234)"
+                                                                                   preferredStyle:UIAlertControllerStyleAlert];
+                [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+                    textField.placeholder = @"Phone";
+                    textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+                    textField.borderStyle = UITextBorderStyleRoundedRect;
+                }];
+                
+                [alertController addAction:[UIAlertAction actionWithTitle:@"취소" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                    
+                }]];
+                
+                [alertController addAction:[UIAlertAction actionWithTitle:@"확인" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                    NSArray * textfields = alertController.textFields;
+                    UITextField * urlTextField = textfields[0];
+                    NSString * hash = [NSStrUtils md5:[NSStrUtils replacePhoneNumber:urlTextField.text]];
+                    [[GUIManager sharedInstance] showLoading];
+                    [[StorageManager sharedInstance] loadBackupContacts:hash withBlock:^(FIRDataSnapshot *snapshot) {
+                        NSString * contacts = snapshot.value ;
+                        if(contacts.length > 0){
+                            [[PreferenceManager sharedInstance] setPreference:contacts forKey:@"contacts"];
+                            NSArray * array = [Util stringConvertArray:contacts];
+                            [_oriDataArray removeAllObjects];
+                            [_oriDataArray addObjectsFromArray:array];
+                            
+                            NSOrderedSet *orderedSet = [NSOrderedSet orderedSetWithArray:_oriDataArray];
+                            [_oriDataArray removeAllObjects];
+                            [_oriDataArray addObjectsFromArray:[orderedSet array]];
+                            
+                            [self settingTableView:_oriDataArray];
+                            [[GUIManager sharedInstance] hideLoading];
+                            [[GUIManager sharedInstance] showAlert:@"성공하였습니다." viewCon:self handler:nil];
+                        }else{
+                            [[GUIManager sharedInstance] showAlert:@"저장된 데이터가 없습니다." viewCon:self handler:nil];
+                        }
+
+                    } withCancelBlock:^(NSError *error) {
+                        
+                    }];
+                }]];
+                [self presentViewController:alertController animated:YES completion:nil];
+            }]];
+            [av addAction:[UIAlertAction actionWithTitle:@"취소" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                
+            }]];
+            
+            [self presentViewController:av animated:YES completion:nil];
+            
+            
             
             break;
+        }
         default:
             break;
     }
@@ -227,6 +313,7 @@
     if(_searchStr.length > 0){
         [self searchText];
     }else {
+        _isSearching = NO;
         [self settingTableView:_oriDataArray];
     }
     return YES;
@@ -236,6 +323,7 @@
 {
     _searchStr = @"";
     [self settingTableView:_oriDataArray];
+    _isSearching = NO;
     return YES;
 }
 
@@ -371,6 +459,7 @@
 
 - (void)searchText
 {
+    _isSearching = YES;
     [_sectionArray removeAllObjects];
     for (NSString * key in [_sections allKeys]){
         AutoCompleteMng * automng = [[AutoCompleteMng alloc] initWithData:[_sections objectForKey:key] className:@"AddressObj"];

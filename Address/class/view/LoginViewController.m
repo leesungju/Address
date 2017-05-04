@@ -8,7 +8,8 @@
 
 #import "LoginViewController.h"
 
-@interface LoginViewController () 
+@interface LoginViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@property (strong, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
 @property (weak, nonatomic) IBOutlet UIButton *startBtn;
@@ -22,6 +23,14 @@
     [self.view setBackgroundColor:RGB(250, 215, 134)];
 }
 
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    [_imageView setCircle:[UIColor clearColor] width:1];
+    [_imageView addTapGestureTarget:self action:@selector(imageAction:)];
+    [_imageView setUserInteractionEnabled:YES];
+}
+
 - (BOOL)saveData
 {
     _data = [NSMutableDictionary new];
@@ -33,7 +42,7 @@
     }else{
         NSString * name = [_nameTextField text];
         NSString * phone = [[_phoneTextField text] stringByReplacingOccurrencesOfString:@"-" withString:@""];
-        if([self checkPhone:phone]){
+        if([Util checkPhone:[NSStrUtils replacePhoneNumber:phone]]){
             NSString * key = [UIDevice getDeviceId];
             [_data setObject:name forKey:@"name"];
             [_data setObject:phone forKey:@"phone"];
@@ -42,29 +51,64 @@
             [obj setPhoneNumber:phone];
             [obj setMemberId:[UIDevice getDeviceId]];
             [obj setCreateDate:[Util fullDateConvertString:[NSDate new]]];
+            [obj setImagePath:[UIDevice getImagePath]];
             
             [[PreferenceManager sharedInstance] setPreference:[obj getJsonString] forKey:@"login"];
             [[PreferenceManager sharedInstance] setPreference:[NSStrUtils urlEncoding:name] forKey:@"name"];
             [[PreferenceManager sharedInstance] setPreference:phone forKey:@"phone"];
             [[StorageManager sharedInstance] saveUser:[obj getDict] forKey:key];
+            [[FCMManager sharedInstance] setLogin];
             ret = YES;
         }
     }
     return ret;
 }
 
-- (BOOL)checkPhone:(NSString*)phone
-{
-    NSString *ptn = @"(010|011|016|017|018|019)-([0-9]{3,4})-([0-9]{4})";
-    NSString *str = [NSStrUtils replacePhoneNumber:phone];
-    NSRange range = [str rangeOfString:ptn options:NSRegularExpressionSearch];
-    return range.location != NSNotFound;
-}
-
 - (IBAction)startBtnAction:(id)sender {
     
-    [[GUIManager sharedInstance] hidePopup:self animation:YES completeData:_data];
-    [self saveData];
+    if([self saveData]){
+        [[GUIManager sharedInstance] hidePopup:self animation:YES completeData:_data];
+    }
+}
 
+- (void)imageAction:(id)sender
+{
+    UIImagePickerController * picker = [UIImagePickerController new];
+    picker.allowsEditing = YES;
+    [picker setDelegate:self];
+    
+    UIAlertController *av = [UIAlertController alertControllerWithTitle:@"알림" message:@"선택하세요!" preferredStyle:UIAlertControllerStyleActionSheet];
+    [av addAction:[UIAlertAction actionWithTitle:@"카메라" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+                   {
+                       [picker setSourceType:UIImagePickerControllerSourceTypeCamera];
+                       [self presentViewController:picker animated:YES completion:nil];
+                   }]];
+    [av addAction:[UIAlertAction actionWithTitle:@"앨범" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+                   {
+                       [picker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+                       [self presentViewController:picker animated:YES completion:nil];
+                   }]];
+    [av addAction:[UIAlertAction actionWithTitle:@"취소" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action)
+                   {
+                       
+                   }]];
+    [self presentViewController:av animated:YES completion:nil];
+}
+
+#pragma mark - UIImagePicker Delegate Methods
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
+{
+    UIImage * img = [info valueForKey:UIImagePickerControllerEditedImage];
+    [_imageView setImage:img];
+    [[PreferenceManager sharedInstance] getPreference:@"imagePath" defualtValue:@""];
+    [[PreferenceManager sharedInstance] setPreference:[Util saveImage:img] forKey:@"imagePath"];
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    
 }
 @end

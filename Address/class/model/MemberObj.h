@@ -16,5 +16,6 @@
 @property (strong, nonatomic) NSString * pushToken;
 @property (strong, nonatomic) NSNumber * permission;
 @property (strong, nonatomic) NSString * createDate;
+@property (strong, nonatomic) NSString * imagePath;
 
 @end

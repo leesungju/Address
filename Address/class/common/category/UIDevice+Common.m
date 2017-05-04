@@ -39,4 +39,19 @@
 {
     return [[PreferenceManager sharedInstance] getPreference:@"pushToken" defualtValue:@""];
 }
+
++ (NSString*)getImagePath
+{
+    return [[PreferenceManager sharedInstance] getPreference:@"imagePath" defualtValue:@""];
+}
+
++ (NSMutableArray*)getMemoArray
+{
+    NSString * str = [[PreferenceManager sharedInstance] getPreference:@"memo" defualtValue:@""];
+    if(str.length > 0){
+        return [[NSMutableArray alloc] initWithArray:[Util stringConvertArray:str]];
+    }else{
+        return [NSMutableArray new];
+    }
+}
 @end

@@ -13,7 +13,7 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
 @interface FCMManager () <UNUserNotificationCenterDelegate, FIRMessagingDelegate>
 
 @property (nonatomic, strong) NSString * pushToken;
-@property (nonatomic, assign) BOOL isBizappReady;
+@property (nonatomic, assign) BOOL isLogin;
 @end
 
 @implementation FCMManager
@@ -101,6 +101,16 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
     // TODO : FCM에서 전달 된 푸시 토큰 서버로 등록
     _pushToken = token;
     [[PreferenceManager sharedInstance] setPreference:_pushToken forKey:@"pushToken"];
+    if(_isLogin){
+        MemberObj * obj = [MemberObj new];
+        [obj setName:[UIDevice getName]];
+        [obj setPhoneNumber:[UIDevice getPhoneNumber]];
+        [obj setMemberId:[UIDevice getDeviceId]];
+        [obj setImagePath:[UIDevice getImagePath]];
+        [obj setCreateDate:[Util fullDateConvertString:[NSDate new]]];
+        [obj setPushToken:_pushToken];
+        [[StorageManager sharedInstance] saveUser:[obj getDict] forKey:[UIDevice getDeviceId]];
+    }
 }
 
 - (void)didReceiveRemoteNotification:(NSDictionary *)userInfo {
@@ -109,75 +119,25 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
     if (userInfo[kGCMMessageIDKey]) {
         NSLog(@"Message ID: %@", userInfo[kGCMMessageIDKey]);
     }
-    
+    NSDictionary * aps = [userInfo objectForKey:@"aps"];
+    NSDictionary * alert = [aps objectForKey:@"alert"];
+    NSString *body = [alert objectForKey:@"body"];
     // TODO : 푸시 메시지 처리
+    [[GUIManager sharedInstance] showAlert:body viewCon:[[[GUIManager sharedInstance] mainNavigationController].viewControllers lastObject] handler:^(UIAlertAction *action) {
+        
+    }];
 }
 
-// [START ios_10_message_handling]
-// Receive displayed notifications for iOS 10 devices.
-#if defined(__IPHONE_10_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
-// Handle incoming notification messages while app is in the foreground.
-- (void)userNotificationCenter:(UNUserNotificationCenter *)center
-       willPresentNotification:(UNNotification *)notification
-         withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler {
-    // Print message ID.
-    NSDictionary *userInfo = notification.request.content.userInfo;
-    if (userInfo[kGCMMessageIDKey]) {
-        NSLog(@"Message ID: %@", userInfo[kGCMMessageIDKey]);
-    }
-    
-    // Print full message.
-    NSLog(@"%@", userInfo);
-    
-    // Change this to your preferred presentation option
-    completionHandler(UNNotificationPresentationOptionNone);
-}
-
-// Handle notification messages after display notification is tapped by the user.
-- (void)userNotificationCenter:(UNUserNotificationCenter *)center
-didReceiveNotificationResponse:(UNNotificationResponse *)response
-         withCompletionHandler:(void (^)())completionHandler {
-    NSDictionary *userInfo = response.notification.request.content.userInfo;
-    if (userInfo[kGCMMessageIDKey]) {
-        NSLog(@"Message ID: %@", userInfo[kGCMMessageIDKey]);
-    }
-    
-    // Print full message.
-    NSLog(@"%@", userInfo);
-    
-    completionHandler();
-}
-#endif
-// [END ios_10_message_handling]
-
-// [START ios_10_data_message_handling]
-#if defined(__IPHONE_10_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
-// Receive data message on iOS 10 devices while app is in the foreground.
-- (void)applicationReceivedRemoteMessage:(FIRMessagingRemoteMessage *)remoteMessage {
-    // Print full message
-    NSLog(@"%@", remoteMessage.appData);
-}
-#endif
-// [END ios_10_data_message_handling]
-
-// [START refresh_token]
 - (void)tokenRefreshNotification:(NSNotification *)notification {
-    // Note that this callback will be fired everytime a new token is generated, including the first
-    // time. So if you need to retrieve the token as soon as it is available this is where that
-    // should be done.
+
     NSString *refreshedToken = [[FIRInstanceID instanceID] token];
-    NSLog(@"InstanceID token: %@", refreshedToken);
     
-    // Connect to FCM since connection may have failed when attempted before having a token.
     [self connectToFcm];
     
     [self registerToken:refreshedToken];
 }
-// [END refresh_token]
 
-// [START connect_to_fcm]
 - (void)connectToFcm {
-    // Won't connect since there is no token
     if (![[FIRInstanceID instanceID] token]) {
         return;
     }
@@ -188,19 +148,27 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response
         if (error != nil) {
             NSLog(@"Unable to connect to FCM. %@", error);
         } else {
-            //topic 등록 후 사용
-            [[FIRMessaging messaging] subscribeToTopic:@"/topics/notice_butler"];
             NSLog(@"Connected to FCM.");
         }
     }];
 }
-// [END connect_to_fcm]
 
-// [START disconnectFromFcm]
 - (void)disconnectFromFcm {
-    // Disconnect previous FCM connection if it exists.
     [[FIRMessaging messaging] disconnect];
 }
-// [END disconnectFromFcm]
 
+- (void)setLogin
+{
+    _isLogin = YES;
+    if([[UIDevice getPushToken] length] > 0){
+        MemberObj * obj = [MemberObj new];
+        [obj setName:[UIDevice getName]];
+        [obj setPhoneNumber:[UIDevice getPhoneNumber]];
+        [obj setMemberId:[UIDevice getDeviceId]];
+        [obj setImagePath:[UIDevice getImagePath]];
+        [obj setCreateDate:[Util fullDateConvertString:[NSDate new]]];
+        [obj setPushToken:[UIDevice getPushToken]];
+        [[StorageManager sharedInstance] saveUser:[obj getDict] forKey:[UIDevice getDeviceId]];
+    }
+}
 @end

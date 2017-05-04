@@ -37,4 +37,7 @@ typedef void(^PopupViewCompletionBlock)(NSDictionary* dict);
 
 - (void)showAlert:(NSString*)message viewCon:(UIViewController*)viewCon handler:(void (^)(UIAlertAction *action))handler;
 - (void)showComfirm:(NSString*)message viewCon:(UIViewController*)viewCon handler:(void (^)(UIAlertAction *action))handler cancelHandler:(void (^)(UIAlertAction *action))cancelHandler;
+
+- (void)showFullScreenZoomingViewWithImage:(UIImage *)image animate:(BOOL)animate;
+- (void)hideFullScreenZoomingView:(BOOL)animate;
 @end

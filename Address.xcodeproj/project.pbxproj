@@ -55,6 +55,9 @@
 		141BECDC1EACB23200F6182D /* GroupContentsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 141BECDA1EACB23200F6182D /* GroupContentsTableViewCell.m */; };
 		141BECDD1EACB23200F6182D /* GroupContentsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 141BECDB1EACB23200F6182D /* GroupContentsTableViewCell.xib */; };
 		141BECE01EACB9EB00F6182D /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 141BECDF1EACB9EB00F6182D /* LoadingView.m */; };
+		141D82B11EB9E41100BDBFE1 /* ImageCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 141D82B01EB9E41100BDBFE1 /* ImageCacheManager.m */; };
+		141D82B41EB9ED5600BDBFE1 /* ZoomingImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 141D82B31EB9ED5600BDBFE1 /* ZoomingImageView.m */; };
+		141D82B71EB9EDAB00BDBFE1 /* UIView+TapDetecting.m in Sources */ = {isa = PBXBuildFile; fileRef = 141D82B61EB9EDAB00BDBFE1 /* UIView+TapDetecting.m */; };
 		141EF83D1E86992E003B78B1 /* ContactsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 141EF8371E86992E003B78B1 /* ContactsTableViewCell.m */; };
 		141EF83E1E86992E003B78B1 /* ContactsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 141EF8381E86992E003B78B1 /* ContactsTableViewCell.xib */; };
 		141EF83F1E86992E003B78B1 /* ContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 141EF83A1E86992E003B78B1 /* ContactsViewController.m */; };
@@ -101,6 +104,7 @@
 		141EF9081E86A44E003B78B1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 141EF9071E86A44E003B78B1 /* GoogleService-Info.plist */; };
 		142365F11E9A4C7700567E23 /* MemoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 142365EF1E9A4C7700567E23 /* MemoTableViewCell.m */; };
 		142365F21E9A4C7700567E23 /* MemoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 142365F01E9A4C7700567E23 /* MemoTableViewCell.xib */; };
+		14334AD21EB9F0C800BC006C /* AsyncImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14334AD11EB9F0C800BC006C /* AsyncImageView.m */; };
 		143EBBB31E862CC000E3AA69 /* AddressObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 143EBBB21E862CC000E3AA69 /* AddressObj.m */; };
 		143EBBBA1E863FAB00E3AA69 /* AutoCompleteMng.m in Sources */ = {isa = PBXBuildFile; fileRef = 143EBBB81E863FAB00E3AA69 /* AutoCompleteMng.m */; };
 		14600D1C1EB20DED0061F984 /* PushManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 14600D1B1EB20DED0061F984 /* PushManager.m */; };
@@ -217,6 +221,12 @@
 		141BECDB1EACB23200F6182D /* GroupContentsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupContentsTableViewCell.xib; sourceTree = "<group>"; };
 		141BECDE1EACB9EB00F6182D /* LoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingView.h; sourceTree = "<group>"; };
 		141BECDF1EACB9EB00F6182D /* LoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingView.m; sourceTree = "<group>"; };
+		141D82AF1EB9E41100BDBFE1 /* ImageCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCacheManager.h; sourceTree = "<group>"; };
+		141D82B01EB9E41100BDBFE1 /* ImageCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCacheManager.m; sourceTree = "<group>"; };
+		141D82B21EB9ED5600BDBFE1 /* ZoomingImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoomingImageView.h; sourceTree = "<group>"; };
+		141D82B31EB9ED5600BDBFE1 /* ZoomingImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZoomingImageView.m; sourceTree = "<group>"; };
+		141D82B51EB9EDAB00BDBFE1 /* UIView+TapDetecting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+TapDetecting.h"; sourceTree = "<group>"; };
+		141D82B61EB9EDAB00BDBFE1 /* UIView+TapDetecting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+TapDetecting.m"; sourceTree = "<group>"; };
 		141EF8361E86992E003B78B1 /* ContactsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsTableViewCell.h; sourceTree = "<group>"; };
 		141EF8371E86992E003B78B1 /* ContactsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsTableViewCell.m; sourceTree = "<group>"; };
 		141EF8381E86992E003B78B1 /* ContactsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactsTableViewCell.xib; sourceTree = "<group>"; };
@@ -271,6 +281,8 @@
 		142365EE1E9A4C7700567E23 /* MemoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemoTableViewCell.h; sourceTree = "<group>"; };
 		142365EF1E9A4C7700567E23 /* MemoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemoTableViewCell.m; sourceTree = "<group>"; };
 		142365F01E9A4C7700567E23 /* MemoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MemoTableViewCell.xib; sourceTree = "<group>"; };
+		14334AD01EB9F0C800BC006C /* AsyncImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncImageView.h; sourceTree = "<group>"; };
+		14334AD11EB9F0C800BC006C /* AsyncImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncImageView.m; sourceTree = "<group>"; };
 		143EBBB11E862CC000E3AA69 /* AddressObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressObj.h; sourceTree = "<group>"; };
 		143EBBB21E862CC000E3AA69 /* AddressObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressObj.m; sourceTree = "<group>"; };
 		143EBBB71E863FAB00E3AA69 /* AutoCompleteMng.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoCompleteMng.h; sourceTree = "<group>"; };
@@ -444,6 +456,8 @@
 		140899E01E854A3100E329F8 /* category */ = {
 			isa = PBXGroup;
 			children = (
+				141D82B51EB9EDAB00BDBFE1 /* UIView+TapDetecting.h */,
+				141D82B61EB9EDAB00BDBFE1 /* UIView+TapDetecting.m */,
 				140899E11E854A3100E329F8 /* UIImage+Common.h */,
 				140899E21E854A3100E329F8 /* UIImage+Common.m */,
 				140899E31E854A3100E329F8 /* UILabel+Common.h */,
@@ -459,6 +473,8 @@
 		140899E71E854A3100E329F8 /* manager */ = {
 			isa = PBXGroup;
 			children = (
+				141D82AF1EB9E41100BDBFE1 /* ImageCacheManager.h */,
+				141D82B01EB9E41100BDBFE1 /* ImageCacheManager.m */,
 				14600D1D1EB211120061F984 /* network */,
 				143EBBB41E863FAB00E3AA69 /* autoSearch */,
 				141EF8FF1E869FDE003B78B1 /* FCMManager.h */,
@@ -480,6 +496,10 @@
 		140899F01E854A3100E329F8 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				14334AD01EB9F0C800BC006C /* AsyncImageView.h */,
+				14334AD11EB9F0C800BC006C /* AsyncImageView.m */,
+				141D82B21EB9ED5600BDBFE1 /* ZoomingImageView.h */,
+				141D82B31EB9ED5600BDBFE1 /* ZoomingImageView.m */,
 				1412264A1EAC9496001DBBB1 /* group */,
 				141EF8351E86992E003B78B1 /* contacts */,
 				141EF83C1E86992E003B78B1 /* notice */,
@@ -940,11 +960,13 @@
 				141EF8F41E869E8F003B78B1 /* README.md in Sources */,
 				143EBBBA1E863FAB00E3AA69 /* AutoCompleteMng.m in Sources */,
 				1412265B1EAC9496001DBBB1 /* GroupTableViewCell.m in Sources */,
+				141D82B11EB9E41100BDBFE1 /* ImageCacheManager.m in Sources */,
 				141EF9011E869FDE003B78B1 /* FCMManager.m in Sources */,
 				142365F11E9A4C7700567E23 /* MemoTableViewCell.m in Sources */,
 				1412F8951EA0F94500BBB491 /* SyncTableViewCell.m in Sources */,
 				140899FC1E854A3100E329F8 /* UIImage+Common.m in Sources */,
 				14170D2E1EAB1DC5002FE36E /* KeychainItemWrapper.m in Sources */,
+				141D82B71EB9EDAB00BDBFE1 /* UIView+TapDetecting.m in Sources */,
 				14089A071E854A3100E329F8 /* MainViewController.m in Sources */,
 				141EF83D1E86992E003B78B1 /* ContactsTableViewCell.m in Sources */,
 				14170D341EAB4346002FE36E /* GroupObj.m in Sources */,
@@ -976,6 +998,8 @@
 				14170D371EAB4819002FE36E /* MemberObj.m in Sources */,
 				14089A011E854A3100E329F8 /* GUIManager.m in Sources */,
 				14D887371E97CAE60046636E /* SettingViewController.m in Sources */,
+				14334AD21EB9F0C800BC006C /* AsyncImageView.m in Sources */,
+				141D82B41EB9ED5600BDBFE1 /* ZoomingImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

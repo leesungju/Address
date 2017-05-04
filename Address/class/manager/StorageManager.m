@@ -9,6 +9,10 @@
 #import "StorageManager.h"
 @interface StorageManager ()
 @property (strong, nonatomic) FIRDatabaseReference * ref;
+@property (strong, nonatomic) FIRStorage *storage;
+@property (strong, nonatomic) NSMutableArray *tempArray;
+@property (nonatomic, copy) void (^uploadComplete)(NSMutableArray* array);
+@property (nonatomic, copy) void (^downComplete)(UIImage* image);
 @end
 
 @implementation StorageManager
@@ -26,6 +30,8 @@
     self = [super init];
     if (self) {
         _ref = [[FIRDatabase database] reference];
+        _storage = [FIRStorage storage];
+        _tempArray = [NSMutableArray new];
     }
     return self;
 }
@@ -38,6 +44,16 @@
 - (void)loadUserKey:(NSString*)key withBlock:(void (^)(FIRDataSnapshot *snapshot))block withCancelBlock:(void (^)(NSError* error))cancelBlock
 {
     [[[_ref child:@"users"] child:key] observeSingleEventOfType:FIRDataEventTypeValue withBlock:block withCancelBlock:cancelBlock];
+}
+
+- (void)savebackupContacts:(id)obj forKey:(NSString*)key
+{
+    [[[_ref child:@"backup"] child:key] setValue:obj];
+}
+
+- (void)loadBackupContacts:(NSString*)key withBlock:(void (^)(FIRDataSnapshot *snapshot))block withCancelBlock:(void (^)(NSError* error))cancelBlock
+{
+    [[[_ref child:@"backup"] child:key] observeSingleEventOfType:FIRDataEventTypeValue withBlock:block withCancelBlock:cancelBlock];
 }
 
 - (void)saveGroup:(id)obj forKey:(NSString*)key
@@ -177,7 +193,62 @@
             }
         }];
     });
+}
 
+- (void)fileUpload:(NSMutableArray*)array forKey:(NSString*)key completion:(UploadCompletionBlock)completion
+{
+    int count = 0;
+    [_tempArray removeAllObjects];
+    for(UIImage * img in array){
+        NSData * data = UIImagePNGRepresentation(img);
+        NSString * child = [NSString stringWithFormat:@"images/%@/%@_%d.png",key , [Util timeStamp] , count];
+        FIRStorageReference *riversRef = [[_storage reference] child:child];
+        
+        // Upload the file to the path "images/rivers.jpg"
+        FIRStorageUploadTask *uploadTask = [riversRef putData:data metadata:nil completion:^(FIRStorageMetadata *metadata, NSError *error) {
+            if (error != nil) {
+                // Uh-oh, an error occurred!
+            } else {
+                [self checkUpload:child forCount:(int)[array count] completion:completion];
+            }
+        }];
+        count++;
+    }
+}
+
+- (void)checkUpload:(NSString*)url forCount:(int)count completion:(UploadCompletionBlock)completion
+{
+    [_tempArray addObject:url];
+    if(count == [_tempArray count]){
+        completion([_tempArray copy]);
+        [_tempArray removeAllObjects];
+    }
+}
+
+- (void)downFile:(NSString*)path completion:(DownCompletionBlock)completion
+{
+        FIRStorageReference *islandRef = [[_storage reference] child:path];
+        [islandRef dataWithMaxSize:1024 * 1024 * 1024 completion:^(NSData *data, NSError *error){
+            if (error != nil) {
+                // Uh-oh, an error occurred!
+            } else {
+                completion([UIImage imageWithData:data]);
+            }
+        }];
+}
+
+- (void)removeFile:(NSString*)path completion:(DownCompletionBlock)completion
+{
+    NSString * child = [NSString stringWithFormat:@"images/%@/",path];
+    FIRStorageReference *desertRef =[[_storage reference] child:child];
+    
+    [desertRef deleteWithCompletion:^(NSError *error){
+        if (error != nil) {
+            
+        } else {
+            completion(nil);
+        }
+    }];
 }
 
 @end

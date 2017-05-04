@@ -11,7 +11,6 @@
 @interface NSStrUtils : NSObject
 
 +(NSString*)getJasoLetter:(NSString*)target;
-+(NSString*)searchText:(NSString*)text;
 +(BOOL)isKorean:(unichar) target; 
 +(NSString*)replacePhoneNumber:(NSString*)str;
 +(NSString*)formatNumber:(NSString*)mobileNumber;
@@ -19,4 +18,5 @@
 
 +(NSString*)urlEncoding:(NSString*)str;
 +(NSString*)urlDecoding:(NSString*)str;
++(NSString*)md5:(NSString *)str;
 @end

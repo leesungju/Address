@@ -52,4 +52,11 @@
 {
     return [NSString stringWithFormat:@"%ld", (long)[[NSDate date] timeIntervalSince1970]];
 }
+
++ (BOOL)checkPhone:(NSString*)str
+{
+    NSString *ptn = @"(010|011|016|017|018|019)-([0-9]{3,4})-([0-9]{4})";
+    NSRange range = [str rangeOfString:ptn options:NSRegularExpressionSearch];
+    return (str.length == range.length);
+}
 @end

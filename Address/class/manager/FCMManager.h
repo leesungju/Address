@@ -22,5 +22,5 @@
 
 - (void)addGroup:(NSString*)groupId;
 - (void)deleteGroup:(NSString*)groupId;
-
+- (void)setLogin;
 @end

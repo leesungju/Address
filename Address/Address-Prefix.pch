@@ -12,6 +12,7 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
     #import "UIView+Common.h"
+    #import "UIView+TapDetecting.h"
     #import "UIImage+Common.h"
     #import "UILabel+Common.h"
     #import "UIDevice+Common.h"
@@ -30,6 +31,7 @@
     #import "FCMManager.h"
     #import "StorageManager.h"
     #import "PushManager.h"
+    #import "ImageCacheManager.h"
 
     #import "JsonObject.h"
     #import "AddressObj.h"
@@ -38,6 +40,8 @@
     #import "ContentsObj.h"
 
     #import "BaseViewController.h"
+    #import "MemoPopupViewController.h"
+    #import "MemoTableViewCell.h"
 
 #endif
 

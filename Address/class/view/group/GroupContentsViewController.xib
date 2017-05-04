@@ -17,6 +17,7 @@
                 <outlet property="editTitleTextField" destination="HMD-6N-fcO" id="wpD-ik-Du3"/>
                 <outlet property="editView" destination="vSh-in-8WD" id="R04-IZ-kKA"/>
                 <outlet property="normalContentsLabel" destination="Sd1-0r-XdA" id="Nye-JN-Ce4"/>
+                <outlet property="normalContentsView" destination="fFZ-k8-08z" id="9KY-0r-viW"/>
                 <outlet property="normalFileBtn" destination="ShW-1z-dUo" id="PK7-8d-JWh"/>
                 <outlet property="normalTitleLabel" destination="Ca1-fF-2g1" id="jm4-qP-7T2"/>
                 <outlet property="normalView" destination="eUg-Ca-hDt" id="miR-Fy-xAk"/>
@@ -117,7 +118,7 @@
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="G0Q-5X-GIq">
-                                    <rect key="frame" x="10" y="50" width="280.5" height="320"/>
+                                    <rect key="frame" x="10" y="50" width="281" height="210"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -144,8 +145,8 @@
                                 <constraint firstItem="G0Q-5X-GIq" firstAttribute="top" secondItem="HMD-6N-fcO" secondAttribute="bottom" constant="10" id="9EP-CN-QDo"/>
                                 <constraint firstAttribute="trailing" secondItem="G0Q-5X-GIq" secondAttribute="trailing" constant="10" id="GWE-Ay-dQg"/>
                                 <constraint firstAttribute="trailing" secondItem="icK-mm-4c3" secondAttribute="trailing" constant="10" id="KLq-i8-rf7"/>
+                                <constraint firstItem="icK-mm-4c3" firstAttribute="top" secondItem="G0Q-5X-GIq" secondAttribute="bottom" constant="120" id="N6I-Kw-o8X"/>
                                 <constraint firstItem="HMD-6N-fcO" firstAttribute="leading" secondItem="vSh-in-8WD" secondAttribute="leading" constant="10" id="WGs-ta-6IL"/>
-                                <constraint firstItem="icK-mm-4c3" firstAttribute="top" secondItem="G0Q-5X-GIq" secondAttribute="bottom" constant="10" id="bFu-LO-J3q"/>
                                 <constraint firstItem="HMD-6N-fcO" firstAttribute="top" secondItem="vSh-in-8WD" secondAttribute="top" constant="10" id="v3K-fr-URw"/>
                                 <constraint firstAttribute="trailing" secondItem="HMD-6N-fcO" secondAttribute="trailing" constant="10" id="vmz-ak-FtD"/>
                             </constraints>
@@ -189,10 +190,10 @@
                                     </connections>
                                 </button>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fFZ-k8-08z">
-                                    <rect key="frame" x="10" y="50" width="280.5" height="320"/>
+                                    <rect key="frame" x="10" y="50" width="281" height="210"/>
                                     <subviews>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Sd1-0r-XdA">
-                                            <rect key="frame" x="5" y="5" width="270.5" height="310"/>
+                                            <rect key="frame" x="5" y="5" width="270.5" height="200"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -218,8 +219,8 @@
                                 <constraint firstItem="TNu-BS-TtO" firstAttribute="top" secondItem="eUg-Ca-hDt" secondAttribute="top" constant="10" id="PaF-jJ-3eS"/>
                                 <constraint firstItem="ShW-1z-dUo" firstAttribute="leading" secondItem="eUg-Ca-hDt" secondAttribute="leading" constant="10" id="RO4-Ao-VYf"/>
                                 <constraint firstItem="fFZ-k8-08z" firstAttribute="top" secondItem="TNu-BS-TtO" secondAttribute="bottom" constant="10" id="VLF-Oa-BGc"/>
-                                <constraint firstItem="ShW-1z-dUo" firstAttribute="top" secondItem="fFZ-k8-08z" secondAttribute="bottom" constant="10" id="e5R-JY-T5A"/>
                                 <constraint firstAttribute="trailing" secondItem="TNu-BS-TtO" secondAttribute="trailing" constant="10" id="gfv-Bi-1yB"/>
+                                <constraint firstItem="ShW-1z-dUo" firstAttribute="top" secondItem="fFZ-k8-08z" secondAttribute="bottom" constant="120" id="z4s-NS-ynl"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -249,6 +250,7 @@
                 <constraint firstItem="OCl-Xn-zy0" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="KyS-iH-oWK"/>
                 <constraint firstItem="OCl-Xn-zy0" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="bsa-V4-sVN"/>
             </constraints>
+            <point key="canvasLocation" x="26.5" y="51.5"/>
         </view>
     </objects>
 </document>

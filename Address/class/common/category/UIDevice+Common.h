@@ -14,4 +14,6 @@
 + (NSString*)getName;
 + (NSString*)getPhoneNumber;
 + (NSString*)getPushToken;
++ (NSString*)getImagePath;
++ (NSMutableArray*)getMemoArray;
 @end

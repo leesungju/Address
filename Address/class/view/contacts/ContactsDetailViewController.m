@@ -44,6 +44,8 @@
 
 @property (assign, nonatomic) BOOL isEditing;
 
+@property (strong, nonatomic) UIImage * detailImg;
+
 @end
 
 @implementation ContactsDetailViewController
@@ -90,6 +92,7 @@
         [_editBtn setBackgroundImage:[UIImage imageNamed:@"save"] forState:UIControlStateNormal];
         [_editView setHidden:NO];
         [_detailView setHidden:YES];
+        [_editImageView setCircle:[UIColor clearColor] width:1];
         [_editNameTextField setPlaceholder:obj.name];
         [_editNameTextField setDelegate:self];
         [_editPhoneextField setPlaceholder:obj.phoneNumber];
@@ -111,6 +114,7 @@
             [_editBtn setBackgroundImage:[UIImage imageNamed:@"save"] forState:UIControlStateNormal];
             [_editView setHidden:NO];
             [_detailView setHidden:YES];
+            [_editImageView setCircle:[UIColor clearColor] width:1];
             [_editNameTextField setText:obj.name];
             [_editNameTextField setDelegate:self];
             [_editPhoneextField setText:obj.phoneNumber];
@@ -132,12 +136,16 @@
         [_editBtn setBackgroundImage:[UIImage imageNamed:@"edit"] forState:UIControlStateNormal];
         [_editView setHidden:YES];
         [_detailView setHidden:NO];
-        if(obj.imagePath.length > 0){
-            UIImage * image = [[UIImage alloc] initWithContentsOfFile:obj.imagePath];
+        UIImage * image = [[UIImage alloc] initWithContentsOfFile:obj.imagePath];
+        if(image){
             [_detailImageView setImage:image];
+            _detailImg = image;
+            [_detailImageView addTapGestureTarget:self action:@selector(imageZoomAction:)];
         }else{
             [_detailImageView setImage:[UIImage imageNamed:@"profile"]];
         }
+        [_detailImageView setCircle:[UIColor clearColor] width:1];
+        [_detailImageView setUserInteractionEnabled:YES];
         [_detailNameTextField setText:obj.name];
         [_detailNameTextField setEnabled:NO];
         [_detailPhoneTextField setText:obj.phoneNumber];
@@ -377,6 +385,11 @@
     [_editBrithDayextField resignFirstResponder];
 }
 
+- (void)imageZoomAction:(id)sender
+{
+    [[GUIManager sharedInstance] showFullScreenZoomingViewWithImage:_detailImg animate:YES];
+}
+
 #pragma mark - UIImagePicker Delegate Methods
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
@@ -391,6 +404,7 @@
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
+   [picker dismissViewControllerAnimated:YES completion:nil];
     
 }
 

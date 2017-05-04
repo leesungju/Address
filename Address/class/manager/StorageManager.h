@@ -10,10 +10,16 @@
 
 @interface StorageManager : NSObject
 
+typedef void(^UploadCompletionBlock)(NSMutableArray* array);
+typedef void(^DownCompletionBlock)(UIImage* image);
+
 + (StorageManager *)sharedInstance;
 
 - (void)saveUser:(id)obj forKey:(NSString*)key;
 - (void)loadUserKey:(NSString*)key withBlock:(void (^)(FIRDataSnapshot *snapshot))block withCancelBlock:(void (^)(NSError* error))cancelBlock;
+
+- (void)savebackupContacts:(id)obj forKey:(NSString*)key;
+- (void)loadBackupContacts:(NSString*)key withBlock:(void (^)(FIRDataSnapshot *snapshot))block withCancelBlock:(void (^)(NSError* error))cancelBlock;
 
 - (void)saveGroup:(id)obj forKey:(NSString*)key;
 - (void)loadGroupWithBlock:(void (^)(FIRDataSnapshot *snapshot))block withCancelBlock:(void (^)(NSError* error))cancelBlock;
@@ -27,4 +33,7 @@
 - (void)loadContents:(NSString*)key withBlock:(void (^)(FIRDataSnapshot *snapshot))block withCancelBlock:(void (^)(NSError* error))cancelBlock;
 - (void)removeContents:(NSString*)group forKey:(NSString*)key;
 
+- (void)fileUpload:(NSMutableArray*)array forKey:(NSString*)key completion:(UploadCompletionBlock)completion;
+- (void)downFile:(NSString*)path completion:(DownCompletionBlock)completion;
+- (void)removeFile:(NSString*)path completion:(DownCompletionBlock)completion;
 @end

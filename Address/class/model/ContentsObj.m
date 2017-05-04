@@ -10,4 +10,12 @@
 
 @implementation ContentsObj
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _imageArray = [NSMutableArray new];
+    }
+    return self;
+}
 @end

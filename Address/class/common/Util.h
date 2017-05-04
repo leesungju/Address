@@ -16,4 +16,5 @@
 + (NSString*)dateConvertString:(NSDate*)date;
 + (NSString*)fullDateConvertString:(NSDate*)date;
 + (NSString*)timeStamp;
++ (BOOL)checkPhone:(NSString*)str;
 @end

@@ -12,11 +12,14 @@
 #import "NoticeViewController.h"
 #import "GroupViewController.h"
 #import "LoadingView.h"
+#import "ZoomingImageView.h"
 @interface GUIManager ()
 
 @property (strong, nonatomic) SettingViewController * settingViewController;
 @property (strong, nonatomic) UIView * backgroundView;
 @property (nonatomic, copy) void (^popupCompletion)(NSDictionary* dict);
+@property (strong, nonatomic) ZoomingImageView * zoomingImageView;
+@property (strong, nonatomic) UIButton * zoomCloseButton;
 
 @end
 
@@ -47,7 +50,7 @@
     }
     
     NSArray *titleList = array;
-    NSArray *imageList = @[[UIImage imageWithColor:[UIColor clearColor]], [UIImage imageWithColor:[UIColor clearColor]], [UIImage imageWithColor:[UIColor clearColor]],[UIImage imageWithColor:[UIColor clearColor]], [UIImage imageWithColor:[UIColor clearColor]]];
+    NSArray *imageList = @[[UIImage imageWithColor:[UIColor clearColor]], [UIImage imageWithColor:[UIColor clearColor]], [UIImage imageWithColor:[UIColor clearColor]],[UIImage imageWithColor:[UIColor clearColor]], [UIImage imageWithColor:[UIColor clearColor]],[UIImage imageWithColor:[UIColor clearColor]]];
     
     if([array count] > 0){
         _settingViewController = [[GUIManager sharedInstance] settingViewController];
@@ -189,5 +192,69 @@
     
 }
 
+
+#pragma mark - Zooming View
+- (void)setupZoomingImageView
+{
+    if(_zoomingImageView == nil){
+        _zoomingImageView = [[ZoomingImageView alloc] initWithFrame:CGRectMake(0, 20, _mainNavigationController.view.width, _mainNavigationController.view.height - 20)];
+        
+        [_zoomingImageView setBackgroundColor:[UIColor blackColor]];
+        [_mainNavigationController.view addSubview:_zoomingImageView];
+    }
+    [_zoomingImageView setHidden:YES];
+    [_zoomingImageView setAlpha:0.0f];
+    
+    if(_zoomCloseButton == nil){
+        _zoomCloseButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 20, 45, 60)];
+        [_zoomCloseButton setImage:[UIImage imageNamed:@"close_color"] forState:UIControlStateNormal];
+        [_zoomCloseButton addTarget:self action:@selector(closeButtonPress:) forControlEvents:UIControlEventTouchUpInside];
+        [_zoomCloseButton.layer setShadowColor:[[UIColor blackColor] CGColor]];
+        [_zoomCloseButton.layer setShadowOffset:CGSizeMake(0.5, 0.5)];
+        [_zoomCloseButton.layer setShadowOpacity:1.0];
+        [_mainNavigationController.view addSubview:_zoomCloseButton];
+    }
+    [_zoomCloseButton setHidden:YES];
+    [_zoomCloseButton setAlpha:0.0f];
+}
+- (void)closeButtonPress:(id)sender
+{
+    [self hideFullScreenZoomingView:YES];
+}
+
+- (void)showFullScreenZoomingViewWithImage:(UIImage *)image animate:(BOOL)animate
+{
+    [self setupZoomingImageView];
+    [self.zoomingImageView setImage:image];
+    [UIView animateWithDuration:(animate)?0.3:0.0
+                          delay:0
+                        options: UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         [self.zoomingImageView setHidden:NO];
+                         [self.zoomingImageView setAlpha:1.0f];
+                         [self.zoomCloseButton setHidden:NO];
+                         [self.zoomCloseButton setAlpha:1.0f];
+                     }
+                     completion:nil];
+}
+
+- (void)hideFullScreenZoomingView:(BOOL)animate
+{
+    [UIView animateWithDuration:(animate)?0.3:0.0
+                          delay:0
+                        options: UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         [self.zoomingImageView setAlpha:0.0f];
+                         [self.zoomCloseButton setAlpha:0.0f];
+                     }
+                     completion:^(BOOL finished){
+                         [self.zoomingImageView setHidden:YES];
+                         [self.zoomingImageView removeFromSuperview];
+                         self.zoomingImageView = nil;
+                         [self.zoomCloseButton setHidden:YES];
+                         [self.zoomCloseButton removeFromSuperview];
+                         self.zoomCloseButton = nil;
+                     }];
+}
 
 @end

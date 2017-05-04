@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController">
             <connections>
+                <outlet property="imageView" destination="r4D-d1-v5n" id="c4G-YQ-eTj"/>
                 <outlet property="nameTextField" destination="P6G-mr-b2I" id="FM4-5G-CX0"/>
                 <outlet property="phoneTextField" destination="Jaq-G6-nvU" id="tHB-5t-3dm"/>
                 <outlet property="startBtn" destination="ZGK-Lb-YKt" id="ar3-rF-Yae"/>
@@ -47,17 +48,29 @@
                         <action selector="startBtnAction:" destination="-1" eventType="touchUpInside" id="Kfa-jz-55f"/>
                     </connections>
                 </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile" translatesAutoresizingMaskIntoConstraints="NO" id="r4D-d1-v5n">
+                    <rect key="frame" x="137" y="88.5" width="100" height="100"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="G9F-tR-C77"/>
+                        <constraint firstAttribute="height" constant="100" id="ICR-Zb-nNx"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="Jaq-G6-nvU" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="CaF-sX-pf0"/>
+                <constraint firstItem="r4D-d1-v5n" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="PtR-PZ-ziY"/>
                 <constraint firstItem="ZGK-Lb-YKt" firstAttribute="top" secondItem="Jaq-G6-nvU" secondAttribute="bottom" constant="30" id="QRq-ty-05m"/>
                 <constraint firstItem="P6G-mr-b2I" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="U00-5V-HSr"/>
                 <constraint firstItem="P6G-mr-b2I" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Wk4-WC-Yu0"/>
+                <constraint firstItem="P6G-mr-b2I" firstAttribute="top" secondItem="r4D-d1-v5n" secondAttribute="bottom" constant="30" id="b5c-NF-P0q"/>
                 <constraint firstItem="Jaq-G6-nvU" firstAttribute="top" secondItem="P6G-mr-b2I" secondAttribute="bottom" constant="10" id="cAX-Vn-79g"/>
                 <constraint firstItem="ZGK-Lb-YKt" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="kYn-nQ-PG0"/>
                 <constraint firstItem="P6G-mr-b2I" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="-100" id="tZD-sv-x6q"/>
             </constraints>
         </view>
     </objects>
+    <resources>
+        <image name="profile" width="250" height="250"/>
+    </resources>
 </document>
