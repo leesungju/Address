@@ -1181,6 +1181,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "6740cf7f-5a9c-44cc-bbf2-6ff98b1d697b";
 				PROVISIONING_PROFILE_SPECIFIER = address_dev;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1230,6 +1231,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "9d571768-78ac-4416-8aea-819a5d93a709";
 				PROVISIONING_PROFILE_SPECIFIER = address_dist;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
