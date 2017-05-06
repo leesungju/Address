@@ -44,7 +44,7 @@
 
 - (void)table:(WKInterfaceTable *)table didSelectRowAtIndex:(NSInteger)rowIndex
 {
-    [self presentControllerWithName:@"MemoDetailInterface" context:[_memoArray objectAtIndex:rowIndex]];
+    [self pushControllerWithName:@"MemoDetailInterface" context:[_memoArray objectAtIndex:rowIndex]];
 }
 
 

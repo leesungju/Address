@@ -83,7 +83,7 @@
 
 - (void)table:(WKInterfaceTable *)table didSelectRowAtIndex:(NSInteger)rowIndex
 {
-    [self presentControllerWithName:@"DetailInterface" context:[_contactsArray objectAtIndex:rowIndex]];
+    [self pushControllerWithName:@"DetailInterface" context:[_contactsArray objectAtIndex:rowIndex]];
 }
 
 -(void)callBtnAction:(NSDictionary *)dict

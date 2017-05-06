@@ -48,7 +48,7 @@
 - (IBAction)memoAction {
     NSArray * array = [_data objectForKey:@"memoArray"];
     if(array && [array count] > 0){
-        [self presentControllerWithName:@"MemoInterface" context:array];
+        [self pushControllerWithName:@"MemoInterface" context:array];
     }else{
         WKAlertAction * action =  [WKAlertAction actionWithTitle: @"OK"
                                                            style: WKAlertActionStyleDefault
