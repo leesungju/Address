@@ -11,6 +11,8 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
+    #import <WatchKit/WatchKit.h>
+    #import <WatchConnectivity/WatchConnectivity.h>
     #import "UIView+Common.h"
     #import "UIView+TapDetecting.h"
     #import "UIImage+Common.h"

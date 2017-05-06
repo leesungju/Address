@@ -8,6 +8,12 @@
 
 #import "PreferenceManager.h"
 
+@interface PreferenceManager ()
+
+@property (strong, nonatomic) NSUserDefaults * userDefaults;
+
+@end
+
 @implementation PreferenceManager
 
 + (PreferenceManager *)sharedInstance
@@ -18,6 +24,16 @@
     return _sharedInstance;
 }
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _userDefaults = [[NSUserDefaults alloc]
+                                    initWithSuiteName:@"group.sj.address"];
+    }
+    return self;
+}
+
 /**
  프리퍼런스 저장
 
@@ -26,7 +42,17 @@
  */
 - (void)setPreference:(NSString*)value forKey:(NSString*)key
 {
-    [[NSUserDefaults standardUserDefaults] setObject:value forKey:key];
+    [_userDefaults setObject:value forKey:key];
+    [_userDefaults synchronize];
+//    [[WCSession defaultSession] sendMessage:@{key:value} replyHandler:^(NSDictionary<NSString *,id> * _Nonnull replyMessage) {
+//        
+//    } errorHandler:^(NSError * _Nonnull error) {
+//        
+//    }];
+    
+    if([key isEqualToString:@"contacts"]){
+        [self watchUpdate:@{key:value}];
+    }
 }
 
 /**
@@ -38,7 +64,7 @@
  */
 - (NSString*)getPreference:(NSString*)key defualtValue:(NSString*)value
 {
-    NSString * ret = [[NSUserDefaults standardUserDefaults] stringForKey:key];
+    NSString * ret = [_userDefaults stringForKey:key];
     if(ret == nil){
         ret = value;
     }
@@ -53,8 +79,13 @@
  */
 - (void)removePreference:(NSString*)key
 {
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
+    [_userDefaults removeObjectForKey:key];
 }
 
+- (void)watchUpdate:(NSDictionary*)dict
+{
+    [[WCSession defaultSession] transferUserInfo:dict];
+//    [[WCSession defaultSession] updateApplicationContext:dict error:nil];
+}
 
 @end

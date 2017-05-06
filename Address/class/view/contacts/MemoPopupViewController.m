@@ -28,7 +28,7 @@
 @property (strong, nonatomic) IBOutlet UIView *detailLocationView;
 @property (strong, nonatomic) IBOutlet UILabel *detailLocationLabel;
 @property (strong, nonatomic) IBOutlet UIView *detailContentView;
-@property (strong, nonatomic) IBOutlet UILabel *detailContentLabel;
+@property (strong, nonatomic) IBOutlet UITextView *detailContentTextView;
 
 @property (strong, nonatomic) IBOutlet UIView *bottomView;
 @property (strong, nonatomic) IBOutlet UIButton *cancelBtn;
@@ -79,7 +79,8 @@
         [_detailLocationView setRadius:5];
         [_detailLocationLabel setText:[dict objectForKey:@"location"]];
         [_detailContentView setRadius:5];
-        [_detailContentLabel setText:[dict objectForKey:@"detail"]];
+        [_detailContentTextView setText:[dict objectForKey:@"detail"]];
+        [_detailContentTextView setEditable:NO];
     }else if(_viewMode == kViewPopupMode_add){
         [_detailView setHidden:YES];
         [_editView setHidden:NO];

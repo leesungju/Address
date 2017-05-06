@@ -16,4 +16,5 @@
 - (NSString*)getPreference:(NSString*)key defualtValue:(NSString*)value;
 - (void)removePreference:(NSString*)key;
 
+- (void)watchUpdate:(NSDictionary*)dict;
 @end

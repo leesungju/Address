@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+    <device id="watch38" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="watchOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="12029"/>
+    </dependencies>
+    <scenes>
+        <!--Interface Controller-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller id="AgC-eL-Hgc" customClass="InterfaceController">
+                    <items>
+                        <table alignment="left" id="zFV-sH-xcG">
+                            <items>
+                                <tableRow identifier="MainTableRow" id="ALE-Nl-6hQ" customClass="MainTableRow">
+                                    <group key="rootItem" width="1" height="30" alignment="left" id="cN2-t1-wba">
+                                        <items>
+                                            <label height="20" alignment="left" verticalAlignment="center" text="Label" id="3ch-N9-4hd">
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="font" type="system" pointSize="15"/>
+                                                <variation key="device=watch38mm">
+                                                    <fontDescription key="font" type="system" pointSize="13"/>
+                                                </variation>
+                                            </label>
+                                            <button width="15" height="15" alignment="right" verticalAlignment="center" backgroundImage="phone" id="zSO-JL-fmw">
+                                                <connections>
+                                                    <action selector="callAction" destination="ALE-Nl-6hQ" id="Mtf-fs-yCa"/>
+                                                </connections>
+                                            </button>
+                                        </items>
+                                        <color key="backgroundColor" red="0.98039215686274506" green="0.84313725490196079" blue="0.52549019607843139" alpha="1" colorSpace="calibratedRGB"/>
+                                    </group>
+                                    <connections>
+                                        <outlet property="callBtn" destination="zSO-JL-fmw" id="tc0-zr-4Ia"/>
+                                        <outlet property="nameLabel" destination="3ch-N9-4hd" id="eYe-QR-SA8"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="mainTable" destination="zFV-sH-xcG" id="wXA-x6-QGP"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="219.69230769230771" y="344.79487179487182"/>
+        </scene>
+        <!--상세-->
+        <scene sceneID="thg-YR-1vR">
+            <objects>
+                <controller identifier="DetailInterface" title="상세" id="H1j-Nh-vpg" customClass="DetailInterfaceController">
+                    <items>
+                        <group width="1" height="18" alignment="center" id="Hxm-S3-KOv">
+                            <items>
+                                <label height="13" alignment="center" verticalAlignment="center" text="Label" textAlignment="center" id="sfa-em-LNK">
+                                    <color key="textColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <fontDescription key="font" type="system" pointSize="15"/>
+                                    <variation key="device=watch38mm">
+                                        <fontDescription key="font" type="system" pointSize="13"/>
+                                    </variation>
+                                </label>
+                            </items>
+                            <color key="backgroundColor" red="0.98039215690000003" green="0.84313725490000002" blue="0.52549019610000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <variation key="device=watch38mm" height="15"/>
+                        </group>
+                        <group width="1" height="18" alignment="center" id="Gpy-YF-DzL">
+                            <items>
+                                <label height="10" alignment="center" verticalAlignment="center" text="Label" textAlignment="center" id="6xN-bG-VA3">
+                                    <color key="textColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <fontDescription key="font" type="system" pointSize="12"/>
+                                    <variation key="device=watch38mm">
+                                        <fontDescription key="font" type="system" pointSize="10"/>
+                                    </variation>
+                                </label>
+                            </items>
+                            <color key="backgroundColor" red="0.98039215690000003" green="0.84313725490000002" blue="0.52549019610000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <variation key="device=watch38mm" height="15"/>
+                        </group>
+                        <group width="1" height="18" alignment="center" id="2Ig-2x-rOF">
+                            <items>
+                                <label height="10" alignment="center" verticalAlignment="center" text="Label" textAlignment="center" id="l5e-sZ-UvR">
+                                    <color key="textColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <fontDescription key="font" type="system" pointSize="12"/>
+                                    <variation key="device=watch38mm">
+                                        <fontDescription key="font" type="system" pointSize="10"/>
+                                    </variation>
+                                </label>
+                            </items>
+                            <color key="backgroundColor" red="0.98039215690000003" green="0.84313725490000002" blue="0.52549019610000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <variation key="device=watch38mm" height="15"/>
+                        </group>
+                        <group width="1" height="18" alignment="center" id="M6s-uz-Pw1">
+                            <items>
+                                <label height="10" alignment="center" verticalAlignment="center" text="Label" textAlignment="center" id="1kz-lK-cH2">
+                                    <color key="textColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <fontDescription key="font" type="system" pointSize="12"/>
+                                    <variation key="device=watch38mm">
+                                        <fontDescription key="font" type="system" pointSize="10"/>
+                                    </variation>
+                                </label>
+                            </items>
+                            <color key="backgroundColor" red="0.98039215690000003" green="0.84313725490000002" blue="0.52549019610000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <variation key="device=watch38mm" height="15"/>
+                        </group>
+                        <group width="1" height="18" alignment="center" id="xDz-85-ZMe">
+                            <items>
+                                <label height="10" alignment="center" verticalAlignment="center" text="Label" textAlignment="center" id="YBf-Rv-esI">
+                                    <color key="textColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <fontDescription key="font" type="system" pointSize="12"/>
+                                    <variation key="device=watch38mm">
+                                        <fontDescription key="font" type="system" pointSize="10"/>
+                                    </variation>
+                                </label>
+                            </items>
+                            <color key="backgroundColor" red="0.98039215690000003" green="0.84313725490000002" blue="0.52549019610000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <variation key="device=watch38mm" height="15"/>
+                        </group>
+                        <group width="1" height="18" alignment="center" id="Idi-v9-uhG">
+                            <items>
+                                <label height="10" alignment="center" verticalAlignment="center" text="Label" textAlignment="center" id="ZCH-Er-FFj">
+                                    <color key="textColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <fontDescription key="font" type="system" pointSize="12"/>
+                                    <variation key="device=watch38mm">
+                                        <fontDescription key="font" type="system" pointSize="10"/>
+                                    </variation>
+                                </label>
+                            </items>
+                            <color key="backgroundColor" red="0.98039215690000003" green="0.84313725490000002" blue="0.52549019610000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <variation key="device=watch38mm" height="15"/>
+                        </group>
+                        <group width="1" height="18" alignment="center" id="U6z-ZI-sRu">
+                            <items>
+                                <label height="10" alignment="center" verticalAlignment="center" text="Label" textAlignment="center" numberOfLines="2" id="8yR-vf-B9p">
+                                    <color key="textColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <fontDescription key="font" type="system" pointSize="12"/>
+                                    <variation key="device=watch38mm">
+                                        <fontDescription key="font" type="system" pointSize="10"/>
+                                    </variation>
+                                </label>
+                            </items>
+                            <color key="backgroundColor" red="0.98039215690000003" green="0.84313725490000002" blue="0.52549019610000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <variation key="device=watch38mm" height="15"/>
+                        </group>
+                        <button width="1" height="20" alignment="left" verticalAlignment="bottom" title="메모" id="p9t-58-98w">
+                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <variation key="device=watch38mm" height="18"/>
+                            <connections>
+                                <action selector="memoAction" destination="H1j-Nh-vpg" id="eJz-h6-vw7"/>
+                            </connections>
+                        </button>
+                    </items>
+                    <connections>
+                        <outlet property="addressLabel" destination="ZCH-Er-FFj" id="dJj-qU-XR7"/>
+                        <outlet property="birthDayLabel" destination="l5e-sZ-UvR" id="DWi-cK-12H"/>
+                        <outlet property="emailLabel" destination="YBf-Rv-esI" id="FvY-RB-4BC"/>
+                        <outlet property="familyLabel" destination="8yR-vf-B9p" id="Vi9-yb-08z"/>
+                        <outlet property="groupLabel" destination="1kz-lK-cH2" id="Egg-Mg-U7e"/>
+                        <outlet property="nameLabel" destination="sfa-em-LNK" id="Y8X-ul-V0X"/>
+                        <outlet property="phoneLabel" destination="6xN-bG-VA3" id="5dg-86-4XI"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="421.94871794871796" y="344.79487179487182"/>
+        </scene>
+        <!--메모-->
+        <scene sceneID="rET-vA-toz">
+            <objects>
+                <controller identifier="MemoInterface" title="메모" id="yyW-2d-sjh" customClass="MemoInterfaceController">
+                    <items>
+                        <table alignment="left" id="Gwy-u0-uSG">
+                            <items>
+                                <tableRow identifier="MemoTableRow" id="OZn-jp-ofi" userLabel="MemoTableRow" customClass="MemoTableRow">
+                                    <group key="rootItem" width="1" height="30" alignment="left" id="xF9-AN-ULN">
+                                        <items>
+                                            <label alignment="left" verticalAlignment="center" text="Label" id="0j0-ln-84I">
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="font" type="system" pointSize="15"/>
+                                                <variation key="device=watch38mm">
+                                                    <fontDescription key="font" type="system" pointSize="13"/>
+                                                </variation>
+                                            </label>
+                                        </items>
+                                        <color key="backgroundColor" red="0.98039215690000003" green="0.84313725490000002" blue="0.52549019610000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    </group>
+                                    <connections>
+                                        <outlet property="titleLabel" destination="0j0-ln-84I" id="IS2-uo-7Ir"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="memoTable" destination="Gwy-u0-uSG" id="D4y-hd-hqk"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="622" y="344"/>
+        </scene>
+        <!--메모상세-->
+        <scene sceneID="qfb-tI-uFl">
+            <objects>
+                <controller identifier="MemoDetailInterface" title="메모상세" id="OZB-1l-MkS" customClass="MemoDetailInterfaceController">
+                    <items>
+                        <group width="1" height="18" alignment="center" id="8yp-LL-NUf">
+                            <items>
+                                <label height="13" alignment="center" verticalAlignment="center" text="Label" textAlignment="center" id="Efv-B6-4rL">
+                                    <color key="textColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <fontDescription key="font" type="system" pointSize="15"/>
+                                    <variation key="device=watch38mm">
+                                        <fontDescription key="font" type="system" pointSize="13"/>
+                                    </variation>
+                                </label>
+                            </items>
+                            <color key="backgroundColor" red="0.98039215690000003" green="0.84313725490000002" blue="0.52549019610000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <variation key="device=watch38mm" height="15"/>
+                        </group>
+                        <group width="1" height="18" alignment="center" id="hx2-2M-1vt">
+                            <items>
+                                <label height="10" alignment="center" verticalAlignment="center" text="Label" textAlignment="center" id="Qb7-hN-NgA">
+                                    <color key="textColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <fontDescription key="font" type="system" pointSize="12"/>
+                                    <variation key="device=watch38mm">
+                                        <fontDescription key="font" type="system" pointSize="10"/>
+                                    </variation>
+                                </label>
+                            </items>
+                            <color key="backgroundColor" red="0.98039215690000003" green="0.84313725490000002" blue="0.52549019610000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <variation key="device=watch38mm" height="15"/>
+                        </group>
+                        <group width="1" height="18" alignment="center" id="bV9-fW-jjT">
+                            <items>
+                                <label height="10" alignment="center" verticalAlignment="center" text="Label" textAlignment="center" id="YLb-JY-0Fp">
+                                    <color key="textColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <fontDescription key="font" type="system" pointSize="12"/>
+                                    <variation key="device=watch38mm">
+                                        <fontDescription key="font" type="system" pointSize="10"/>
+                                    </variation>
+                                </label>
+                            </items>
+                            <color key="backgroundColor" red="0.98039215690000003" green="0.84313725490000002" blue="0.52549019610000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <variation key="device=watch38mm" height="15"/>
+                        </group>
+                        <group width="1" height="105" alignment="center" id="SdY-Cj-kuE">
+                            <items>
+                                <label alignment="center" verticalAlignment="center" text="Label" textAlignment="center" numberOfLines="7" id="wOU-1w-KYQ">
+                                    <color key="textColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <fontDescription key="font" type="system" pointSize="12"/>
+                                    <variation key="device=watch38mm">
+                                        <fontDescription key="font" type="system" pointSize="10"/>
+                                    </variation>
+                                </label>
+                            </items>
+                            <color key="backgroundColor" red="0.98039215690000003" green="0.84313725490000002" blue="0.52549019610000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <variation key="device=watch38mm" height="90"/>
+                        </group>
+                    </items>
+                    <connections>
+                        <outlet property="contentsLabel" destination="wOU-1w-KYQ" id="beO-bq-aww"/>
+                        <outlet property="dateLabel" destination="Qb7-hN-NgA" id="Oar-OJ-hbu"/>
+                        <outlet property="placeLabel" destination="YLb-JY-0Fp" id="lHl-Mx-Msf"/>
+                        <outlet property="titleLabel" destination="Efv-B6-4rL" id="DXR-05-DUW"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="825" y="344"/>
+        </scene>
+        <!--Static Notification Interface Controller-->
+        <scene sceneID="AEw-b0-oYE">
+            <objects>
+                <notificationController id="YCC-NB-fut">
+                    <items>
+                        <label alignment="left" text="Alert Label" id="IdU-wH-bcW"/>
+                    </items>
+                    <notificationCategory key="notificationCategory" identifier="myCategory" id="JfB-70-Muf"/>
+                    <connections>
+                        <outlet property="notificationAlertLabel" destination="IdU-wH-bcW" id="JKC-fr-R95"/>
+                        <segue destination="4sK-HA-Art" kind="relationship" relationship="dynamicNotificationInterface" id="kXh-Jw-8B1"/>
+                    </connections>
+                </notificationController>
+            </objects>
+            <point key="canvasLocation" x="220" y="643"/>
+        </scene>
+        <!--Notification Controller-->
+        <scene sceneID="ZPc-GJ-vnh">
+            <objects>
+                <controller id="4sK-HA-Art" customClass="NotificationController"/>
+            </objects>
+            <point key="canvasLocation" x="468" y="643"/>
+        </scene>
+    </scenes>
+</document>
