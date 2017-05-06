@@ -23,6 +23,7 @@
 @property (strong, nonatomic) NSString * searchStr;
 @property (assign, nonatomic) BOOL isLoad;
 @property (assign, nonatomic) BOOL isSearching;
+@property (strong, nonatomic) NSMutableArray * favArray;
 
 @end
 
@@ -33,8 +34,10 @@
     self = [super init];
     if (self) {
         _oriDataArray = [NSMutableArray new];
+        _favArray = [NSMutableArray new];
         _isLoad = NO;
         _isSearching = NO;
+        
     }
     return self;
 }
@@ -50,16 +53,7 @@
     
     if(_isSearching)return;
     if(_isLoad){
-        NSString * contacts = [[PreferenceManager sharedInstance] getPreference:@"contacts" defualtValue:@""];
-        NSArray * array = [Util stringConvertArray:contacts];
-        [_oriDataArray removeAllObjects];
-        [_oriDataArray addObjectsFromArray:array];
-        
-        NSOrderedSet *orderedSet = [NSOrderedSet orderedSetWithArray:_oriDataArray];
-        [_oriDataArray removeAllObjects];
-        [_oriDataArray addObjectsFromArray:[orderedSet array]];
-        
-        [self settingTableView:_oriDataArray];
+       [self initData];
     }
     
 }
@@ -100,6 +94,13 @@
     [_retTableView setDataSource:self];
     [_retTableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
     
+    [self initData];
+}
+
+- (void)initData
+{
+    [_favArray removeAllObjects];
+    [_oriDataArray removeAllObjects];
     NSString * contacts = [[PreferenceManager sharedInstance] getPreference:@"contacts" defualtValue:@""];
     NSArray * array = [Util stringConvertArray:contacts];
     
@@ -109,7 +110,19 @@
     [_oriDataArray removeAllObjects];
     [_oriDataArray addObjectsFromArray:[orderedSet array]];
     
+    for(int i =0;i<[_oriDataArray count];i++){
+        BOOL isFav = [[[_oriDataArray objectAtIndex:i] objectForKey:@"isFav"] boolValue];
+        if(isFav){
+            AddressObj * address = [AddressObj new];
+            [address setDict:[_oriDataArray objectAtIndex:i]];
+            [_favArray addObject:address];
+            NSSortDescriptor *sorter = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+            [_favArray sortUsingDescriptors:[NSArray arrayWithObject:sorter]];
+        }
+    }
+    
     [self settingTableView:_oriDataArray];
+  
 }
 
 - (void)menuClicked:(int)index
@@ -277,6 +290,10 @@
     }
     _sectionArray = [NSMutableArray new];
     _sectionArray = [self sortDictionary:_sections];
+    if([_favArray count] > 0){
+        [_sectionArray insertObject:@"즐겨찾기" atIndex:0];
+        [_sections setObject:_favArray forKey:@"즐겨찾기"];
+    }
     _oriSections = [NSMutableDictionary new];
     _oriSections = [_sections mutableCopy];
     [_retTableView reloadData];
@@ -351,6 +368,7 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
+    
     UIView *header=[[UIView alloc]initWithFrame:CGRectMake(20, 0, _retTableView.width - 40, 20)];
     [header setBackgroundColor:RGB(250, 215, 134)];
     UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake(15, 0, 320, 20)];
@@ -409,13 +427,33 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     ContactsDetailViewController * contact = [ContactsDetailViewController new];
-    [contact.sectionArray addObjectsFromArray:_sectionArray];
-    contact.dataDict = _sections;
-    [contact setIndex:(int)indexPath.row];
-    [contact setSection:(int)indexPath.section];
-    
+    if([_favArray count] > 0 && indexPath.section == 0){
+        NSArray* tempArray = [_sections objectForKey:[_sectionArray objectAtIndex:indexPath.section]];
+        AddressObj *temp = [tempArray objectAtIndex:indexPath.row];
+        
+        [_sectionArray removeObjectAtIndex:0];
+        [contact.sectionArray addObjectsFromArray:_sectionArray];
+        contact.dataDict = _sections;
+        [contact setIndex:[temp.favRow intValue]];
+        [contact setSection:[temp.favSection intValue]];
+        [_sections removeObjectForKey:@"즐겨찾기"];
+
+    }else{
+        if([_favArray count] > 0){
+            [_sectionArray removeObjectAtIndex:0];
+            [contact.sectionArray addObjectsFromArray:_sectionArray];
+            contact.dataDict = _sections;
+            [contact setIndex:(int)indexPath.row];
+            [contact setSection:(int)indexPath.section-1];
+            [_sections removeObjectForKey:@"즐겨찾기"];
+        }else{
+            [contact.sectionArray addObjectsFromArray:_sectionArray];
+            contact.dataDict = _sections;
+            [contact setIndex:(int)indexPath.row];
+            [contact setSection:(int)indexPath.section];
+        }
+    }
     [[GUIManager sharedInstance] moveToController:contact animation:YES];
 }
 
@@ -462,11 +500,13 @@
     _isSearching = YES;
     [_sectionArray removeAllObjects];
     for (NSString * key in [_sections allKeys]){
-        AutoCompleteMng * automng = [[AutoCompleteMng alloc] initWithData:[_sections objectForKey:key] className:@"AddressObj"];
-        NSArray* filteredData = [automng search:_searchStr];
-        if([filteredData count] > 0){
-            [_sections setObject:filteredData forKey:key];
-            [_sectionArray addObject:key];
+        if(![key isEqualToString:@"즐겨찾기"]){
+            AutoCompleteMng * automng = [[AutoCompleteMng alloc] initWithData:[_sections objectForKey:key] className:@"AddressObj"];
+            NSArray* filteredData = [automng search:_searchStr];
+            if([filteredData count] > 0){
+                [_sections setObject:filteredData forKey:key];
+                [_sectionArray addObject:key];
+            }
         }
     }
     

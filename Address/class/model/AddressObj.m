@@ -15,6 +15,7 @@
     self = [super init];
     if (self) {
         _memoArray = [NSMutableArray new];
+        _isFav = [NSNumber numberWithBool:NO];
     }
     return self;
 }

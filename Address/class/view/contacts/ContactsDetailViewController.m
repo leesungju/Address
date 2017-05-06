@@ -13,6 +13,7 @@
 @interface ContactsDetailViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UITextViewDelegate>
 @property (strong, nonatomic) IBOutlet UIButton *backBtn;
 @property (strong, nonatomic) IBOutlet UIButton *editBtn;
+@property (strong, nonatomic) IBOutlet UIButton *favBtn;
 
 @property (strong, nonatomic) IBOutlet UIView *detailView;
 @property (strong, nonatomic) IBOutlet UIImageView *detailImageView;
@@ -46,6 +47,9 @@
 
 @property (strong, nonatomic) UIImage * detailImg;
 
+@property (assign, nonatomic) BOOL isFav;
+
+
 @end
 
 @implementation ContactsDetailViewController
@@ -59,6 +63,7 @@
         _isEditing = NO;
         _viewMode = kViewMode_nomarl;
         _imgPath = @"";
+        _isFav = NO;
     }
     return self;
 }
@@ -108,7 +113,9 @@
         [_editFamilyTextView setText:obj.family];
         [_editFamilyTextView setDelegate:self];
         [_editFamilyTextView setRadius:5];
-        
+        _memoArray = obj.memoArray;
+        _isFav = NO;
+        [self initFavBtn:_isFav];
     }else if(_viewMode == kViewMode_edit){
         if(!_isEditing){
             [_editBtn setBackgroundImage:[UIImage imageNamed:@"save"] forState:UIControlStateNormal];
@@ -130,7 +137,10 @@
             [_editFamilyTextView setText:obj.family];
             [_editFamilyTextView setDelegate:self];
             [_editFamilyTextView setRadius:5];
+            _memoArray = obj.memoArray;
             _isEditing = YES;
+            _isFav = [obj.isFav boolValue];
+            [self initFavBtn:_isFav];
         }
     }else{
         [_editBtn setBackgroundImage:[UIImage imageNamed:@"edit"] forState:UIControlStateNormal];
@@ -177,6 +187,8 @@
         }else{
             [_detailMemoTableView setHidden:YES];
         }
+        _isFav = [obj.isFav boolValue];
+        [self initFavBtn:_isFav];
     }
 }
 
@@ -191,10 +203,12 @@
 {
     NSMutableArray * save = [NSMutableArray new];
     for(NSString * key in [_dataDict allKeys]){
-        for (AddressObj *obj in [_dataDict objectForKey:key]) {
-            NSMutableDictionary *dict = obj.getDict;
-            [dict removeObjectForKey:@"image"];
-            [save addObject:dict];
+        if (![key isEqualToString:@"즐겨찾기"]){
+            for (AddressObj *obj in [_dataDict objectForKey:key]) {
+                NSMutableDictionary *dict = obj.getDict;
+                [dict removeObjectForKey:@"image"];
+                [save addObject:dict];
+            }
         }
     }
     NSString * resultString = [Util arrayConvertJsonString:save];
@@ -204,6 +218,15 @@
     }
 }
 
+
+- (void)initFavBtn:(BOOL)isFav
+{
+    if(isFav){
+        [_favBtn setImage:[UIImage imageNamed:@"star_sel"] forState:UIControlStateNormal];
+    }else{
+        [_favBtn setImage:[UIImage imageNamed:@"star_no_sel"] forState:UIControlStateNormal];
+    }
+}
 #pragma mark - UITableView Delegate Methods
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -300,7 +323,8 @@
             obj.image = nil;
             obj.imagePath = _imgPath;
             obj.section = [[NSStrUtils getJasoLetter:obj.name] substringToIndex:1].uppercaseString;
-            
+            obj.memoArray = [NSMutableArray arrayWithArray:_memoArray];
+            obj.isFav = [NSNumber numberWithBool:_isFav];
             if(_viewMode == kViewMode_add){
                 NSMutableArray * array = [_dataDict objectForKey:obj.section];
                 if([array count]>0){
@@ -390,6 +414,20 @@
     [[GUIManager sharedInstance] showFullScreenZoomingViewWithImage:_detailImg animate:YES];
 }
 
+- (IBAction)favAction:(id)sender
+{
+    AddressObj * obj = [[_dataDict objectForKey:[_sectionArray objectAtIndex:_section]] objectAtIndex:_index];
+    _isFav = !_isFav;
+    obj.isFav = [NSNumber numberWithBool:_isFav];
+    obj.favSection = [NSNumber numberWithInt:_section];
+    obj.favRow = [NSNumber numberWithInt:_index];
+    [self initFavBtn:_isFav];
+    [[_dataDict objectForKey:[_sectionArray objectAtIndex:_section]] removeObjectAtIndex:_index];
+    [[_dataDict objectForKey:[_sectionArray objectAtIndex:_section]] insertObject:obj atIndex:_index];
+    
+    [self saveData:NO];
+}
+
 #pragma mark - UIImagePicker Delegate Methods
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
@@ -404,7 +442,7 @@
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
-   [picker dismissViewControllerAnimated:YES completion:nil];
+    [picker dismissViewControllerAnimated:YES completion:nil];
     
 }
 

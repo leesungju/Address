@@ -22,6 +22,9 @@
 @property(strong, nonatomic) NSString * family;
 @property(strong, nonatomic) NSMutableArray * memoArray;
 @property(strong, nonatomic) NSString *wordIndex;
+@property(strong, nonatomic) NSNumber * isFav;
+@property(strong, nonatomic) NSNumber * favSection;
+@property(strong, nonatomic) NSNumber * favRow;
 
 -(void)setdata;
 -(NSString*)getWordIndex;
