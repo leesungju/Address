@@ -102,7 +102,6 @@
 		141EF9081E86A44E003B78B1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 141EF9071E86A44E003B78B1 /* GoogleService-Info.plist */; };
 		1420A8CD1EBCA2010098D94F /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1420A8CB1EBCA2010098D94F /* Interface.storyboard */; };
 		1420A8CF1EBCA2010098D94F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1420A8CE1EBCA2010098D94F /* Assets.xcassets */; };
-		1420A8D61EBCA2010098D94F /* address Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1420A8D51EBCA2010098D94F /* address Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		1420A8DE1EBCA2010098D94F /* InterfaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1420A8DD1EBCA2010098D94F /* InterfaceController.m */; };
 		1420A8E11EBCA2010098D94F /* ExtensionDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1420A8E01EBCA2010098D94F /* ExtensionDelegate.m */; };
 		1420A8E41EBCA2010098D94F /* NotificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1420A8E31EBCA2010098D94F /* NotificationController.m */; };
@@ -128,18 +127,12 @@
 		14E9584F1EBDAA9E000A56BA /* MemoInterfaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E9584E1EBDAA9E000A56BA /* MemoInterfaceController.m */; };
 		14E958521EBDAB8A000A56BA /* MemoTableRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E958511EBDAB8A000A56BA /* MemoTableRow.m */; };
 		14E958551EBDB64C000A56BA /* MemoDetailInterfaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E958541EBDB64C000A56BA /* MemoDetailInterfaceController.m */; };
+		14E958561EBDE6EC000A56BA /* address Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1420A8D51EBCA2010098D94F /* address Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		14FD590A1E86114700233DDF /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD59091E86114700233DDF /* BaseViewController.m */; };
 		14FD590D1E8614E200233DDF /* NSStrUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD590C1E8614E200233DDF /* NSStrUtils.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		1420A8D71EBCA2010098D94F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1408999C1E8549EF00E329F8 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 1420A8D41EBCA2010098D94F;
-			remoteInfo = "address Extension";
-		};
 		1420A8E81EBCA2010098D94F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1408999C1E8549EF00E329F8 /* Project object */;
@@ -147,20 +140,16 @@
 			remoteGlobalIDString = 1420A8C81EBCA2000098D94F;
 			remoteInfo = address;
 		};
+		14E958571EBDE6EC000A56BA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1408999C1E8549EF00E329F8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1420A8D41EBCA2010098D94F;
+			remoteInfo = "address Extension";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		1420A8EE1EBCA2010098D94F /* Embed App Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-				1420A8D61EBCA2010098D94F /* address Extension.appex in Embed App Extensions */,
-			);
-			name = "Embed App Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		1420A8F21EBCA2010098D94F /* Embed Watch Content */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -170,6 +159,17 @@
 				1420A8EA1EBCA2010098D94F /* address.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		14E958591EBDE6EC000A56BA /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				14E958561EBDE6EC000A56BA /* address Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -895,12 +895,12 @@
 			buildConfigurationList = 1420A8EF1EBCA2010098D94F /* Build configuration list for PBXNativeTarget "address" */;
 			buildPhases = (
 				1420A8C71EBCA2000098D94F /* Resources */,
-				1420A8EE1EBCA2010098D94F /* Embed App Extensions */,
+				14E958591EBDE6EC000A56BA /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				1420A8D81EBCA2010098D94F /* PBXTargetDependency */,
+				14E958581EBDE6EC000A56BA /* PBXTargetDependency */,
 			);
 			name = address;
 			productName = address;
@@ -944,12 +944,15 @@
 							com.apple.Push = {
 								enabled = 1;
 							};
+							com.apple.SafariKeychain = {
+								enabled = 0;
+							};
 						};
 					};
 					1420A8C81EBCA2000098D94F = {
 						CreatedOnToolsVersion = 8.3.1;
 						DevelopmentTeam = 9G23LYYGJ3;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -959,13 +962,13 @@
 					1420A8D41EBCA2010098D94F = {
 						CreatedOnToolsVersion = 8.3.1;
 						DevelopmentTeam = 9G23LYYGJ3;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
-								enabled = 1;
+								enabled = 0;
 							};
 							com.apple.Push = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -1125,15 +1128,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		1420A8D81EBCA2010098D94F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 1420A8D41EBCA2010098D94F /* address Extension */;
-			targetProxy = 1420A8D71EBCA2010098D94F /* PBXContainerItemProxy */;
-		};
 		1420A8E91EBCA2010098D94F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 1420A8C81EBCA2000098D94F /* address */;
 			targetProxy = 1420A8E81EBCA2010098D94F /* PBXContainerItemProxy */;
+		};
+		14E958581EBDE6EC000A56BA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1420A8D41EBCA2010098D94F /* address Extension */;
+			targetProxy = 14E958571EBDE6EC000A56BA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1351,14 +1354,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = "address Extension/address Extension.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 9G23LYYGJ3;
 				INFOPLIST_FILE = "address Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sj.Address.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "3a274b0c-d214-47c5-9dc4-53ff0de56bc9";
+				PROVISIONING_PROFILE_SPECIFIER = AddressWatchkitExtension_dev;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
@@ -1371,14 +1374,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = "address Extension/address Extension.entitlements";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = 9G23LYYGJ3;
 				INFOPLIST_FILE = "address Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sj.Address.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "d1dbc240-1fc6-4a1e-bca2-11cbd662f3eb";
+				PROVISIONING_PROFILE_SPECIFIER = AddressWatchkitExtension_dist;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
@@ -1392,11 +1395,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = address/address.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 9G23LYYGJ3;
 				IBSC_MODULE = address_Extension;
 				INFOPLIST_FILE = address/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sj.Address.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "3e614285-668e-476e-ade2-2134cc2bd2e1";
+				PROVISIONING_PROFILE_SPECIFIER = AddressWatch_dev;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
@@ -1410,11 +1416,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = address/address.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = 9G23LYYGJ3;
 				IBSC_MODULE = address_Extension;
 				INFOPLIST_FILE = address/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sj.Address.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "d179f4fe-47b8-4855-beeb-da8cdb02e011";
+				PROVISIONING_PROFILE_SPECIFIER = AddressWatch_dist;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;

@@ -53,6 +53,7 @@
 - (void)initViews
 {
     [_contentsCountLabel setText:[NSString stringWithFormat:@"%d",[_group.contentsCount intValue]]];
+    [_contentsCountLabel setAdjustsFontSizeToFitWidth:YES];
     [_contentsLabel setText:_group.groupContents];
     [_detailTableView setDelegate:self];
     [_detailTableView setDataSource:self];
