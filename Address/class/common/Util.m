@@ -44,7 +44,7 @@
 + (NSString*)fullDateConvertString:(NSDate*)date
 {
     NSDateFormatter * format = [[NSDateFormatter alloc] init];
-    [format setDateFormat:@"yyyy-MM-dd hh:mm"];
+    [format setDateFormat:@"yyyy-MM-dd HH:mm"];
     return [format stringFromDate:date];
 }
 

@@ -59,6 +59,11 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     [[FCMManager sharedInstance] connectToFcm];
+    NSString * contacts = [[PreferenceManager sharedInstance] getPreference:@"contacts" defualtValue:@""];
+    NSArray * array = [Util stringConvertArray:contacts];
+    if([contacts length] > 0){
+        [[PreferenceManager sharedInstance] sendWatchMessage:[NSDictionary dictionaryWithObjectsAndKeys:array,@"contacts", nil]];
+    }
 }
 
 
@@ -93,5 +98,10 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
 }
 -(void)session:(WCSession *)session didReceiveMessage:(NSDictionary<NSString *,id> *)message{
     NSLog(@"Reached IOS APP");
+}
+
+-(void)sessionDidBecomeInactive:(WCSession *)session
+{
+    
 }
 @end

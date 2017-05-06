@@ -17,4 +17,5 @@
 - (void)removePreference:(NSString*)key;
 
 - (void)watchUpdate:(NSDictionary*)dict;
+- (void)sendWatchMessage:(NSDictionary*)dict;
 @end

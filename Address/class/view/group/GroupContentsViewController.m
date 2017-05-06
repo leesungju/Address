@@ -241,7 +241,7 @@
                 [[StorageManager sharedInstance] saveContents:[_contentsObj getDict] forKey:_group.groupId];
                 NSMutableString * txt = [NSMutableString new];
                 [txt appendString:@"그룹 "];
-                [txt appendFormat:@"%@",_editTitleTextField.text];
+                [txt appendFormat:@"%@",[_group.groupContents stringByReplacingOccurrencesOfString:@"\n" withString:@" "]];
                 [txt appendString:@"에 \n글이 등록 되었습니다."];
                 [[PushManager sharedInstance] makePushMessage:_group.groupId message:txt];
                 [[GUIManager sharedInstance] hideLoading];
@@ -252,7 +252,7 @@
             [[StorageManager sharedInstance] saveContents:[_contentsObj getDict] forKey:_group.groupId];
             NSMutableString * txt = [NSMutableString new];
             [txt appendString:@"그룹 "];
-            [txt appendFormat:@"%@",_editTitleTextField.text];
+            [txt appendFormat:@"%@",[_group.groupContents stringByReplacingOccurrencesOfString:@"\n" withString:@" "]];
             [txt appendString:@"에 \n글이 등록 되었습니다."];
             [[PushManager sharedInstance] makePushMessage:_group.groupId message:txt];
             [[GUIManager sharedInstance] hideLoading];

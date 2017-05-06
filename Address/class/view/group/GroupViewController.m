@@ -162,10 +162,13 @@
             if([[[group.member objectForKey:key] objectForKey:@"memberId"] isEqualToString:[UIDevice getDeviceId]]){
                 [cell.starImageView setImage:[UIImage imageNamed:@"star_sel"]];
                 [cell.joinButton setEnabled:NO];
+                [[FCMManager sharedInstance] addGroup:[group groupId]];
                 break;
             }else{
                 [cell.starImageView setImage:[UIImage imageNamed:@"star_no_sel"]];
                 [cell.joinButton setEnabled:YES];
+                [[FCMManager sharedInstance] deleteGroup
+                 :[group groupId]];
             }
         }
     }else{

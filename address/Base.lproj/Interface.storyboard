@@ -41,9 +41,23 @@
                                 </tableRow>
                             </items>
                         </table>
+                        <group width="1" height="30" alignment="center" verticalAlignment="center" hidden="YES" id="ejD-kE-kXI">
+                            <items>
+                                <label height="13" alignment="center" verticalAlignment="center" text="동기화가 필요합니다" textAlignment="center" id="uCM-aq-Stj">
+                                    <color key="textColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <fontDescription key="font" type="system" pointSize="15"/>
+                                    <variation key="device=watch38mm">
+                                        <fontDescription key="font" type="system" pointSize="13"/>
+                                    </variation>
+                                </label>
+                            </items>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <variation key="device=watch38mm" height="30"/>
+                        </group>
                     </items>
                     <connections>
                         <outlet property="mainTable" destination="zFV-sH-xcG" id="wXA-x6-QGP"/>
+                        <outlet property="noDataGroup" destination="ejD-kE-kXI" id="nmv-Rh-aja"/>
                     </connections>
                 </controller>
             </objects>

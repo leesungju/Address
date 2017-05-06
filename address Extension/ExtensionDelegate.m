@@ -13,15 +13,6 @@
 
 - (void)applicationDidFinishLaunching {
     // Perform any final initialization of your application.
-    if ([WCSession isSupported]) {
-        WCSession *session = [WCSession defaultSession];
-        session = [WCSession defaultSession];
-        session.delegate = self;
-        [session activateSession];
-        if (session.isReachable) {
-            NSLog(@"Able to reach app.");
-        }
-    }
 }
 
 - (void)applicationDidBecomeActive {
@@ -60,53 +51,5 @@
     }
 }
 
-- (void)session:(WCSession *)session didReceiveMessage:(NSDictionary<NSString *, id> *)message replyHandler:(void(^)(NSDictionary<NSString *, id> *replyMessage))replyHandler
-{
-    if(message){
-      
-    }
-}
 
-- (void)session:(WCSession *)session didReceiveApplicationContext:(NSDictionary<NSString *,id> *)applicationContext
-{
-    if(applicationContext){
-        NSString* contacts = [applicationContext objectForKey:@"contacts"];
-        if(contacts){
-            NSUserDefaults * userDefaults = [[NSUserDefaults alloc]
-                                             initWithSuiteName:@"group.sj.address"];
-            [userDefaults setObject:contacts forKey:@"contacts"];
-            NSLog(@"%@",contacts);
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"updateData" object:nil];
-        }
-    }
-}
-
-- (void)session:(WCSession *)session didReceiveUserInfo:(NSDictionary<NSString *,id> *)userInfo
-{
-    if(userInfo){
-        NSString* contacts = [userInfo objectForKey:@"contacts"];
-        if(contacts){
-            NSUserDefaults * userDefaults = [[NSUserDefaults alloc]
-                                             initWithSuiteName:@"group.sj.address"];
-            [userDefaults setObject:contacts forKey:@"contacts"];
-            NSLog(@"%@",contacts);
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"updateData" object:nil];
-        }
-    }
-}
-
--(void)sessionWatchStateDidChange:(nonnull WCSession *)session
-{
-    if(WCSession.isSupported){
-        WCSession* session = WCSession.defaultSession;
-        session.delegate = self;
-        [session activateSession];
-        
-    }
-}
-
-- (void)session:(WCSession *)session activationDidCompleteWithState:(WCSessionActivationState)activationState error:(NSError *)error
-{
-    
-}
 @end

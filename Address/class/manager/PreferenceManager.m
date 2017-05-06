@@ -44,11 +44,6 @@
 {
     [_userDefaults setObject:value forKey:key];
     [_userDefaults synchronize];
-//    [[WCSession defaultSession] sendMessage:@{key:value} replyHandler:^(NSDictionary<NSString *,id> * _Nonnull replyMessage) {
-//        
-//    } errorHandler:^(NSError * _Nonnull error) {
-//        
-//    }];
     
     if([key isEqualToString:@"contacts"]){
         [self watchUpdate:@{key:value}];
@@ -86,6 +81,15 @@
 {
     [[WCSession defaultSession] transferUserInfo:dict];
 //    [[WCSession defaultSession] updateApplicationContext:dict error:nil];
+}
+
+- (void)sendWatchMessage:(NSDictionary*)dict
+{
+    [[WCSession defaultSession] sendMessage:dict replyHandler:^(NSDictionary<NSString *,id> * _Nonnull replyMessage) {
+        
+    } errorHandler:^(NSError * _Nonnull error) {
+        
+    }];
 }
 
 @end
