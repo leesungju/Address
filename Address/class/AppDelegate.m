@@ -71,6 +71,28 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+-(BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
+{
+    NSLog(@"url recieved: %@", url);
+    NSLog(@"query string: %@", [url query]);
+    NSLog(@"host: %@", [url host]);
+    NSLog(@"url path: %@", [url path]);
+    [[PreferenceManager sharedInstance] setPreference:[url host] forKey:@"openUrl"];
+    NSString * openUrl = [[PreferenceManager sharedInstance] getPreference:@"openUrl" defualtValue:@""];
+    if(openUrl.length > 0){
+        [[GUIManager sharedInstance] hideSetting];
+        [[GUIManager sharedInstance] backControllerWithAnimation:NO];
+        if([openUrl isEqualToString:@"address"]){
+            [[GUIManager sharedInstance] moveToAddress];
+        }else if([openUrl isEqualToString:@"group"]){
+            [[GUIManager sharedInstance] moveToPreach];
+        }
+        [[PreferenceManager sharedInstance] setPreference:@"" forKey:@"openUrl"];
+    }
+    return YES;
+}
+
+#pragma mark - push
 // [START receive_message]
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     [[FCMManager sharedInstance] didReceiveRemoteNotification:userInfo];

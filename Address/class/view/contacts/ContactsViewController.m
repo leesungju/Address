@@ -311,15 +311,24 @@
 - (void)saveData:(NSDictionary*)dict
 {
     NSMutableArray * save = [NSMutableArray new];
+    NSMutableArray * fav = [NSMutableArray new];
     for(NSString * key in [dict allKeys]){
         if(![key isEqualToString:@"즐겨찾기"]){
             for (AddressObj *obj in [dict objectForKey:key]) {
                 [save addObject:obj.getDict];
             }
+        }else{
+            for (AddressObj *obj in [dict objectForKey:key]) {
+                [fav addObject:obj.getDict];
+            }
         }
     }
     NSString * resultString = ([save count]> 0)?[Util arrayConvertJsonString:save]:@"";
     [[PreferenceManager sharedInstance] setPreference:resultString forKey:@"contacts"];
+    
+    NSString * resultString2 = ([fav count]> 0)?[Util arrayConvertJsonString:fav]:@"";
+    [[PreferenceManager sharedInstance] setPreference:resultString2 forKey:@"fav_contacts"];
+    
     NSArray * array = [Util stringConvertArray:resultString];
     [_oriDataArray removeAllObjects];
     [_oriDataArray addObjectsFromArray:array];

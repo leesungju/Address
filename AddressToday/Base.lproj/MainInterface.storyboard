@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="M4Y-Lb-cyx">
+    <device id="retina5_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Today View Controller-->
+        <scene sceneID="cwh-vc-ff4">
+            <objects>
+                <viewController id="M4Y-Lb-cyx" customClass="TodayViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ft6-oW-KC0"/>
+                        <viewControllerLayoutGuide type="bottom" id="FKl-LY-JtV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" simulatedAppContext="notificationCenter" id="S3S-Oj-5AN">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="txt-FR-OeG">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="baE-OC-geF"/>
+                                </constraints>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j3I-vu-MbT">
+                                <rect key="frame" x="0.0" y="100" width="375" height="100"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CmR-jI-vTf">
+                                        <rect key="frame" x="0.0" y="0.0" width="187" height="100"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <state key="normal" title="주소록"/>
+                                        <connections>
+                                            <action selector="addressBookAction:" destination="M4Y-Lb-cyx" eventType="touchUpInside" id="SIl-KT-fcG"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dGy-DX-rCy">
+                                        <rect key="frame" x="188" y="0.0" width="187" height="100"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <state key="normal" title="그룹"/>
+                                        <connections>
+                                            <action selector="groupAction:" destination="M4Y-Lb-cyx" eventType="touchUpInside" id="Mbt-QT-kbF"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aXG-QL-Y2x">
+                                        <rect key="frame" x="187" y="0.0" width="1" height="100"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="1" id="oK1-Lc-YzV"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="dGy-DX-rCy" secondAttribute="bottom" id="2ZG-iK-ErH"/>
+                                    <constraint firstAttribute="bottom" secondItem="aXG-QL-Y2x" secondAttribute="bottom" id="3nU-BD-azt"/>
+                                    <constraint firstItem="dGy-DX-rCy" firstAttribute="leading" secondItem="aXG-QL-Y2x" secondAttribute="trailing" id="AST-Br-Au3"/>
+                                    <constraint firstItem="dGy-DX-rCy" firstAttribute="top" secondItem="j3I-vu-MbT" secondAttribute="top" id="HVO-Be-aGO"/>
+                                    <constraint firstAttribute="trailing" secondItem="dGy-DX-rCy" secondAttribute="trailing" id="LN0-Cb-99f"/>
+                                    <constraint firstItem="CmR-jI-vTf" firstAttribute="leading" secondItem="j3I-vu-MbT" secondAttribute="leading" id="S96-hy-JUe"/>
+                                    <constraint firstAttribute="bottom" secondItem="CmR-jI-vTf" secondAttribute="bottom" id="Yv6-gI-kst"/>
+                                    <constraint firstItem="aXG-QL-Y2x" firstAttribute="leading" secondItem="CmR-jI-vTf" secondAttribute="trailing" id="ads-GU-wGr"/>
+                                    <constraint firstItem="aXG-QL-Y2x" firstAttribute="centerX" secondItem="j3I-vu-MbT" secondAttribute="centerX" id="gaf-0W-9Ps"/>
+                                    <constraint firstItem="aXG-QL-Y2x" firstAttribute="top" secondItem="j3I-vu-MbT" secondAttribute="top" id="jcw-K6-ASZ"/>
+                                    <constraint firstItem="CmR-jI-vTf" firstAttribute="top" secondItem="j3I-vu-MbT" secondAttribute="top" id="wPe-jC-X1H"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="j3I-vu-MbT" secondAttribute="trailing" id="8Fh-vi-Hai"/>
+                            <constraint firstItem="txt-FR-OeG" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leading" id="IWK-Go-Osr"/>
+                            <constraint firstItem="FKl-LY-JtV" firstAttribute="top" secondItem="j3I-vu-MbT" secondAttribute="bottom" id="QxP-Zg-3Hq"/>
+                            <constraint firstItem="txt-FR-OeG" firstAttribute="top" secondItem="Ft6-oW-KC0" secondAttribute="bottom" id="dy5-r3-9zg"/>
+                            <constraint firstItem="j3I-vu-MbT" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leading" id="hMf-lZ-0Wh"/>
+                            <constraint firstAttribute="trailing" secondItem="txt-FR-OeG" secondAttribute="trailing" id="uUV-c7-9If"/>
+                            <constraint firstItem="j3I-vu-MbT" firstAttribute="top" secondItem="txt-FR-OeG" secondAttribute="bottom" id="yiZ-mo-brA"/>
+                        </constraints>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="200"/>
+                    <connections>
+                        <outlet property="bottomView" destination="j3I-vu-MbT" id="DAC-Pw-RG7"/>
+                        <outlet property="mainTableView" destination="txt-FR-OeG" id="AUf-0U-nA4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vXp-U4-Rya" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="23.913043478260871" y="36.684782608695656"/>
+        </scene>
+    </scenes>
+</document>

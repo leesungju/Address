@@ -128,6 +128,13 @@
 		14E958521EBDAB8A000A56BA /* MemoTableRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E958511EBDAB8A000A56BA /* MemoTableRow.m */; };
 		14E958551EBDB64C000A56BA /* MemoDetailInterfaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E958541EBDB64C000A56BA /* MemoDetailInterfaceController.m */; };
 		14E958561EBDE6EC000A56BA /* address Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1420A8D51EBCA2010098D94F /* address Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		14FCDD4D1EBF371600113BF9 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14FCDD4C1EBF371600113BF9 /* NotificationCenter.framework */; };
+		14FCDD511EBF371600113BF9 /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FCDD501EBF371600113BF9 /* TodayViewController.m */; };
+		14FCDD541EBF371600113BF9 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14FCDD521EBF371600113BF9 /* MainInterface.storyboard */; };
+		14FCDD581EBF371600113BF9 /* AddressToday.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 14FCDD4B1EBF371600113BF9 /* AddressToday.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		14FCDD611EBF399400113BF9 /* MainTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FCDD5F1EBF399400113BF9 /* MainTableViewCell.m */; };
+		14FCDD621EBF399400113BF9 /* MainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14FCDD601EBF399400113BF9 /* MainTableViewCell.xib */; };
+		14FCDD631EBF3E8F00113BF9 /* Asset.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 140899B31E8549EF00E329F8 /* Asset.xcassets */; };
 		14FD590A1E86114700233DDF /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD59091E86114700233DDF /* BaseViewController.m */; };
 		14FD590D1E8614E200233DDF /* NSStrUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD590C1E8614E200233DDF /* NSStrUtils.m */; };
 /* End PBXBuildFile section */
@@ -146,6 +153,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 1420A8D41EBCA2010098D94F;
 			remoteInfo = "address Extension";
+		};
+		14FCDD561EBF371600113BF9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1408999C1E8549EF00E329F8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 14FCDD4A1EBF371600113BF9;
+			remoteInfo = AddressToday;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -168,6 +182,17 @@
 			dstSubfolderSpec = 13;
 			files = (
 				14E958561EBDE6EC000A56BA /* address Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		14FCDD5C1EBF371600113BF9 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				14FCDD581EBF371600113BF9 /* AddressToday.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -362,6 +387,16 @@
 		14E958511EBDAB8A000A56BA /* MemoTableRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemoTableRow.m; sourceTree = "<group>"; };
 		14E958531EBDB64C000A56BA /* MemoDetailInterfaceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemoDetailInterfaceController.h; sourceTree = "<group>"; };
 		14E958541EBDB64C000A56BA /* MemoDetailInterfaceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemoDetailInterfaceController.m; sourceTree = "<group>"; };
+		14FCDD4B1EBF371600113BF9 /* AddressToday.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AddressToday.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		14FCDD4C1EBF371600113BF9 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		14FCDD4F1EBF371600113BF9 /* TodayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodayViewController.h; sourceTree = "<group>"; };
+		14FCDD501EBF371600113BF9 /* TodayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TodayViewController.m; sourceTree = "<group>"; };
+		14FCDD531EBF371600113BF9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		14FCDD551EBF371600113BF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		14FCDD5D1EBF37F400113BF9 /* AddressToday.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AddressToday.entitlements; sourceTree = "<group>"; };
+		14FCDD5E1EBF399400113BF9 /* MainTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTableViewCell.h; sourceTree = "<group>"; };
+		14FCDD5F1EBF399400113BF9 /* MainTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTableViewCell.m; sourceTree = "<group>"; };
+		14FCDD601EBF399400113BF9 /* MainTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainTableViewCell.xib; sourceTree = "<group>"; };
 		14FD59081E86114700233DDF /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		14FD59091E86114700233DDF /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		14FD590B1E8614E200233DDF /* NSStrUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStrUtils.h; sourceTree = "<group>"; };
@@ -412,6 +447,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		14FCDD481EBF371600113BF9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				14FCDD4D1EBF371600113BF9 /* NotificationCenter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -421,6 +464,7 @@
 				140899A61E8549EF00E329F8 /* Address */,
 				1420A8CA1EBCA2000098D94F /* address */,
 				1420A8D91EBCA2010098D94F /* address Extension */,
+				14FCDD4E1EBF371600113BF9 /* AddressToday */,
 				140899A51E8549EF00E329F8 /* Products */,
 				1461810A1EA509D8005EDC88 /* Frameworks */,
 			);
@@ -432,6 +476,7 @@
 				140899A41E8549EF00E329F8 /* Address.app */,
 				1420A8C91EBCA2000098D94F /* address.app */,
 				1420A8D51EBCA2010098D94F /* address Extension.appex */,
+				14FCDD4B1EBF371600113BF9 /* AddressToday.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -864,8 +909,24 @@
 				1420A8F51EBCAE2C0098D94F /* WatchConnectivity.framework */,
 				1420A8F61EBCAE2C0098D94F /* WatchKit.framework */,
 				1461810B1EA509D8005EDC88 /* MessageUI.framework */,
+				14FCDD4C1EBF371600113BF9 /* NotificationCenter.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		14FCDD4E1EBF371600113BF9 /* AddressToday */ = {
+			isa = PBXGroup;
+			children = (
+				14FCDD5D1EBF37F400113BF9 /* AddressToday.entitlements */,
+				14FCDD4F1EBF371600113BF9 /* TodayViewController.h */,
+				14FCDD501EBF371600113BF9 /* TodayViewController.m */,
+				14FCDD521EBF371600113BF9 /* MainInterface.storyboard */,
+				14FCDD551EBF371600113BF9 /* Info.plist */,
+				14FCDD5E1EBF399400113BF9 /* MainTableViewCell.h */,
+				14FCDD5F1EBF399400113BF9 /* MainTableViewCell.m */,
+				14FCDD601EBF399400113BF9 /* MainTableViewCell.xib */,
+			);
+			path = AddressToday;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -879,11 +940,13 @@
 				140899A11E8549EF00E329F8 /* Frameworks */,
 				140899A21E8549EF00E329F8 /* Resources */,
 				1420A8F21EBCA2010098D94F /* Embed Watch Content */,
+				14FCDD5C1EBF371600113BF9 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				1420A8E91EBCA2010098D94F /* PBXTargetDependency */,
+				14FCDD571EBF371600113BF9 /* PBXTargetDependency */,
 			);
 			name = Address;
 			productName = Address;
@@ -923,6 +986,23 @@
 			productName = "address Extension";
 			productReference = 1420A8D51EBCA2010098D94F /* address Extension.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
+		};
+		14FCDD4A1EBF371600113BF9 /* AddressToday */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 14FCDD5B1EBF371600113BF9 /* Build configuration list for PBXNativeTarget "AddressToday" */;
+			buildPhases = (
+				14FCDD471EBF371600113BF9 /* Sources */,
+				14FCDD481EBF371600113BF9 /* Frameworks */,
+				14FCDD491EBF371600113BF9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AddressToday;
+			productName = AddressToday;
+			productReference = 14FCDD4B1EBF371600113BF9 /* AddressToday.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -972,6 +1052,16 @@
 							};
 						};
 					};
+					14FCDD4A1EBF371600113BF9 = {
+						CreatedOnToolsVersion = 8.3.1;
+						DevelopmentTeam = 9G23LYYGJ3;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
 				};
 			};
 			buildConfigurationList = 1408999F1E8549EF00E329F8 /* Build configuration list for PBXProject "Address" */;
@@ -990,6 +1080,7 @@
 				140899A31E8549EF00E329F8 /* Address */,
 				1420A8C81EBCA2000098D94F /* address */,
 				1420A8D41EBCA2010098D94F /* address Extension */,
+				14FCDD4A1EBF371600113BF9 /* AddressToday */,
 			);
 		};
 /* End PBXProject section */
@@ -1047,6 +1138,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				1420A8E61EBCA2010098D94F /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		14FCDD491EBF371600113BF9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				14FCDD631EBF3E8F00113BF9 /* Asset.xcassets in Resources */,
+				14FCDD621EBF399400113BF9 /* MainTableViewCell.xib in Resources */,
+				14FCDD541EBF371600113BF9 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1125,6 +1226,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		14FCDD471EBF371600113BF9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				14FCDD611EBF399400113BF9 /* MainTableViewCell.m in Sources */,
+				14FCDD511EBF371600113BF9 /* TodayViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1137,6 +1247,11 @@
 			isa = PBXTargetDependency;
 			target = 1420A8D41EBCA2010098D94F /* address Extension */;
 			targetProxy = 14E958571EBDE6EC000A56BA /* PBXContainerItemProxy */;
+		};
+		14FCDD571EBF371600113BF9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 14FCDD4A1EBF371600113BF9 /* AddressToday */;
+			targetProxy = 14FCDD561EBF371600113BF9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1155,6 +1270,14 @@
 				1420A8CC1EBCA2010098D94F /* Base */,
 			);
 			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
+		14FCDD521EBF371600113BF9 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				14FCDD531EBF371600113BF9 /* Base */,
+			);
+			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -1431,6 +1554,36 @@
 			};
 			name = Release;
 		};
+		14FCDD591EBF371600113BF9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = AddressToday/AddressToday.entitlements;
+				DEVELOPMENT_TEAM = 9G23LYYGJ3;
+				INFOPLIST_FILE = AddressToday/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sj.Address.AddressToday;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		14FCDD5A1EBF371600113BF9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = AddressToday/AddressToday.entitlements;
+				DEVELOPMENT_TEAM = 9G23LYYGJ3;
+				INFOPLIST_FILE = AddressToday/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sj.Address.AddressToday;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1469,6 +1622,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		14FCDD5B1EBF371600113BF9 /* Build configuration list for PBXNativeTarget "AddressToday" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				14FCDD591EBF371600113BF9 /* Debug */,
+				14FCDD5A1EBF371600113BF9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
