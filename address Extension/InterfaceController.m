@@ -14,6 +14,7 @@
 @property (strong, nonatomic) IBOutlet WKInterfaceTable *mainTable;
 @property (strong, nonatomic) IBOutlet WKInterfaceGroup *noDataGroup;
 @property (strong, nonatomic) NSArray * contactsArray;
+@property (strong, nonatomic) NSMutableArray * favArray;
 @end
 
 
@@ -43,6 +44,7 @@
 
 - (void)dataReload
 {
+    _favArray = [NSMutableArray new];
     NSUserDefaults * userDefaults = [[NSUserDefaults alloc]
                                      initWithSuiteName:@"group.sj.address"];
     id contacts = [userDefaults objectForKey:@"contacts"];
@@ -53,15 +55,33 @@
         }else{
             _contactsArray = contacts;
         }
-        [_mainTable setNumberOfRows:[_contactsArray count] withRowType:@"MainTableRow"];
-        for (int i = 0; i < [_contactsArray count] ; i++) {
-            MainTableRow * mainRow = [_mainTable rowControllerAtIndex:i];
-            [mainRow setDelegate:self];
-            NSDictionary * data = [_contactsArray objectAtIndex:i];
-            [mainRow.nameLabel setText:[data objectForKey:@"name"]];
-            [mainRow setPhoneNumber:[data objectForKey:@"phoneNumber"]];
+        
+        for(int i =0;i<[_contactsArray count];i++){
+            BOOL isFav = [[[_contactsArray objectAtIndex:i] objectForKey:@"isFav"] boolValue];
+            if(isFav){
+                [_favArray addObject:[_contactsArray objectAtIndex:i]];
+                NSSortDescriptor *sorter = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+                [_favArray sortUsingDescriptors:[NSArray arrayWithObject:sorter]];
+            }
         }
-        [_noDataGroup setHidden:YES];
+        if([_favArray count] == 0){
+            WKAlertAction * action =  [WKAlertAction actionWithTitle: @"OK"
+                                                               style: WKAlertActionStyleDefault
+                                                             handler: ^{
+                                                                 
+                                                             }];
+            [self presentAlertControllerWithTitle:@"알림" message:@"즐겨찾기 목록이 없습니다." preferredStyle:WKAlertControllerStyleAlert actions:@[action]];
+        }else{
+            [_mainTable setNumberOfRows:[_favArray count] withRowType:@"MainTableRow"];
+            for (int i = 0; i < [_favArray count] ; i++) {
+                MainTableRow * mainRow = [_mainTable rowControllerAtIndex:i];
+                [mainRow setDelegate:self];
+                NSDictionary * data = [_favArray objectAtIndex:i];
+                [mainRow.nameLabel setText:[data objectForKey:@"name"]];
+                [mainRow setPhoneNumber:[data objectForKey:@"phoneNumber"]];
+            }
+            [_noDataGroup setHidden:YES];
+        }
     }else{
         [_noDataGroup setHidden:NO];
         [_mainTable setHidden:YES];
@@ -70,7 +90,7 @@
                                                          handler: ^{
                                                              
                                                          }];
-        [self presentAlertControllerWithTitle:@"알림" message:@"데이터가 없습니다. 동기화를 해주세요!" preferredStyle:WKAlertControllerStyleAlert actions:@[action]];
+        [self presentAlertControllerWithTitle:@"알림" message:@"즐겨찾기 목록이 없습니다." preferredStyle:WKAlertControllerStyleAlert actions:@[action]];
     }
 
 }
@@ -83,7 +103,7 @@
 
 - (void)table:(WKInterfaceTable *)table didSelectRowAtIndex:(NSInteger)rowIndex
 {
-    [self pushControllerWithName:@"DetailInterface" context:[_contactsArray objectAtIndex:rowIndex]];
+    [self pushControllerWithName:@"DetailInterface" context:[_favArray objectAtIndex:rowIndex]];
 }
 
 -(void)callBtnAction:(NSDictionary *)dict

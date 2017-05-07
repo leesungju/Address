@@ -9,10 +9,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="12029"/>
     </dependencies>
     <scenes>
-        <!--주소록-->
+        <!--즐겨찾기-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller title="주소록" id="AgC-eL-Hgc" customClass="InterfaceController">
+                <controller title="즐겨찾기" id="AgC-eL-Hgc" customClass="InterfaceController">
                     <items>
                         <table alignment="left" id="zFV-sH-xcG">
                             <items>

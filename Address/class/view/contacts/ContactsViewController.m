@@ -312,8 +312,10 @@
 {
     NSMutableArray * save = [NSMutableArray new];
     for(NSString * key in [dict allKeys]){
-        for (AddressObj *obj in [dict objectForKey:key]) {
-            [save addObject:obj.getDict];
+        if(![key isEqualToString:@"즐겨찾기"]){
+            for (AddressObj *obj in [dict objectForKey:key]) {
+                [save addObject:obj.getDict];
+            }
         }
     }
     NSString * resultString = ([save count]> 0)?[Util arrayConvertJsonString:save]:@"";
@@ -427,6 +429,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [self reloadFavArray];
     ContactsDetailViewController * contact = [ContactsDetailViewController new];
     if([_favArray count] > 0 && indexPath.section == 0){
         NSArray* tempArray = [_sections objectForKey:[_sectionArray objectAtIndex:indexPath.section]];
@@ -464,18 +467,96 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [[GUIManager sharedInstance] showComfirm:@"삭제하시겠습니까?" viewCon:self handler:^(UIAlertAction *action) {
-        NSMutableArray* tempArray = [_sections objectForKey:[_sectionArray objectAtIndex:indexPath.section]];
-        [tempArray removeObjectAtIndex:indexPath.row];
-        if([tempArray count] == 0){
-            [_sectionArray removeObjectAtIndex:indexPath.section];
-        }
-        [tableView reloadData];
-        [self saveData:_sections];
-    } cancelHandler:^(UIAlertAction *action) {
-        
-    }];
+    [self reloadFavArray];
+    if([_favArray count] > 0 && indexPath.section == 0){
+        [[GUIManager sharedInstance] showComfirm:@"즐겨 찾기를 해제 하시겠습니까?" viewCon:self handler:^(UIAlertAction *action) {
+            AddressObj * selectObj = [[_sections objectForKey:[_sectionArray objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
+            int row = [selectObj.favRow intValue];
+            int section = [selectObj.favSection intValue]+1;
+            
+            AddressObj * obj = [[_sections objectForKey:[_sectionArray objectAtIndex:section]] objectAtIndex:row];
+            obj.isFav = [NSNumber numberWithBool:NO];
+
+            [[_sections objectForKey:[_sectionArray objectAtIndex:section]] removeObjectAtIndex:row];
+            [[_sections objectForKey:[_sectionArray objectAtIndex:section]] insertObject:obj atIndex:row];
+            
+            NSMutableArray* tempArray = [_sections objectForKey:[_sectionArray objectAtIndex:indexPath.section]];
+            [tempArray removeObjectAtIndex:indexPath.row];
+            if([tempArray count] == 0){
+                [_sectionArray removeObjectAtIndex:indexPath.section];
+            }
+            [tableView reloadData];
+            [self saveData:_sections];
+        } cancelHandler:^(UIAlertAction *action) {
+            
+        }];
+
+    }else if([_favArray count] > 0){
+        [[GUIManager sharedInstance] showComfirm:@"삭제하시겠습니까?" viewCon:self handler:^(UIAlertAction *action) {
+            NSMutableArray* tempArray = [_sections objectForKey:[_sectionArray objectAtIndex:indexPath.section]];
+            AddressObj * selectObj = [tempArray objectAtIndex:indexPath.row];
+            if(selectObj.isFav){
+                NSMutableArray * favArray = [_sections objectForKey:[_sectionArray objectAtIndex:0]];
+                for (AddressObj * obj in favArray) {
+                    if([obj.name isEqualToString:selectObj.name] && [obj.phoneNumber isEqualToString:selectObj.phoneNumber]){
+                        [favArray removeObject:obj];
+                        break;
+                    }
+                }
+                if([favArray count] == 0){
+                    [_sectionArray removeObjectAtIndex:0];
+                }else{
+                    [_sections setObject:favArray forKey:[_sectionArray objectAtIndex:0]];
+                }
+            }
+            [tempArray removeObjectAtIndex:indexPath.row];
+            if([tempArray count] == 0){
+                [_sectionArray removeObjectAtIndex:indexPath.section];
+            }
+            [tableView reloadData];
+            [self reloadFavArray];
+            [self saveData:_sections];
+        } cancelHandler:^(UIAlertAction *action) {
+            
+        }];
+    }else{
+        [[GUIManager sharedInstance] showComfirm:@"삭제하시겠습니까?" viewCon:self handler:^(UIAlertAction *action) {
+            NSMutableArray* tempArray = [_sections objectForKey:[_sectionArray objectAtIndex:indexPath.section]];
+            [tempArray removeObjectAtIndex:indexPath.row];
+            if([tempArray count] == 0){
+                [_sectionArray removeObjectAtIndex:indexPath.section];
+            }
+            [tableView reloadData];
+            [self saveData:_sections];
+        } cancelHandler:^(UIAlertAction *action) {
+            
+        }];
+    }
 }
+
+- (void)reloadFavArray
+{
+    NSMutableArray * favArray = [_sections objectForKey:[_sectionArray objectAtIndex:0]];
+    for (int k=0; k<[favArray count]; k++) {
+        AddressObj * favObj = [favArray objectAtIndex:k];
+        for(int i=0;i<[_sectionArray count];i++){
+            if([[_sectionArray objectAtIndex:i] isEqualToString:favObj.section]){
+                NSMutableArray * tempArray = [_sections objectForKey:[_sectionArray objectAtIndex:i]];
+                for (int j=0; j<[tempArray count]; j++) {
+                    AddressObj * obj = [tempArray objectAtIndex:j];
+                    if([favObj.name isEqualToString:obj.name] && [favObj.phoneNumber isEqualToString:obj.phoneNumber]){
+                        favObj.favSection = [NSNumber numberWithInt:i-1];
+                        favObj.favRow = [NSNumber numberWithInt:j];
+                        break;
+                    }
+                }
+                break;
+            }
+        }
+    }
+}
+
+
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {

@@ -80,7 +80,6 @@
 - (void)watchUpdate:(NSDictionary*)dict
 {
     [[WCSession defaultSession] transferUserInfo:dict];
-//    [[WCSession defaultSession] updateApplicationContext:dict error:nil];
 }
 
 - (void)sendWatchMessage:(NSDictionary*)dict
